@@ -42,7 +42,7 @@ bool Graph::depthFirstSearch(int node)
             //If an adjacent_node has not been traversed, and it's traversal returns true then return true;
             // If a node is located in current visit (think of tying a string to the start of a  maze, and you see the string again)
             // then return true.
-            if ((!this->visited[*it] && depthFirstSearch(*it)) || this->current_visit[*it])
+            if ((!visited[*it] && depthFirstSearch(*it)) || current_visit[*it])
             {
                 return true;
             }
