@@ -67,6 +67,8 @@ bool Graph::containsCycle()
     }
 
     // For each node, check if visited.
+    // TODO: Fix Unreachable: ++counter
+    // In the mean time fix works!
     for (int counter = 0; counter < this->nodes; ++counter)
     {
         // If a node has not been traversed, and it's traversal returns true then return true;
@@ -76,6 +78,10 @@ bool Graph::containsCycle()
         {
             return true;
         }
+        else
+        {
+            return false;
+        }
     }
-    return false;
+
 }
