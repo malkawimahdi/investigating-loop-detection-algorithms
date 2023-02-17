@@ -9,6 +9,7 @@
 // (Doubly Linked List)
 Graph::Graph(int nodes)
 {
+    this->nodes = nodes;
     this->adjacent_nodes = new std::list<int>[nodes];
 }
 
@@ -78,9 +79,6 @@ bool Graph::containsCycle()
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
     }
+    return false;
 }
