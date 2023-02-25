@@ -28,7 +28,7 @@ void Graph::addEdge(int current_node, int adjacent_node)
 }
 
 //Implementation of Depth First Search (DFS) from a given node.
-bool Graph::depthFirstSearch(int node)
+bool Graph::depthFirstSearch(int &node)
 {
     if (!this->visited[node])
     {
@@ -49,12 +49,12 @@ bool Graph::depthFirstSearch(int node)
             }
         }
     }
-    //Clear node from currently visited.
+    //Clear node from currently visited if it is not a back-edge, otherwise it is always true.
     this->current_visit[node] = false;
     return false;
 }
 
-bool Graph::containsCycle()
+bool Graph::containsCycle(void)
 {
     // Initalise variables inside graph to false.
     for (auto& [key, value]: this->visited)
