@@ -88,8 +88,9 @@
     description = "Mahdi";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      gcc
       firefox
-    #  thunderbird
+      time
     ];
   };
 
@@ -101,9 +102,29 @@
   hardware.opengl.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
+  #Remove pre-installed GNOME desktop applications
+  environment.gnome.excludePackages = (with pkgs; [
+  gnome-photos
+  gnome-tour
+]) ++ (with pkgs.gnome; [
+  cheese # webcam tool
+  gnome-music
+  gedit # text editor
+  epiphany # web browser
+  geary # email reader
+  evince # document viewer
+  gnome-characters
+  totem # video player
+  tali # poker game
+  iagno # go game
+  hitori # sudoku game
+  atomix # puzzle game
+]);
+
+
   #HiDPI Module
   hardware.video.hidpi.enable = true;
-# List packages installed in system profile. To search, run:
+  # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
