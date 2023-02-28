@@ -1,0 +1,3 @@
+Example programs generated from michael-wolfe folders are not the actual control flow graphs that are used to determine the results generated. They have been created to show what example programs might look like.
+
+The control flow graphs used are generated exactly from micheal-wolfes paper.
