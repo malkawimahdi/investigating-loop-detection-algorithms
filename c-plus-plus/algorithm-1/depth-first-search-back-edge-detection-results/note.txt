@@ -1,1 +1,0 @@
-Binaries generated are generated on input system. NixOS.
