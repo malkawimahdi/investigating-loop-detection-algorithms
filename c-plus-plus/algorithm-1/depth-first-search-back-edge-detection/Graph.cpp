@@ -5,6 +5,7 @@
 
 #include "Graph.h"
 
+#include <iostream>
 #include <stdexcept>
 
 // Constructor takes number of nodes and generates a list containing an entry the size of nodes.
@@ -42,6 +43,13 @@ bool Graph::depthFirstSearch(int &node)
         std::list<int>::iterator it;
         for (it = this->adjacent_nodes[node].begin(); it != this->adjacent_nodes[node].end(); ++it)
         {
+            // If cycle detected, then it would be in current visit from node to what the iterator
+            // is currently pointing at.
+            if (current_visit[*it])
+            {
+                std::cout << "Cycle from: " << node << " to " << *it << std::endl;
+            }
+
             //If an adjacent_node has not been traversed, and it's traversal returns true then return true;
             // If a node is located in current visit (think of tying a string to the start of a  maze, and you see the string again)
             // then return true.
@@ -58,6 +66,8 @@ bool Graph::depthFirstSearch(int &node)
 
 bool Graph::containsCycle(void)
 {
+    unsigned cycle_count = 0;
+
     // Initalise variables inside graph to false.
     for (auto& [key, value]: this->visited)
     {
@@ -77,8 +87,20 @@ bool Graph::containsCycle(void)
         // to check the second condition. (Only saves a line of code)
         if (!this->visited[counter] && depthFirstSearch(counter))
         {
-            return true;
+            ++cycle_count;
         }
     }
-    return false;
+
+    if (cycle_count)
+    {
+        std::cout << "Cycles: " << cycle_count << std::endl;
+
+        std::cout << "Is Cycle Present? ";
+        return true;
+    }
+    else
+    {
+        std::cout << "Is Cycle Present? ";
+        return false;
+    }
 }

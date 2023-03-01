@@ -8,10 +8,8 @@
 
 int main(void)
 {
-    // TODO: Create additional test cases.
-    // Place results in comments next to the test case.
-    // Cyclic graph in a square: (0 -> 1), (1 -> 2), (2 -> 3), (3 -> 0)
-    // Back edge is (3 -> 0)
+// Cyclic graph in a square: (0 -> 1), (1 -> 2), (2 -> 3), (3 -> 0)
+// Back edge is (3 -> 0)
 //    Graph graph(4);
 //    graph.addEdge(0, 1);
 //    graph.addEdge(1, 2);
@@ -19,13 +17,13 @@ int main(void)
 //    graph.addEdge(3, 0);
 
 // Micheal Wolfe Paper G1
-//    Graph graph(5);
-//    graph.addEdge(0, 1);
-//    graph.addEdge(1, 2);
-//    graph.addEdge(2, 2);
-//    graph.addEdge(2, 3);
-//    graph.addEdge(3, 4);
-//    graph.addEdge(0, 4);
+    Graph graph(5);
+    graph.addEdge(0, 1);
+    graph.addEdge(1, 2);
+    graph.addEdge(2, 2);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 4);
+    graph.addEdge(0, 4);
 
 // Micheal Wolfe Paper G2
 //    Graph graph(6);
@@ -127,6 +125,7 @@ int main(void)
 //     graph.addEdge(20, 21);
 //     graph.addEdge(21, 22);
 //     graph.addEdge(22, 23);
+
     std::cout << (graph.containsCycle() ? "True" : "False");
 
     return 0;
