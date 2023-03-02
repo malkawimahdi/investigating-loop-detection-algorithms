@@ -1,5 +1,5 @@
 Dr Martin Nyx Brain loop-busy-wait
-Cycle from: 3 to 1
+Cycle from: 4 to 0
 Cycles: 1
 Is Cycle Present? True	Command being timed: "./a.out"
 	User time (seconds): 0.00
@@ -10,12 +10,12 @@ Is Cycle Present? True	Command being timed: "./a.out"
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 3540
+	Maximum resident set size (kbytes): 3596
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
 	Minor (reclaiming a frame) page faults: 140
 	Voluntary context switches: 1
-	Involuntary context switches: 0
+	Involuntary context switches: 1
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
