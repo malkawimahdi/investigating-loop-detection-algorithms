@@ -17,6 +17,7 @@ int main(void)
     //    graph.addEdge(3, 0);
 
     // Micheal Wolfe Paper G1
+    std::cout << "Micheal Wolfe Paper G1" << std::endl;
     Graph graph(5);
     graph.addEdge(0, 1);
     graph.addEdge(1, 2);
@@ -26,6 +27,7 @@ int main(void)
     graph.addEdge(0, 4);
 
     // Micheal Wolfe Paper G2
+    // std::cout << "Micheal Wolfe Paper G2" << std::endl;
     //    Graph graph(6);
     //    graph.addEdge(0, 1);
     //    graph.addEdge(1, 2);
@@ -37,6 +39,7 @@ int main(void)
     //    graph.addEdge(0, 5);
 
     // Micheal Wolfe Paper G3
+    // std::cout << "Micheal Wolfe Paper G3" << std::endl;
     //    Graph graph(6);
     //    graph.addEdge(0, 1);
     //    graph.addEdge(1, 2);
@@ -48,6 +51,7 @@ int main(void)
     //    graph.addEdge(0, 5);
 
     // Micheal Wolfe Paper G4
+    // std::cout << "Micheal Wolfe Paper G4" << std::endl;
     //    Graph graph(6);
     //    graph.addEdge(0, 1);
     //    graph.addEdge(1, 2);
@@ -59,6 +63,7 @@ int main(void)
     //    graph.addEdge(0, 5);
 
     // Micheal Wolfe Paper G5a
+    // std::cout << "Micheal Wolfe Paper G5a" << std::endl;
     //    Graph graph(7);
     //    graph.addEdge(0, 1);
     //    graph.addEdge(1, 2);
@@ -71,6 +76,7 @@ int main(void)
     //    graph.addEdge(0, 6);
 
     // Micheal Wolfe Paper G5b
+    // std::cout << "Micheal Wolfe Paper G5b" << std::endl;
     //    Graph graph(7);
     //    graph.addEdge(0, 1);
     //    graph.addEdge(1, 2);
@@ -83,6 +89,7 @@ int main(void)
     //    graph.addEdge(0, 6);
 
     // Dr Martin Nyx Brain loop-busy-wait
+    // std::cout << "Dr Martin Nyx Brain loop-busy-wait" << std::endl;
     //     Graph graph(6);
     //     graph.addEdge(0, 1);
     //     graph.addEdge(0, 2);
@@ -92,10 +99,12 @@ int main(void)
     //     graph.addEdge(4, 0);
 
     // Dr Martin Nyx Brain loop-empty
+    // std::cout << "Dr Martin Nyx Brain loop-empty" << std::endl;
     //     Graph graph(1);
     //     graph.addEdge(0, 0);
 
     // Dr Martin Nyx Brain loop-sequence-of-instructions
+    // std::cout << "Dr Martin Nyx Brain loop-sequence-of-instructions" << std::endl;
     //     Graph graph(24);
     //     graph.addEdge(0, 1);
     //     graph.addEdge(1, 2);
