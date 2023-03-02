@@ -22,7 +22,7 @@ void Graph::addEdge(int current_node, int adjacent_node)
 {
     if ((this->adjacent_nodes[current_node].size() > 1))
     {
-        throw std::runtime_error( "Graph can contain AT MOST two children." );
+        throw std::runtime_error("Graph can contain AT MOST two children.");
     }
     else
     {
@@ -30,7 +30,7 @@ void Graph::addEdge(int current_node, int adjacent_node)
     }
 }
 
-//Implementation of Depth First Search (DFS) from a given node.
+// Implementation of Depth First Search (DFS) from a given node.
 bool Graph::depthFirstSearch(int &node)
 {
     if (!this->visited[node])
@@ -47,19 +47,19 @@ bool Graph::depthFirstSearch(int &node)
             // is currently pointing at.
             if (current_visit[*it])
             {
-                std::cout << "Cycle from: " << node << " to " << *it << std::endl;
+                std::cout << "Back edge from: " << node << " to " << *it << std::endl;
             }
 
-            //If an adjacent_node has not been traversed, and it's traversal returns true then return true;
-            // If a node is located in current visit (think of tying a string to the start of a  maze, and you see the string again)
-            // then return true.
+            // If an adjacent_node has not been traversed, and it's traversal returns true then return true;
+            //  If a node is located in current visit (think of tying a string to the start of a  maze, and you see the string again)
+            //  then return true.
             if ((!visited[*it] && depthFirstSearch(*it)) || current_visit[*it])
             {
                 return true;
             }
         }
     }
-    //Clear node from currently visited if it is not a back-edge, otherwise it is always true.
+    // Clear node from currently visited if it is not a back-edge, otherwise it is always true.
     this->current_visit[node] = false;
     return false;
 }
@@ -69,12 +69,12 @@ bool Graph::containsCycle(void)
     unsigned cycle_count = 0;
 
     // Initalise variables inside graph to false.
-    for (auto& [key, value]: this->visited)
+    for (auto &[key, value] : this->visited)
     {
         value = false;
     }
 
-    for (auto& [key, value]: this->current_visit)
+    for (auto &[key, value] : this->current_visit)
     {
         value = false;
     }
