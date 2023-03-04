@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 {
     int first = 0;
 
-    loop:
+loop:
     goto loop;
 
     return 0;

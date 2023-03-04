@@ -7,11 +7,20 @@ int main(int argc, char **argv)
 {
     int first = 0;
 
+    int condition = 5;
+
     do
     {
         ++first;
-    } while (first < 10);
-    
 
+        if (first == condition)
+        {
+                    
+            goto exit_loop;
+        }
+
+    } while (first < 10);
+
+exit_loop:
     return 0;
 }
