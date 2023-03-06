@@ -1,2 +1,0 @@
-All test cases for michael-wolfe-gX, where X is the test case are located at:
-// https://scholararchive.ohsu.edu/downloads/9z903022q?locale=en
