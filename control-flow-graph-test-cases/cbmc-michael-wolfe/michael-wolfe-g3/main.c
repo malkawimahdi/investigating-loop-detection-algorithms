@@ -5,25 +5,30 @@
 
 int main(int argc, char **argv)
 {
-
     int a = 1;
-
-    if (a + 1)
+    int b = 2;
+l1:
+    if (a)
     {
-        goto inner_loop;
+        a + 1;
     }
 
     int counter = 10;
-outer:
 
-    while (counter > 0)
+l2:
+    b + 2;
+
+l3:
+    if (counter < 10)
     {
         --counter;
     }
+    else
+    {
+        goto l2;
+    }
 
-inner_loop:
-
-    goto outer;
-
+l4:
+    goto l3;
     return 0;
 }

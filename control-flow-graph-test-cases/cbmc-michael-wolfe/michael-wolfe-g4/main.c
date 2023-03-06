@@ -5,26 +5,22 @@
 
 int main(int argc, char **argv)
 {
-    for (int counter = 0; counter < 5; ++counter)
-    {
-    outer:
-    loop:
-        for (int counter2 = 0; counter2 < 5; ++counter2)
-        {
-            goto outer;
+    int a = 1;
 
-            goto loop;
-        }
-    }
+l1:
+    a = ++a;
 
-    if (1)
+    int b = -1;
+
+l2:
+    b += 1;
+    if (b > 0)
     {
-        goto outer;
-        goto loop;
+        goto l1;
     }
     else
     {
-        goto loop;
+        goto l1;
     }
 
     return 0;
