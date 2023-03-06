@@ -7,6 +7,7 @@ int main(int argc, char **argv)
 {
     int a = 1;
     int b = 2;
+    int error = 0;
 l1:
     if (a)
     {
@@ -26,9 +27,13 @@ l3:
     else
     {
         goto l2;
+        error = 1;
     }
 
 l4:
-    goto l3;
+    if (error)
+    {
+        goto l3;
+    }
     return 0;
 }
