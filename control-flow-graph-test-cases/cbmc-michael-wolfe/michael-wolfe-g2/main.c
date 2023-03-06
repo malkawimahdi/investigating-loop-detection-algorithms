@@ -5,14 +5,11 @@
 
 int main(int argc, char **argv)
 {
-
     for (int counter = 0; counter < 5; ++counter)
     {
         for (int counter2 = 0; counter2 < 5; ++counter2)
         {
-            
-        }
+                }
     }
-
     return 0;
 }
