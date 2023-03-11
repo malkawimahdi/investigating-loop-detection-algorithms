@@ -36,6 +36,12 @@ void Graph::addEdge(int current_node, int adjacent_node)
 // Outputs detected cycles in the same way as CBMC.
 bool Graph::depthFirstSearch(int node)
 {
+    // Initalise variables inside graph to false.
+    for (auto &[key, value] : this->visited)
+    {
+        value = false;
+    }
+    
     //Each node is viewed as a pair in the form of std::pair<node, index>
     this->stack.push(std::pair(node, 0));
 
