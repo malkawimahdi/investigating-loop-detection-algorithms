@@ -2,15 +2,15 @@
 
 int main(void)
 {
-//    // Cyclic graph in a square: (0 -> 1), (1 -> 2), (2 -> 3), (3 -> 0)
-//    // Back edge is (3 -> 0)
-//        Graph graph(4);
-//        graph.addEdge(0, 1);
-//        graph.addEdge(1, 2);
-//        graph.addEdge(2, 3);
-//        graph.addEdge(3, 0);
+    //    // Cyclic graph in a square: (0 -> 1), (1 -> 2), (2 -> 3), (3 -> 0)
+    //    // Back edge is (3 -> 0)
+    //        Graph graph(4);
+    //        graph.addEdge(0, 1);
+    //        graph.addEdge(1, 2);
+    //        graph.addEdge(2, 3);
+    //        graph.addEdge(3, 0);
 
-//     Micheal Wolfe Paper G1
+    //     Micheal Wolfe Paper G1
     std::cout << "Micheal Wolfe Paper G1" << std::endl;
     Graph graph(5);
     graph.addEdge(0, 1);
@@ -58,16 +58,16 @@ int main(void)
 
     // Micheal Wolfe Paper G5a
     // std::cout << "Micheal Wolfe Paper G5a" << std::endl;
-//        Graph graph(7);
-//        graph.addEdge(0, 1);
-//        graph.addEdge(1, 2);
-//        graph.addEdge(2, 3);
-//        graph.addEdge(2, 4);
-//        graph.addEdge(3, 5);
-//        graph.addEdge(4, 5);
-//        graph.addEdge(5, 6);
-//        graph.addEdge(3, 1);
-//        graph.addEdge(0, 6);
+    //        Graph graph(7);
+    //        graph.addEdge(0, 1);
+    //        graph.addEdge(1, 2);
+    //        graph.addEdge(2, 3);
+    //        graph.addEdge(2, 4);
+    //        graph.addEdge(3, 5);
+    //        graph.addEdge(4, 5);
+    //        graph.addEdge(5, 6);
+    //        graph.addEdge(3, 1);
+    //        graph.addEdge(0, 6);
 
     // Micheal Wolfe Paper G5b
     // std::cout << "Micheal Wolfe Paper G5b" << std::endl;
