@@ -5,9 +5,6 @@
 
 #include "Graph.h"
 
-#include <iostream>
-#include <stdexcept>
-
 // Constructor takes number of nodes and generates a list containing an entry the size of nodes.
 // (Doubly Linked List)
 Graph::Graph(int nodes)
