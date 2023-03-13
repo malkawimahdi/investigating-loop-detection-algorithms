@@ -10,6 +10,8 @@
 #include <stack>
 #include <vector>
 #include <iostream>
+#include <stdexcept>
+#include <algorithm>
 
 class Graph
 {
