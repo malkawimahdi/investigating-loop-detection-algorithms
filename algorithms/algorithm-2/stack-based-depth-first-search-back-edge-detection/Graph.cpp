@@ -124,13 +124,13 @@ bool Graph::depthFirstSearch(int node)
 
     // Detects unreachable nodes.
     // If a node has not been visited, it means that it is not reachable from the entry node.
-    for (auto &[key, value] : this->visited)
-    {
-        if (!visited[key])
-        {
-            std::cout << "Unreachable node: " << key << std::endl;
-        }
-    }
+//     for (auto &[key, value] : this->visited)
+//     {
+//         if (!visited[key])
+//         {
+//             std::cout << "Unreachable node: " << key << std::endl;
+//         }
+//     }
 
     if (this->cycle)
     {
