@@ -8,6 +8,8 @@
 
 #include <list>
 #include <map>
+#include <iostream>
+#include <stdexcept>
 
 class Graph
 {
