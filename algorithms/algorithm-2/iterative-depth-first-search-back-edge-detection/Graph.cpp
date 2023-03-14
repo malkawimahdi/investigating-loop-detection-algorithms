@@ -82,7 +82,7 @@ bool Graph::depthFirstSearch(int node)
 
                     std::cout << next_node << " is head of { ";
 
-                    std::stack<std::pair<int, int>> stack_copy = this->stack;
+                    std::stack<std::pair<int, int> > stack_copy = this->stack;
 
                     std::vector<int> vector_stack;
 

@@ -19,7 +19,7 @@ private:
     int nodes;                             // Number of nodes within graph.
     std::list<int> *adjacent_nodes;        // Pointer to list containing adjacent nodes for all nodes. (Doubly Linked List)
     std::map<int, bool> visited;           // Key value pair. (Key: Node) (Value: has that node been visited?)
-    std::stack<std::pair<int, int>> stack; // Stack for iterative Depth First Search.
+    std::stack<std::pair<int, int> > stack; // Stack for iterative Depth First Search.
     bool cycle = false;                    // Cycle check.
     bool isThereACycleEver = false;        // Required as cycle is reset after each iteration, this is used for the function output.
     unsigned int cycle_count = 0;          // Cycle counter.
