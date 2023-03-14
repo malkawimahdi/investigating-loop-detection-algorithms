@@ -84,8 +84,12 @@ bool Graph::depthFirstSearch(int node)
                 {
                     int node_copy = stack_copy.top().first;
 
+                    if (node_copy == next_node)
+                    {
+                        vector_stack.push_back(node_copy);
+                        break;
+                    }
                     vector_stack.push_back(node_copy);
-
                     stack_copy.pop();
                 }
 
