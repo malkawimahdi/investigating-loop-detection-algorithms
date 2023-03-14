@@ -43,6 +43,7 @@ bool Graph::depthFirstSearch(int node)
     // Each node is viewed as a pair in the form of std::pair<node, index>
     this->stack.push(std::pair(node, 0));
 
+    std::cout << "First Pair: " << node <<", 0" << std::endl;
     this->visited[node] = true;
 
     // Iterative Depth First Search.
@@ -115,6 +116,7 @@ bool Graph::depthFirstSearch(int node)
             if (!cycle)
             {
                 this->stack.push(std::pair(next_node, 0));
+                std::cout << "Next Pair: " << next_node <<", 0" << std::endl;
             }
         }
         else
@@ -128,13 +130,13 @@ bool Graph::depthFirstSearch(int node)
 
     // Detects unreachable nodes.
     // If a node has not been visited, it means that it is not reachable from the entry node.
-//     for (auto &[key, value] : this->visited)
-//     {
-//         if (!visited[key])
-//         {
-//             std::cout << "Unreachable node: " << key << std::endl;
-//         }
-//     }
+     for (auto &[key, value] : this->visited)
+     {
+         if (!visited[key])
+         {
+             std::cout << "Unreachable node: " << key << std::endl;
+         }
+     }
 
     if (this->cycle)
     {
