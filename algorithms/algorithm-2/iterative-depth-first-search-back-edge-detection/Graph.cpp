@@ -76,7 +76,7 @@ bool Graph::depthFirstSearch(int node)
                     this->cycle = true;
 
                     // Required as cycle is reset after each iteration, this is used for the function output.
-                    this->isThereACycleEver = true;
+                    this->is_there_a_cycle = true;
 
                     ++cycle_count;
 
@@ -148,5 +148,5 @@ bool Graph::depthFirstSearch(int node)
 
     std::cout << "Cycles: " << this->cycle_count << std::endl;
     std::cout << "Is Cycle Present? ";
-    return this->isThereACycleEver;
+    return this->is_there_a_cycle;
 }
