@@ -5,4 +5,4 @@ project(Algorithm2)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Algorithm2 main.cpp Graph.cpp Graph.h)
+add_executable(Algorithm2 main.cpp Graph.cpp Graph.h Utilities.cpp Utilities.h)

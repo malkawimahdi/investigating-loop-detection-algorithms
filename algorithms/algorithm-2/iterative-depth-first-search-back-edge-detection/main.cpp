@@ -4,23 +4,21 @@ int main(void)
 {
     // Cyclic graph in a square: (0 -> 1), (1 -> 2), (2 -> 3), (3 -> 0)
     // Back edge is (3 -> 0)
-//        Graph graph(5);
-//        graph.addEdge(0, 1);
-//        graph.addEdge(1, 2);
-//        graph.addEdge(2, 3);
-//        graph.addEdge(3, 0);
-//    graph.addEdge(4, 4);
-
+    //    Graph graph(4);
+    //    graph.addEdge(0, 1);
+    //    graph.addEdge(1, 2);
+    //    graph.addEdge(2, 3);
+    //    graph.addEdge(3, 0);
 
     // // Micheal Wolfe Paper G1
-//    std::cout << "Micheal Wolfe Paper G1" << std::endl;
-//    Graph graph(5);
-//    graph.addEdge(0, 1);
-//    graph.addEdge(1, 2);
-//    graph.addEdge(2, 2);
-//    graph.addEdge(2, 3);
-//    graph.addEdge(3, 4);
-//    graph.addEdge(0, 4);
+    std::cout << "Micheal Wolfe Paper G1" << std::endl;
+    Graph graph(5);
+    graph.addEdge(0, 1);
+    graph.addEdge(1, 2);
+    graph.addEdge(2, 2);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 4);
+    graph.addEdge(0, 4);
 
     // CBMC Micheal Wolfe Paper G1
     // std::cout << "CBMC Micheal Wolfe Paper G1" << std::endl;
@@ -43,15 +41,15 @@ int main(void)
 
     // Micheal Wolfe Paper G2
     // std::cout << "Micheal Wolfe Paper G2" << std::endl;
-        Graph graph(6);
-        graph.addEdge(0, 1);
-        graph.addEdge(1, 2);
-        graph.addEdge(2, 3);
-        graph.addEdge(3, 3);
-        graph.addEdge(3, 4);
-        graph.addEdge(4, 2);
-        graph.addEdge(4, 5);
-        graph.addEdge(0, 5);
+    //    Graph graph(6);
+    //    graph.addEdge(0, 1);
+    //    graph.addEdge(1, 2);
+    //    graph.addEdge(2, 3);
+    //    graph.addEdge(3, 3);
+    //    graph.addEdge(3, 4);
+    //    graph.addEdge(4, 2);
+    //    graph.addEdge(4, 5);
+    //    graph.addEdge(0, 5);
 
     // CBMC Micheal Wolfe Paper G2
     // std::cout << "CBMC Micheal Wolfe Paper G2" << std::endl;
@@ -132,7 +130,7 @@ int main(void)
     //    graph.addEdge(3, 1);
     //    graph.addEdge(4, 1);
     //    graph.addEdge(0, 5);
-    
+
     // CBMC Micheal Wolfe Paper G4
     // std::cout << "CBMC Micheal Wolfe Paper G4" << std::endl;
     // Graph graph(11);
@@ -148,32 +146,32 @@ int main(void)
     // graph.addEdge(8, 10);
     // graph.addEdge(10, 2);
     // graph.addEdge(9, 2);
-    
+
     // Micheal Wolfe Paper G5a
     // std::cout << "Micheal Wolfe Paper G5a" << std::endl;
-//        Graph graph(7);
-//        graph.addEdge(0, 1);
-//        graph.addEdge(1, 2);
-//        graph.addEdge(2, 3);
-//        graph.addEdge(2, 4);
-//        graph.addEdge(3, 5);
-//        graph.addEdge(4, 5);
-//        graph.addEdge(5, 6);
-//        graph.addEdge(3, 1);
-//        graph.addEdge(0, 6);
+    //    Graph graph(7);
+    //    graph.addEdge(0, 1);
+    //    graph.addEdge(1, 2);
+    //    graph.addEdge(2, 3);
+    //    graph.addEdge(2, 4);
+    //    graph.addEdge(3, 5);
+    //    graph.addEdge(4, 5);
+    //    graph.addEdge(5, 6);
+    //    graph.addEdge(3, 1);
+    //    graph.addEdge(0, 6);
 
     // CBMC Micheal Wolfe Paper G5a
     // std::cout << "CBMC Micheal Wolfe Paper G5a" << std::endl;
-//     Graph graph(9);
-//     graph.addEdge(0, 1);
-//     graph.addEdge(1, 2);
-//     graph.addEdge(2, 3);
-//     graph.addEdge(3, 2);
-//     graph.addEdge(3, 4);
-//     graph.addEdge(4, 5);
-//     graph.addEdge(5, 6);
-//     graph.addEdge(6, 7);
-//     graph.addEdge(7, 8);
+    // Graph graph(9);
+    // graph.addEdge(0, 1);
+    // graph.addEdge(1, 2);
+    // graph.addEdge(2, 3);
+    // graph.addEdge(3, 2);
+    // graph.addEdge(3, 4);
+    // graph.addEdge(4, 5);
+    // graph.addEdge(5, 6);
+    // graph.addEdge(6, 7);
+    // graph.addEdge(7, 8);
 
     // Micheal Wolfe Paper G5b
     // std::cout << "Micheal Wolfe Paper G5b" << std::endl;

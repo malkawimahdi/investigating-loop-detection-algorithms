@@ -3,6 +3,7 @@
 //
 
 #include "Graph.h"
+#include "Utilities.h"
 
 // Constructor takes number of nodes and generates a list containing an entry the size of nodes.
 // (Doubly Linked List)
@@ -41,10 +42,7 @@ bool Graph::depthFirstSearch(int node)
     }
 
     // Each node is viewed as a pair in the form of std::pair<node, index>
-    this->stack.push(std::pair(node, 0));
-
-    std::cout << "First Pair: " << node <<", 0" << std::endl;
-    this->visited[node] = true;
+    this->stack.push(std::make_pair(node, 0));
 
     // Iterative Depth First Search.
     while (!this->stack.empty())
@@ -56,55 +54,64 @@ bool Graph::depthFirstSearch(int node)
         // If the index of the second node is less than the size of the elements in the adjacency list...
         if (current_node.second < this->adjacent_nodes[current_node.first].size())
         {
-            std::list<int>::iterator it;
-
             // Get initial index for start of adjacency_list and get the node required by the counter.
-            it = this->adjacent_nodes[current_node.first].begin();
+            // Received assistance from Dr Martin Nyx Brain, randomly accessing a std::list
+            std::list<int>::iterator it = this->adjacent_nodes[current_node.first].begin();
             for (int i = 0; i < current_node.second; ++i)
             {
                 ++it;
             }
+
             int next_node = *it;
 
-            // If the next_node has been seen, then there is a cycle.
+            // If the next_node has been seen, then there could be a cycle.
             // If the next_node is located then a cycle will form staying within current node.
             if (this->visited[next_node])
             {
-                this->cycle = true;
-
-                ++cycle_count;
-
-                std::cout << next_node << " is head of { ";
-
-                std::stack<std::pair<int, int>> stack_copy = this->stack;
-
-                std::vector<int> vector_stack;
-
-                // Generating CBMC format for the output...
-                while (!stack_copy.empty())
+                // Check if the next_node is in the stack. If it is then it is GUARANTEED to be in a cycle.
+                // Required as if there is a control flow graph in the form of a diamond, only a half is viewed.
+                // Dr Martin Nyx Brain suggested this improvement.
+                if (stackChecker(next_node, this->stack))
                 {
-                    int node_copy = stack_copy.top().first;
+                    this->cycle = true;
 
-                    if (node_copy == next_node)
+                    // Required as cycle is reset after each iteration, this is used for the function output.
+                    this->isThereACycleEver = true;
+
+                    ++cycle_count;
+
+                    std::cout << next_node << " is head of { ";
+
+                    std::stack<std::pair<int, int>> stack_copy = this->stack;
+
+                    std::vector<int> vector_stack;
+
+                    // Generating output in CBMC format...
+                    while (!stack_copy.empty())
                     {
+                        int node_copy = stack_copy.top().first;
+
+                        if (node_copy == next_node)
+                        {
+                            vector_stack.push_back(node_copy);
+                            break;
+                        }
                         vector_stack.push_back(node_copy);
-                        break;
+                        stack_copy.pop();
                     }
-                    vector_stack.push_back(node_copy);
-                    stack_copy.pop();
-                }
 
-                std::reverse(vector_stack.begin(), vector_stack.end());
+                    std::reverse(vector_stack.begin(), vector_stack.end());
 
-                for (int counter = 0; counter < vector_stack.size(); ++counter)
-                {
-                    if (counter == vector_stack.size() - 1)
+                    for (int counter = 0; counter < vector_stack.size(); ++counter)
                     {
-                        std::cout << vector_stack.back() << " (backedge) }" << std::endl;
-                    }
-                    else
-                    {
-                        std::cout << vector_stack[counter] << ", ";
+                        if (counter == vector_stack.size() - 1)
+                        {
+                            std::cout << vector_stack.back() << " (backedge) }" << std::endl;
+                        }
+                        else
+                        {
+                            std::cout << vector_stack[counter] << ", ";
+                        }
                     }
                 }
             }
@@ -115,9 +122,10 @@ bool Graph::depthFirstSearch(int node)
             // If it is a cycle, then new node is NOT placed on the stack as it will be an infinite loop.
             if (!cycle)
             {
-                this->stack.push(std::pair(next_node, 0));
-                std::cout << "Next Pair: " << next_node <<", 0" << std::endl;
+                this->stack.push(std::make_pair(next_node, 0));
             }
+
+            cycle = false;
         }
         else
         {
@@ -130,24 +138,15 @@ bool Graph::depthFirstSearch(int node)
 
     // Detects unreachable nodes.
     // If a node has not been visited, it means that it is not reachable from the entry node.
-     for (auto &[key, value] : this->visited)
-     {
-         if (!visited[key])
-         {
-             std::cout << "Unreachable node: " << key << std::endl;
-         }
-     }
-
-    if (this->cycle)
+    for (auto &[key, value] : this->visited)
     {
-        std::cout << "Cycles: " << cycle_count << std::endl;
+        if (!visited[key])
+        {
+            std::cout << "Unreachable node: " << key << std::endl;
+        }
+    }
 
-        std::cout << "Is Cycle Present? ";
-        return true;
-    }
-    else
-    {
-        std::cout << "Is Cycle Present? ";
-        return false;
-    }
+    std::cout << "Cycles: " << this->cycle_count << std::endl;
+    std::cout << "Is Cycle Present? ";
+    return this->isThereACycleEver;
 }
