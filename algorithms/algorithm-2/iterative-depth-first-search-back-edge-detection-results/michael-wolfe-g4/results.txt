@@ -1,6 +1,7 @@
 Micheal Wolfe Paper G4
-1 is head of { 0, 1, 2, 3 (backedge) }
-Cycles: 1
+1 is head of { 1, 2, 3 (backedge) }
+1 is head of { 1, 2, 4 (backedge) }
+Cycles: 2
 Is Cycle Present? True
 	Command being timed: "./a.out"
 	User time (seconds): 0.00
@@ -11,10 +12,10 @@ Is Cycle Present? True
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 3464
+	Maximum resident set size (kbytes): 3340
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 139
+	Minor (reclaiming a frame) page faults: 135
 	Voluntary context switches: 1
 	Involuntary context switches: 0
 	Swaps: 0

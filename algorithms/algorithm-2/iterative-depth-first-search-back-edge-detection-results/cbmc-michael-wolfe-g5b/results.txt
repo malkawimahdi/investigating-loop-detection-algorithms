@@ -1,5 +1,5 @@
 CBMC Micheal Wolfe Paper G5b
-2 is head of { 0, 1, 2, 4, 6 (backedge) }
+2 is head of { 2, 4, 6 (backedge) }
 Cycles: 1
 Is Cycle Present? True
 	Command being timed: "./a.out"

@@ -1,5 +1,5 @@
 CBMC Micheal Wolfe Paper G5a
-2 is head of { 0, 1, 2, 3 (backedge) }
+2 is head of { 2, 3 (backedge) }
 Cycles: 1
 Is Cycle Present? True
 	Command being timed: "./a.out"
@@ -11,12 +11,12 @@ Is Cycle Present? True
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 3484
+	Maximum resident set size (kbytes): 3476
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 138
+	Minor (reclaiming a frame) page faults: 140
 	Voluntary context switches: 1
-	Involuntary context switches: 1
+	Involuntary context switches: 0
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
