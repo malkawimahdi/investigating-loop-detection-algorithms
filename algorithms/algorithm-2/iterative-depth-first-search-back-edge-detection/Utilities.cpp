@@ -6,7 +6,7 @@
 
 // Takes an integer and checks if the integer is contained within the stack.
 // If it is found in the stack return true, else return false.
-bool stackChecker(int target, std::stack<std::pair<int, int>> stack)
+bool stackChecker(int target, std::stack<std::pair<int, int> > stack)
 {
     while (!stack.empty())
     {
