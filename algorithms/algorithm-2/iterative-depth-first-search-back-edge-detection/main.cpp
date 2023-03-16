@@ -10,15 +10,23 @@ int main(void)
     //    graph.addEdge(2, 3);
     //    graph.addEdge(3, 0);
 
-    // // Micheal Wolfe Paper G1
-    std::cout << "Micheal Wolfe Paper G1" << std::endl;
+    std::cout << "Back Edge Present with Unreachable Nodes" << std::endl;
     Graph graph(5);
     graph.addEdge(0, 1);
     graph.addEdge(1, 2);
-    graph.addEdge(2, 2);
     graph.addEdge(2, 3);
-    graph.addEdge(3, 4);
-    graph.addEdge(0, 4);
+    graph.addEdge(3, 0);
+    graph.addEdge(4, 4);
+
+    // Micheal Wolfe Paper G1
+    //    std::cout << "Micheal Wolfe Paper G1" << std::endl;
+    //    Graph graph(5);
+    //    graph.addEdge(0, 1);
+    //    graph.addEdge(1, 2);
+    //    graph.addEdge(2, 2);
+    //    graph.addEdge(2, 3);
+    //    graph.addEdge(3, 4);
+    //    graph.addEdge(0, 4);
 
     // CBMC Micheal Wolfe Paper G1
     // std::cout << "CBMC Micheal Wolfe Paper G1" << std::endl;

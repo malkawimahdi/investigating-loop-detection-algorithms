@@ -59,7 +59,7 @@ bool Graph::depthFirstSearch(int node)
             // Received assistance from Dr Martin Nyx Brain, randomly accessing a std::list
             std::list<int>::iterator it = this->adjacent_nodes[current_node.first].begin();
 
-            for (int i = 0; i < current_node.second; ++i)
+            for (unsigned int i = 0; i < current_node.second; ++i)
             {
                 ++it;
             }
@@ -108,15 +108,7 @@ bool Graph::depthFirstSearch(int node)
         }
     }
 
-    // Detects unreachable nodes.
-    // If a node has not been visited, it means that it is not reachable from the entry node.
-    for (auto &[key, value] : this->visited)
-    {
-        if (! this->visited[key])
-        {
-            std::cout << "Unreachable node: " << key << std::endl;
-        }
-    }
+    unreachableNodes(this->nodes, this->visited);
 
     std::cout << "Cycles: " << this->cycle_count << std::endl;
     std::cout << "Is Cycle Present? ";
