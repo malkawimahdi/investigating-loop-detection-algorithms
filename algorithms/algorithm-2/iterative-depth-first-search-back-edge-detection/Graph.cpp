@@ -49,6 +49,7 @@ bool Graph::depthFirstSearch(int node)
     {
         // Get the top most node and visit it.
         std::pair<int, int> current_node = this->stack.top();
+
         this->visited[current_node.first] = true;
 
         // If the index of the second node is less than the size of the elements in the adjacency list...
@@ -57,6 +58,7 @@ bool Graph::depthFirstSearch(int node)
             // Get initial index for start of adjacency_list and get the node required by the counter.
             // Received assistance from Dr Martin Nyx Brain, randomly accessing a std::list
             std::list<int>::iterator it = this->adjacent_nodes[current_node.first].begin();
+
             for (int i = 0; i < current_node.second; ++i)
             {
                 ++it;
@@ -80,58 +82,28 @@ bool Graph::depthFirstSearch(int node)
 
                     ++cycle_count;
 
-                    std::cout << next_node << " is head of { ";
-
-                    std::stack<std::pair<int, int> > stack_copy = this->stack;
-
-                    std::vector<int> vector_stack;
-
-                    // Generating output in CBMC format...
-                    while (!stack_copy.empty())
-                    {
-                        int node_copy = stack_copy.top().first;
-
-                        if (node_copy == next_node)
-                        {
-                            vector_stack.push_back(node_copy);
-                            break;
-                        }
-                        vector_stack.push_back(node_copy);
-                        stack_copy.pop();
-                    }
-
-                    std::reverse(vector_stack.begin(), vector_stack.end());
-
-                    for (int counter = 0; counter < vector_stack.size(); ++counter)
-                    {
-                        if (counter == vector_stack.size() - 1)
-                        {
-                            std::cout << vector_stack.back() << " (backedge) }" << std::endl;
-                        }
-                        else
-                        {
-                            std::cout << vector_stack[counter] << ", ";
-                        }
-                    }
+                    // Generates output which contains nodes in the cycle specifically in the same format as CBMC.
+                    cbmcCycleOutput(next_node, this->stack);
                 }
             }
 
             // Iterate the index for the current node.
             this->stack.top().second++;
 
-            // If it is a cycle, then new node is NOT placed on the stack as it will be an infinite loop.
+            // If it is a cycle, then next_node is NOT placed on the stack as it will be an infinite loop.
             if (!cycle)
             {
                 this->stack.push(std::make_pair(next_node, 0));
             }
 
-            cycle = false;
+            // Reset cycle
+            this->cycle = false;
         }
         else
         {
             // Remove node after it has been accessed and all elements in adjacency_list[node]
             // have been placed on the stack.
-            stack.pop();
+            this->stack.pop();
             continue;
         }
     }
@@ -140,7 +112,7 @@ bool Graph::depthFirstSearch(int node)
     // If a node has not been visited, it means that it is not reachable from the entry node.
     for (auto &[key, value] : this->visited)
     {
-        if (!visited[key])
+        if (! this->visited[key])
         {
             std::cout << "Unreachable node: " << key << std::endl;
         }
