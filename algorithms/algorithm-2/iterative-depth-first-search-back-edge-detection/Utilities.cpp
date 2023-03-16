@@ -80,6 +80,9 @@ void unreachableNodes(unsigned int nodes, std::map<int, bool> visited)
         }
     }
 
-    std::cout << std::endl;
-    std::cout << "Unreachable Nodes Count: " << unreachable_node_count << std::endl;
+    if (unreachable_node_count > 0)
+    {
+        std::cout << std::endl;
+        std::cout << "Unreachable Nodes Count: " << unreachable_node_count << std::endl;
+    }
 }
