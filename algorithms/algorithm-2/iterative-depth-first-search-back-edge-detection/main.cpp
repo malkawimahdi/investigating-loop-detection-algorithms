@@ -20,22 +20,22 @@ int main(void)
 
     // CBMC Micheal Wolfe Paper G1
     // std::cout << "CBMC Micheal Wolfe Paper G1" << std::endl;
-    // Graph graph(15);
-    // graph.addEdge(0, 1);
-    // graph.addEdge(1, 2);
-    // graph.addEdge(2, 3);
-    // graph.addEdge(3, 4);
-    // graph.addEdge(4, 5);
-    // graph.addEdge(5, 6);
-    // graph.addEdge(6, 7);
-    // graph.addEdge(7, 8);
-    // graph.addEdge(8, 2);
-    // graph.addEdge(6, 9);
-    // graph.addEdge(9, 10);
-    // graph.addEdge(10, 11);
-    // graph.addEdge(11, 12);
-    // graph.addEdge(12, 13);
-    // graph.addEdge(13, 14);
+     Graph graph(15);
+     graph.addEdge(0, 1);
+     graph.addEdge(1, 2);
+     graph.addEdge(2, 3);
+     graph.addEdge(3, 4);
+     graph.addEdge(4, 5);
+     graph.addEdge(5, 6);
+     graph.addEdge(6, 7);
+     graph.addEdge(7, 8);
+     graph.addEdge(8, 2);
+     graph.addEdge(6, 9);
+     graph.addEdge(9, 10);
+     graph.addEdge(10, 11);
+     graph.addEdge(11, 12);
+     graph.addEdge(12, 13);
+     graph.addEdge(13, 14);
 
     // CBMC Micheal Wolfe Paper G2
     // std::cout << "CBMC Micheal Wolfe Paper G2" << std::endl;
@@ -206,7 +206,7 @@ int main(void)
     //     graph.addEdge(48, 49);
     //     graph.addEdge(49, 50);
 
-    std::cout << (graph.depthFirstSearch(0) ? "True" : "False") << std::endl;
+    std::cout << (graph.depthFirstSearch() ? "True" : "False") << std::endl;
 
     return 0;
 }

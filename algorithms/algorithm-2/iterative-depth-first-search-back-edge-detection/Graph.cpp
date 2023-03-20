@@ -33,7 +33,7 @@ void Graph::addEdge(int current_node, int adjacent_node)
 // nodes contained within cycles.
 // Ensures that inaccessible nodes (inaccessible code) is not reached.
 // Outputs detected cycles in the same way as CBMC.
-bool Graph::depthFirstSearch(int node)
+bool Graph::depthFirstSearch(void)
 {
     // Initalise variables inside graph to false.
     for (auto &[key, value] : this->visited)
@@ -41,8 +41,17 @@ bool Graph::depthFirstSearch(int node)
         value = false;
     }
 
-    // Each node is viewed as a pair in the form of std::pair<node, index>
-    this->stack.push(std::make_pair(node, 0));
+    // Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
+    // node as the start by convention.
+    for (int counter = 0; counter < this->nodes; ++counter)
+    {
+        if (this->adjacent_nodes[counter].size() > 0)
+        {
+            // Each node is viewed as a pair in the form of std::pair<node, index>
+            this->stack.push(std::make_pair(counter, 0));
+            break;
+        }
+    }
 
     // Iterative Depth First Search.
     while (!this->stack.empty())
