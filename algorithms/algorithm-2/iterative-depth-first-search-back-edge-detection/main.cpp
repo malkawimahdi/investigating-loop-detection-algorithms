@@ -74,7 +74,7 @@ int main(void)
 
     // CBMC Micheal Wolfe Paper G3
     // std::cout << "CBMC Micheal Wolfe Paper G3" << std::endl;
-    // Graph graph(27);
+    // Graph graph(28);
     // graph.addEdge(0, 1);
     // graph.addEdge(1, 2);
     // graph.addEdge(2, 3);
@@ -89,13 +89,12 @@ int main(void)
     // graph.addEdge(10, 11);
     // graph.addEdge(11, 12);
     // graph.addEdge(12, 13);
-    // graph.addEdge(12, 14);
-    // graph.addEdge(14, 11);
-    // graph.addEdge(13, 15);
-    // graph.addEdge(15, 16);
-    // graph.addEdge(16, 17);
-    // graph.addEdge(17, 12);
+    // graph.addEdge(13, 14);
+    // graph.addEdge(12, 15);
+    // graph.addEdge(15, 11);
+    // graph.addEdge(14, 17);
     // graph.addEdge(17, 18);
+    // graph.addEdge(18, 12);
     // graph.addEdge(18, 19);
     // graph.addEdge(19, 20);
     // graph.addEdge(20, 21);
@@ -104,22 +103,11 @@ int main(void)
     // graph.addEdge(23, 24);
     // graph.addEdge(24, 25);
     // graph.addEdge(25, 26);
-
-    // Micheal Wolfe Paper G4
-    // std::cout << "Micheal Wolfe Paper G4" << std::endl;
-    //    Graph graph(6);
-    //    graph.addEdge(0, 1);
-    //    graph.addEdge(1, 2);
-    //    graph.addEdge(2, 3);
-    //    graph.addEdge(2, 4);
-    //    graph.addEdge(4, 5);
-    //    graph.addEdge(3, 1);
-    //    graph.addEdge(4, 1);
-    //    graph.addEdge(0, 5);
-
+    // graph.addEdge(26, 27);
+    
     // CBMC Micheal Wolfe Paper G4
     // std::cout << "CBMC Micheal Wolfe Paper G4" << std::endl;
-    // Graph graph(11);
+    // Graph graph(13);
     // graph.addEdge(0, 1);
     // graph.addEdge(1, 2);
     // graph.addEdge(2, 3);
@@ -128,23 +116,10 @@ int main(void)
     // graph.addEdge(5, 6);
     // graph.addEdge(6, 7);
     // graph.addEdge(7, 8);
-    // graph.addEdge(7, 9);
-    // graph.addEdge(8, 10);
-    // graph.addEdge(10, 2);
+    // graph.addEdge(8, 9);
     // graph.addEdge(9, 2);
-
-    // Micheal Wolfe Paper G5a
-    // std::cout << "Micheal Wolfe Paper G5a" << std::endl;
-    //    Graph graph(7);
-    //    graph.addEdge(0, 1);
-    //    graph.addEdge(1, 2);
-    //    graph.addEdge(2, 3);
-    //    graph.addEdge(2, 4);
-    //    graph.addEdge(3, 5);
-    //    graph.addEdge(4, 5);
-    //    graph.addEdge(5, 6);
-    //    graph.addEdge(3, 1);
-    //    graph.addEdge(0, 6);
+    // graph.addEdge(7, 12);
+    // graph.addEdge(12, 2);
 
     // CBMC Micheal Wolfe Paper G5a
     // std::cout << "CBMC Micheal Wolfe Paper G5a" << std::endl;
@@ -159,78 +134,77 @@ int main(void)
     // graph.addEdge(6, 7);
     // graph.addEdge(7, 8);
 
-    // Micheal Wolfe Paper G5b
-    // std::cout << "Micheal Wolfe Paper G5b" << std::endl;
-    //    Graph graph(7);
-    //    graph.addEdge(0, 1);
-    //    graph.addEdge(1, 2);
-    //    graph.addEdge(2, 3);
-    //    graph.addEdge(2, 4);
-    //    graph.addEdge(4, 5);
-    //    graph.addEdge(5, 6);
-    //    graph.addEdge(1, 5);
-    //    graph.addEdge(3, 1);
-    //    graph.addEdge(0, 6);
-
     // CBMC Micheal Wolfe Paper G5b
     // std::cout << "CBMC Micheal Wolfe Paper G5b" << std::endl;
-    // Graph graph(10);
-    // graph.addEdge(0, 1);
-    // graph.addEdge(1, 2);
-    // graph.addEdge(2, 3);
-    // graph.addEdge(2, 4);
-    // graph.addEdge(3, 5);
-    // graph.addEdge(5, 7);
-    // graph.addEdge(7, 8);
-    // graph.addEdge(8, 9);
-    // graph.addEdge(4, 6);
-    // graph.addEdge(6, 2);
+    //  Graph graph(10);
+    //  graph.addEdge(0, 1);
+    //  graph.addEdge(1, 2);
+    //  graph.addEdge(2, 3);
+    //  graph.addEdge(3, 4);
+    //  graph.addEdge(4, 2);
+    //  graph.addEdge(2, 5);
+    //  graph.addEdge(5, 6);
+    //  graph.addEdge(6, 7);
+    //  graph.addEdge(7, 8);
+    //  graph.addEdge(8, 9);
 
     // Dr Martin Nyx Brain loop-busy-wait
     // std::cout << "Dr Martin Nyx Brain loop-busy-wait" << std::endl;
-    //     Graph graph(6);
-    //     graph.addEdge(0, 1);
-    //     graph.addEdge(0, 2);
-    //     graph.addEdge(1, 3);
-    //     graph.addEdge(2, 4);
-    //     graph.addEdge(3, 5);
-    //     graph.addEdge(4, 0);
+    //   Graph graph(6);
+    //   graph.addEdge(0, 1);
+    //   graph.addEdge(1, 2);
+    //   graph.addEdge(2, 0);
+    //   graph.addEdge(0, 3);
+    //   graph.addEdge(3, 4);
+    //   graph.addEdge(4, 5);
+    
+    // Alternative
+    //   Graph graph(20);
+    //   graph.addEdge(14, 15);
+    //   graph.addEdge(15, 16);
+    //   graph.addEdge(16, 14);
+    //   graph.addEdge(14, 17);
+    //   graph.addEdge(17, 18);
+    //   graph.addEdge(18, 19);
 
     // Dr Martin Nyx Brain loop-empty
     // std::cout << "Dr Martin Nyx Brain loop-empty" << std::endl;
     //     Graph graph(1);
     //     graph.addEdge(0, 0);
+    
+    // Alternative
+     //   Graph graph(20);
+    //   graph.addEdge(20, 20);
 
     // Dr Martin Nyx Brain loop-sequence-of-instructions
     // std::cout << "Dr Martin Nyx Brain loop-sequence-of-instructions" << std::endl;
-    //     Graph graph(24);
-    //     graph.addEdge(0, 1);
-    //     graph.addEdge(1, 2);
-    //     graph.addEdge(2, 3);
-    //     graph.addEdge(3, 4);
-    //     graph.addEdge(4, 5);
-    //     graph.addEdge(5, 6);
-    //     graph.addEdge(5, 7);
-    //     graph.addEdge(6, 8);
-    //     graph.addEdge(7, 9);
-    //     graph.addEdge(8, 10);
-    //     graph.addEdge(9, 11);
-    //     graph.addEdge(10, 12);
-    //     graph.addEdge(11, 13);
-    //     graph.addEdge(12, 14);
-    //     graph.addEdge(13, 15);
-    //     graph.addEdge(13, 17);
-    //     graph.addEdge(14, 16);
-    //     graph.addEdge(15, 17);
-    //     graph.addEdge(16, 18);
-    //     graph.addEdge(17, 19);
-    //     graph.addEdge(18, 20);
-    //     graph.addEdge(19, 21);
-    //     graph.addEdge(20, 22);
-    //     graph.addEdge(21, 23);
-    //     graph.addEdge(2, 11);
-    //     graph.addEdge(10, 15);
-    //     graph.addEdge(22, 0);
+    //     Graph graph(51);
+    //     graph.addEdge(26, 27);
+    //     graph.addEdge(27, 28);
+    //     graph.addEdge(28, 29);
+    //     graph.addEdge(29, 30);
+    //     graph.addEdge(30, 31);
+    //     graph.addEdge(31, 32);
+    //     graph.addEdge(32, 33);
+    //     graph.addEdge(31, 35);
+    //     graph.addEdge(35, 36);
+    //     graph.addEdge(36, 37);
+    //     graph.addEdge(37, 38);
+    //     graph.addEdge(38, 39);
+    //     graph.addEdge(39, 40);
+    //     graph.addEdge(40, 41);
+    //     graph.addEdge(41, 42);
+    //     graph.addEdge(42, 43);
+    //     graph.addEdge(43, 26);
+    //     graph.addEdge(28, 44);
+    //     graph.addEdge(33, 44);
+    //     graph.addEdge(44, 45);
+    //     graph.addEdge(45, 46);
+    //     graph.addEdge(46, 47);
+    //     graph.addEdge(45, 47);
+    //     graph.addEdge(47, 48);
+    //     graph.addEdge(48, 49);
+    //     graph.addEdge(49, 50);
 
     std::cout << (graph.depthFirstSearch(0) ? "True" : "False") << std::endl;
 
