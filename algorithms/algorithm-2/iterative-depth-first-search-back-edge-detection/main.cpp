@@ -2,14 +2,6 @@
 
 int main(void)
 {
-    // Cyclic graph in a square: (0 -> 1), (1 -> 2), (2 -> 3), (3 -> 0)
-    // Back edge is (3 -> 0)
-    //    Graph graph(4);
-    //    graph.addEdge(0, 1);
-    //    graph.addEdge(1, 2);
-    //    graph.addEdge(2, 3);
-    //    graph.addEdge(3, 0);
-
 //    std::cout << "Back Edge Present with Unreachable Nodes" << std::endl;
 //    Graph graph(5);
 //    graph.addEdge(0, 1);
@@ -59,18 +51,6 @@ int main(void)
     // graph.addEdge(14, 15);
     // graph.addEdge(15, 16);
     // graph.addEdge(16, 17);
-
-    // Micheal Wolfe Paper G3
-    // std::cout << "Micheal Wolfe Paper G3" << std::endl;
-    //    Graph graph(6);
-    //    graph.addEdge(0, 1);
-    //    graph.addEdge(1, 2);
-    //    graph.addEdge(2, 3);
-    //    graph.addEdge(3, 2);
-    //    graph.addEdge(3, 4);
-    //    graph.addEdge(4, 3);
-    //    graph.addEdge(4, 5);
-    //    graph.addEdge(0, 5);
 
     // CBMC Micheal Wolfe Paper G3
     // std::cout << "CBMC Micheal Wolfe Paper G3" << std::endl;
@@ -150,15 +130,6 @@ int main(void)
 
     // Dr Martin Nyx Brain loop-busy-wait
     // std::cout << "Dr Martin Nyx Brain loop-busy-wait" << std::endl;
-    //   Graph graph(6);
-    //   graph.addEdge(0, 1);
-    //   graph.addEdge(1, 2);
-    //   graph.addEdge(2, 0);
-    //   graph.addEdge(0, 3);
-    //   graph.addEdge(3, 4);
-    //   graph.addEdge(4, 5);
-    
-    // Alternative
     //   Graph graph(20);
     //   graph.addEdge(14, 15);
     //   graph.addEdge(15, 16);
@@ -169,42 +140,39 @@ int main(void)
 
     // Dr Martin Nyx Brain loop-empty
     // std::cout << "Dr Martin Nyx Brain loop-empty" << std::endl;
-    //     Graph graph(1);
-    //     graph.addEdge(0, 0);
-    
-    // Alternative
-     //   Graph graph(20);
-    //   graph.addEdge(20, 20);
+    //    Graph graph(21);
+    //     graph.addEdge(20, 20);
 
-    // Dr Martin Nyx Brain loop-sequence-of-instructions
-    // std::cout << "Dr Martin Nyx Brain loop-sequence-of-instructions" << std::endl;
-    //     Graph graph(51);
-    //     graph.addEdge(26, 27);
-    //     graph.addEdge(27, 28);
-    //     graph.addEdge(28, 29);
-    //     graph.addEdge(29, 30);
-    //     graph.addEdge(30, 31);
-    //     graph.addEdge(31, 32);
-    //     graph.addEdge(32, 33);
-    //     graph.addEdge(31, 35);
-    //     graph.addEdge(35, 36);
-    //     graph.addEdge(36, 37);
-    //     graph.addEdge(37, 38);
-    //     graph.addEdge(38, 39);
-    //     graph.addEdge(39, 40);
-    //     graph.addEdge(40, 41);
-    //     graph.addEdge(41, 42);
-    //     graph.addEdge(42, 43);
-    //     graph.addEdge(43, 26);
-    //     graph.addEdge(28, 44);
-    //     graph.addEdge(33, 44);
-    //     graph.addEdge(44, 45);
-    //     graph.addEdge(45, 46);
-    //     graph.addEdge(46, 47);
-    //     graph.addEdge(45, 47);
-    //     graph.addEdge(47, 48);
-    //     graph.addEdge(48, 49);
-    //     graph.addEdge(49, 50);
+
+// Dr Martin Nyx Brain loop-sequence-of-instructions
+// std::cout << "Dr Martin Nyx Brain loop-sequence-of-instructions" << std::endl;
+//         Graph graph(51);
+//         graph.addEdge(26, 27);
+//         graph.addEdge(27, 28);
+//         graph.addEdge(28, 29);
+//         graph.addEdge(29, 30);
+//         graph.addEdge(30, 31);
+//         graph.addEdge(31, 32);
+//         graph.addEdge(32, 33);
+//         graph.addEdge(31, 35);
+//         graph.addEdge(35, 36);
+//         graph.addEdge(36, 37);
+//         graph.addEdge(37, 38);
+//         graph.addEdge(38, 39);
+//         graph.addEdge(39, 40);
+//         graph.addEdge(40, 41);
+//         graph.addEdge(41, 42);
+//         graph.addEdge(42, 43);
+//         graph.addEdge(43, 26);
+//         graph.addEdge(28, 44);
+//         graph.addEdge(33, 44);
+//         graph.addEdge(44, 45);
+//         graph.addEdge(45, 46);
+//         graph.addEdge(46, 47);
+//         graph.addEdge(45, 47);
+//         graph.addEdge(47, 48);
+//         graph.addEdge(48, 49);
+//         graph.addEdge(49, 50);
 
     std::cout << (graph.depthFirstSearch() ? "True" : "False") << std::endl;
 

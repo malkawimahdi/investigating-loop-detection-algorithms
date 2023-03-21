@@ -47,6 +47,7 @@ bool Graph::depthFirstSearch(void)
     {
         if (this->adjacent_nodes[counter].size() > 0)
         {
+            this->first_node = counter;
             // Each node is viewed as a pair in the form of std::pair<node, index>
             this->stack.push(std::make_pair(counter, 0));
             break;
@@ -117,7 +118,7 @@ bool Graph::depthFirstSearch(void)
         }
     }
 
-    unreachableNodes(this->nodes, this->visited);
+    unreachableNodes(this->first_node, this->nodes, this->visited);
 
     std::cout << "Cycles: " << this->cycle_count << std::endl;
     std::cout << "Is Cycle Present? ";
