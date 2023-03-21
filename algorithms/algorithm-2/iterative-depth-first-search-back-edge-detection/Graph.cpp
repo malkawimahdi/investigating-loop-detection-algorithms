@@ -48,10 +48,17 @@ bool Graph::depthFirstSearch(void)
         if (this->adjacent_nodes[counter].size() > 0)
         {
             this->first_node = counter;
+
             // Each node is viewed as a pair in the form of std::pair<node, index>
             this->stack.push(std::make_pair(counter, 0));
             break;
         }
+    }
+
+    // Are there any nodes for the graph?
+    if (this->first_node == UINT_MAX)
+    {
+        throw std::runtime_error("No node(s) are locatable.");
     }
 
     // Iterative Depth First Search.
