@@ -68,7 +68,7 @@ void unreachableNodes(unsigned int first_node, unsigned int nodes, std::map<int,
         {
             if (unreachable_node_count == 0)
             {
-                std::cout << "Unreachable Nodes: ";
+                std::cout << "Unreachable Node(s): ";
                 std::cout << counter;
                 ++unreachable_node_count;
             }
@@ -83,6 +83,6 @@ void unreachableNodes(unsigned int first_node, unsigned int nodes, std::map<int,
     if (unreachable_node_count > 0)
     {
         std::cout << std::endl;
-        std::cout << "Unreachable Nodes Count: " << unreachable_node_count << std::endl;
+        std::cout << "Unreachable Node(s) Count: " << unreachable_node_count << std::endl;
     }
 }
