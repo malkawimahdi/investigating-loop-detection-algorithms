@@ -174,7 +174,8 @@ int main(void)
 //         graph.addEdge(48, 49);
 //         graph.addEdge(49, 50);
 
-    std::cout << (graph.depthFirstSearch() ? "True" : "False") << std::endl;
+    graph.depthFirstSearch();
+//    std::cout << (graph.depthFirstSearch() ? "True" : "False") << std::endl;
 
     return 0;
 }
