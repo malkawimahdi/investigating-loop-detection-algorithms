@@ -20,7 +20,7 @@ private:
     std::map<int, bool> current_visit; // Key value pair. (Key: Node) (Value: hasNodeBeenVisited) differs from visited
                                        // as it keep track of the key value pairs outside of function call.
 
-    bool depthFirstSearch(int &node); // Implementation of Depth First Search (DFS) from a given node.
+    bool recursiveDepthFirstSearch(int &node); // Implementation of Depth First Search (DFS) from a given node.
 
 public:
     explicit Graph(int nodes);                         // Constructor, which takes the number of nodes for a graph.
