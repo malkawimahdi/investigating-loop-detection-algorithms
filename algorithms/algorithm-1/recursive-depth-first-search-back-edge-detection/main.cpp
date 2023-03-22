@@ -252,7 +252,6 @@ int main(void)
     //     graph.addEdge(10, 15);
     //     graph.addEdge(22, 0);
 
-    std::cout << (graph.containsCycle() ? "True" : "False") << std::endl;
-
+    graph.containsCycle();
     return 0;
 }

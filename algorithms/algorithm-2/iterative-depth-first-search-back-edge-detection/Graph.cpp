@@ -128,6 +128,6 @@ bool Graph::depthFirstSearch(void)
     unreachableNodes(this->first_node, this->nodes, this->visited);
 
     std::cout << "Cycle(s): " << this->cycle_count << std::endl;
-    
+
     return this->is_there_a_cycle;
 }

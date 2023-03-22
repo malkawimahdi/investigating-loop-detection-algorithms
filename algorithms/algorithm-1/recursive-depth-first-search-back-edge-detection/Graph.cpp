@@ -92,12 +92,11 @@ bool Graph::containsCycle(void)
     {
         std::cout << "Cycles: " << cycle_count << std::endl;
 
-        std::cout << "Is Cycle Present? ";
         return true;
     }
     else
     {
-        std::cout << "Is Cycle Present? ";
+        std::cout << "No Cycle Detected!";
         return false;
     }
 }
