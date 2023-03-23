@@ -8,6 +8,8 @@
 #include <stack>
 #include <vector>
 #include <iostream>
+#include <iterator>
+#include <algorithm>
 
 // Takes an integer and checks if the integer is contained within the stack.
 // If it is found in the stack return true, else return false.
