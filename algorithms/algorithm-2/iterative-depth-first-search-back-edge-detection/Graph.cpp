@@ -5,6 +5,8 @@
 #include "Graph.h"
 #include "Utilities.h"
 
+// This constructor is derived from (GeeksForGeeks, 2023), specifically the generation of how the diagraph is
+    // represented as an adjacency list.
 // Constructor takes number of nodes and generates a list containing an entry the size of nodes.
 // (Doubly Linked List)
 Graph::Graph(int nodes)
@@ -14,6 +16,7 @@ Graph::Graph(int nodes)
     this->adjacent_nodes = new std::list<int>[nodes];
 }
 
+// This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes.
 // Add an edge to current graph in the directed form: currentNode -> adjacentNode.
 // Follows the property of a Control Flow Graph (CFG), whereby each node can have AT MOST two other adjacent nodes.
 void Graph::addEdge(int current_node, int adjacent_node)
@@ -35,7 +38,7 @@ void Graph::addEdge(int current_node, int adjacent_node)
     // and output nodes contained within cycles.
 // Ensures that inaccessible nodes (inaccessible code) is not reached.
 // Outputs detected cycles in the same way as CBMC.
-bool Graph::depthFirstSearch(void)
+bool Graph::iterativeDepthFirstSearch(void)
 {
     // Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
     // node as the start by convention.
