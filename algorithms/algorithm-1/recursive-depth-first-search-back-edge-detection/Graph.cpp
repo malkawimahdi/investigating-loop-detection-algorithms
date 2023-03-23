@@ -33,7 +33,7 @@ void Graph::addEdge(int current_node, int adjacent_node)
 {
     if ((this->adjacent_nodes[current_node].size() > 1))
     {
-        throw std::runtime_error("Graph can contain AT MOST two children.");
+        throw std::runtime_error("Graph Can Contain AT MOST Two Children.");
     }
     else
     {
@@ -58,7 +58,7 @@ bool Graph::recursiveDepthFirstSearch(int &node)
             // is currently pointing at.
             if (current_visit[*it])
             {
-                std::cout << "Back edge from: " << node << " to " << *it << std::endl;
+                std::cout << "Back Edge From: " << node << " to " << *it << std::endl;
             }
 
             // If an adjacent_node has not been traversed, and it's traversal returns true then return true;
@@ -102,7 +102,7 @@ bool Graph::containsCycle(void)
     }
     else
     {
-        std::cout << "No Cycle(s) Detected!";
+        std::cout << "No Cycle(s) Detected!" << std::endl;
         return false;
     }
 }
