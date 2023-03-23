@@ -180,6 +180,62 @@ int main(void)
 //         graph.addEdge(48, 49);
 //         graph.addEdge(49, 50);
 
+// Mahdi Malkawi do-while-loop
+// std::cout << "Mahdi Malkawi do-while-loop" << std::endl;
+// Graph graph(13);
+// graph.addEdge(0, 1);
+// graph.addEdge(1, 2);
+// graph.addEdge(2, 3);
+// graph.addEdge(3, 4);
+// graph.addEdge(4, 5);
+// graph.addEdge(5, 6);
+// graph.addEdge(6, 4);
+// graph.addEdge(6, 7);
+// graph.addEdge(7, 8);
+// graph.addEdge(8, 9);
+// graph.addEdge(9, 10);
+// graph.addEdge(10, 11);
+// graph.addEdge(11, 12);
+
+// Mahdi Malkawi for-loop
+// std::cout << "Mahdi Malkawi for-loop" << std::endl;
+// Graph graph(17);
+// graph.addEdge(0, 1);
+// graph.addEdge(1, 2);
+// graph.addEdge(2, 3);
+// graph.addEdge(3, 4);
+// graph.addEdge(4, 5);
+// graph.addEdge(5, 6);
+// graph.addEdge(6, 7);
+// graph.addEdge(7, 8);
+// graph.addEdge(8, 9);
+// graph.addEdge(9, 6);
+// graph.addEdge(6, 10);
+// graph.addEdge(10, 11);
+// graph.addEdge(11, 12);
+// graph.addEdge(12, 13);
+// graph.addEdge(13, 14);
+// graph.addEdge(14, 15);
+// graph.addEdge(15, 16);
+
+// Mahdi Malkawi while-loop
+// std::cout << "Mahdi Malkawi while-loop" << std::endl;
+// Graph graph(14);
+// graph.addEdge(0, 1);
+// graph.addEdge(1, 2);
+// graph.addEdge(2, 3);
+// graph.addEdge(3, 4);
+// graph.addEdge(4, 5);
+// graph.addEdge(5, 6);
+// graph.addEdge(6, 7);
+// graph.addEdge(7, 4);
+// graph.addEdge(4, 8);
+// graph.addEdge(8, 9);
+// graph.addEdge(9, 10);
+// graph.addEdge(10, 11);
+// graph.addEdge(11, 12);
+// graph.addEdge(12, 13);    
+    
     graph.containsCycle();
     return 0;
 }
