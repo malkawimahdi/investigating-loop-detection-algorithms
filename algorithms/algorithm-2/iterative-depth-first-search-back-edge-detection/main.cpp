@@ -141,7 +141,7 @@ int main(void)
     // Dr Martin Nyx Brain loop-empty
     // std::cout << "Dr Martin Nyx Brain loop-empty" << std::endl;
     //    Graph graph(21);
-    //     graph.addEdge(20, 20);
+    //    graph.addEdge(20, 20);
 
 
 // Dr Martin Nyx Brain loop-sequence-of-instructions

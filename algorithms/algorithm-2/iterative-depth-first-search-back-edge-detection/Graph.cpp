@@ -10,6 +10,7 @@
 Graph::Graph(int nodes)
 {
     this->nodes = nodes;
+    this->visited.reserve(this->nodes);
     this->adjacent_nodes = new std::list<int>[nodes];
 }
 
@@ -28,19 +29,14 @@ void Graph::addEdge(int current_node, int adjacent_node)
     }
 }
 
-// Received assistance from Dr Martin Nyx Brain, with accessing the adjacency_list for each node iteratively.
-// Implementation of cycle detection using iterative Depth First Search using ONLY the start node to check for cycles and output
-// nodes contained within cycles.
+// Received assistance from Dr Martin Nyx Brain, with accessing the adjacency_list for each node iteratively
+    // from an adjacency list, randomly accessing a std::list and going through the stack once more.
+// Implementation of cycle detection using iterative Depth First Search using ONLY the start node to check for cycles
+    // and output nodes contained within cycles.
 // Ensures that inaccessible nodes (inaccessible code) is not reached.
 // Outputs detected cycles in the same way as CBMC.
 bool Graph::depthFirstSearch(void)
 {
-    // Initalise variables inside graph to false.
-    for (auto &[key, value] : this->visited)
-    {
-        value = false;
-    }
-
     // Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
     // node as the start by convention.
     for (int counter = 0; counter < this->nodes; ++counter)
@@ -58,7 +54,7 @@ bool Graph::depthFirstSearch(void)
     // Are there any nodes for the graph?
     if (this->first_node == UINT_MAX)
     {
-        throw std::runtime_error("No node(s) are locatable.");
+        throw std::runtime_error("No Node(s) Are Locatable.");
     }
 
     // Iterative Depth First Search.
@@ -67,13 +63,13 @@ bool Graph::depthFirstSearch(void)
         // Get the top most node and visit it.
         std::pair<int, int> current_node = this->stack.top();
 
-        this->visited[current_node.first] = true;
+        this->visited[(current_node.first)] = true;
 
         // If the index of the second node is less than the size of the elements in the adjacency list...
         if (current_node.second < this->adjacent_nodes[current_node.first].size())
         {
             // Get initial index for start of adjacency_list and get the node required by the counter.
-            // Received assistance from Dr Martin Nyx Brain, randomly accessing a std::list
+            // Received assistance from Dr Martin Nyx Brain, randomly accessing a std::list.
             std::list<int>::iterator it = this->adjacent_nodes[current_node.first].begin();
 
             for (unsigned int i = 0; i < current_node.second; ++i)
@@ -89,7 +85,7 @@ bool Graph::depthFirstSearch(void)
             {
                 // Check if the next_node is in the stack. If it is then it is GUARANTEED to be in a cycle.
                 // Required as if there is a control flow graph in the form of a diamond, only a half is viewed.
-                // Dr Martin Nyx Brain suggested this improvement.
+                // Dr Martin Nyx Brain suggested this improvement based on the problem above.
                 if (stackChecker(next_node, this->stack))
                 {
                     this->cycle = true;
@@ -127,7 +123,14 @@ bool Graph::depthFirstSearch(void)
 
     unreachableNodes(this->first_node, this->nodes, this->visited);
 
-    std::cout << "Cycle(s): " << this->cycle_count << std::endl;
+    if (cycle_count > 0)
+    {
+        std::cout << "Cycle(s): " << this->cycle_count << std::endl;
+    }
+    else
+    {
+        std::cout << "No Cycle(s) Detected!" << std::endl;
+    }
 
     return this->is_there_a_cycle;
 }

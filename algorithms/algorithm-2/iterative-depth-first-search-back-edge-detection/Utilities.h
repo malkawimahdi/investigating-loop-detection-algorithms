@@ -8,7 +8,6 @@
 #include <stack>
 #include <vector>
 #include <iostream>
-#include <map>
 
 // Takes an integer and checks if the integer is contained within the stack.
 // If it is found in the stack return true, else return false.
@@ -18,6 +17,6 @@ bool stackChecker(int target, std::stack<std::pair<int, int> > stack);
 void cbmcCycleOutput(int next_node, std::stack<std::pair<int, int> > stack);
 
 // Detects unreachable nodes from the entry node.
-void unreachableNodes(unsigned int first_node, unsigned int nodes, std::map<int, bool> visited);
+void unreachableNodes(unsigned int first_node, unsigned int nodes, std::vector<bool> visited);
 
 #endif // UTILITIES_H
