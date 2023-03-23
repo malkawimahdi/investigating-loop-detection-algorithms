@@ -1,0 +1,101 @@
+Reading GOTO program from 'main.goto'
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+__CPROVER__start /* __CPROVER__start */
+        // 33 no location
+        // Labels: __CPROVER_HIDE
+        SKIP
+        // 34 no location
+        CALL __CPROVER_initialize()
+        // 35 no location
+        ASSUME argc' ≥ 0
+        // 36 no location
+        INPUT address_of("argc"[0]) argc'
+        // 37 
+        ASSIGN argv'[cast(argc', signedbv[64])] := NULL
+        // 38 file main.c line 6
+        CALL return' := main(argc', address_of(argv'[0]))
+        // 39 file main.c line 6
+        OUTPUT address_of("return'"[0])
+        // 40 no location
+        END_FUNCTION
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+__CPROVER_initialize /* __CPROVER_initialize */
+        // 26 no location
+        // Labels: __CPROVER_HIDE
+        SKIP
+        // 27 file <built-in-additions> line 8
+        ASSIGN __CPROVER_dead_object := NULL
+        // 28 file <built-in-additions> line 7
+        ASSIGN __CPROVER_deallocated := NULL
+        // 29 file <built-in-additions> line 12
+        ASSIGN __CPROVER_max_malloc_size := cast(36028797018963968, unsignedbv[64])
+        // 30 file <built-in-additions> line 9
+        ASSIGN __CPROVER_memory_leak := NULL
+        // 31 file <built-in-additions> line 16
+        ASSIGN __CPROVER_rounding_mode := 0
+        // 32 no location
+        END_FUNCTION
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+main /* main */
+        // 0 file main.c line 8 function main
+        DECL main::1::a : signedbv[32]
+        // 1 file main.c line 8 function main
+        ASSIGN main::1::a := 1
+        // 2 file main.c line 9 function main
+        DECL main::1::b : signedbv[32]
+        // 3 file main.c line 9 function main
+        ASSIGN main::1::b := 2
+        // 4 file main.c line 10 function main
+        DECL main::1::error : signedbv[32]
+        // 5 file main.c line 10 function main
+        ASSIGN main::1::error := 0
+        // 6 file main.c line 12 function main
+        // Labels: l1
+        ASSIGN main::1::a := main::1::a + 1
+        // 7 file main.c line 14 function main
+        DECL main::1::counter : signedbv[32]
+        // 8 file main.c line 14 function main
+        ASSIGN main::1::counter := 10
+        // 9 file main.c line 17 function main
+        // Labels: l2
+     1: ASSIGN main::1::b := main::1::b + 2
+        // 10 file main.c line 20 function main
+        // Labels: l3
+     2: IF ¬(main::1::counter < 10) THEN GOTO 3
+        // 11 file main.c line 22 function main
+        ASSIGN main::1::counter := main::1::counter - 1
+        // 12 file main.c line 22 function main
+        GOTO 4
+        // 13 file main.c line 26 function main
+     3: GOTO 1
+        // 14 file main.c line 27 function main
+        ASSIGN main::1::error := 1
+        // 15 no location
+     4: SKIP
+        // 16 file main.c line 31 function main
+        // Labels: l4
+        IF main::1::error ≠ 0 THEN GOTO 2
+        // 17 file main.c line 33 function main
+        SKIP
+        // 18 no location
+        SKIP
+        // 19 file main.c line 36 function main
+        SET RETURN VALUE 0
+        // 20 file main.c line 36 function main
+        DEAD main::1::counter
+        // 21 file main.c line 36 function main
+        DEAD main::1::error
+        // 22 file main.c line 36 function main
+        DEAD main::1::b
+        // 23 file main.c line 36 function main
+        DEAD main::1::a
+        // 24 file main.c line 36 function main
+        GOTO 5
+        // 25 file main.c line 37 function main
+     5: END_FUNCTION
+
