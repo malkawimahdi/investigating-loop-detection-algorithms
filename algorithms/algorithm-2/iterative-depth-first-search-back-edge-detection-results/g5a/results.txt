@@ -1,6 +1,7 @@
 CBMC Micheal Wolfe Paper G5a
-2 is head of { 2, 3 (backedge) }
-Cycle(s): 1
+8 is head of { 8, 9, 10, 11, 12, 13 (backedge) }
+11 is head of { 11, 12, 13, 14, 15, 16 (backedge) }
+Cycle(s): 2
 	Command being timed: "./a.out"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
@@ -10,10 +11,10 @@ Cycle(s): 1
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 3544
+	Maximum resident set size (kbytes): 3536
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 139
+	Minor (reclaiming a frame) page faults: 141
 	Voluntary context switches: 1
 	Involuntary context switches: 0
 	Swaps: 0

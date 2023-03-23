@@ -1,9 +1,6 @@
-CBMC Micheal Wolfe Paper G3
-12 is head of { 12, 13, 14, 17, 18 (backedge) }
-11 is head of { 11, 12, 15 (backedge) }
-12 is head of { 12, 13, 14, 17, 18 (backedge) }
-11 is head of { 11, 12, 15 (backedge) }
-Cycle(s): 4
+10 is head of { 10, 11, 12, 15, 16 (backedge) }
+9 is head of { 9, 10, 13 (backedge) }
+Cycle(s): 2
 	Command being timed: "./a.out"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
@@ -13,10 +10,10 @@ Cycle(s): 4
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 3396
+	Maximum resident set size (kbytes): 3484
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 137
+	Minor (reclaiming a frame) page faults: 140
 	Voluntary context switches: 1
 	Involuntary context switches: 0
 	Swaps: 0

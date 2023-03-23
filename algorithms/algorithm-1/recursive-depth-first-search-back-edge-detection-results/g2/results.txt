@@ -1,6 +1,6 @@
 CBMC Micheal Wolfe Paper G2
-Back Edge From: 8 to Head: 5
-Back Edge From: 12 to Head: 2
+Back Edge From: 10 to 7
+Back Edge From: 14 to 4
 Cycle(s): 2
 	Command being timed: "./a.out"
 	User time (seconds): 0.00
@@ -11,10 +11,10 @@ Cycle(s): 2
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 3540
+	Maximum resident set size (kbytes): 3480
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 141
+	Minor (reclaiming a frame) page faults: 140
 	Voluntary context switches: 1
 	Involuntary context switches: 0
 	Swaps: 0
