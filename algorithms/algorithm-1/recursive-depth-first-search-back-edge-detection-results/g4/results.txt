@@ -1,6 +1,6 @@
 CBMC Micheal Wolfe Paper G4
-Back Edge From: 9 to 2
-Back Edge From: 12 to 2
+Back Edge From: 9 to Head: 2
+Back Edge From: 12 to Head: 2
 Cycle(s): 2
 	Command being timed: "./a.out"
 	User time (seconds): 0.00

@@ -1,6 +1,6 @@
 CBMC Micheal Wolfe Paper G5a
-Back Edge From: 13 to 8
-Back Edge From: 16 to 11
+Back Edge From: 13 to Head: 8
+Back Edge From: 16 to Head: 11
 Cycle(s): 2
 	Command being timed: "./a.out"
 	User time (seconds): 0.00
