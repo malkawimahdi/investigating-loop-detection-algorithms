@@ -66,7 +66,7 @@ main /* main */
      1: ASSIGN main::1::b := main::1::b + 2
         // 10 file main.c line 20 function main
         // Labels: l3
-     2: IF ¬(main::1::counter < 10) THEN GOTO 3
+     2: IF ¬(main::1::counter ≤ 10) THEN GOTO 3
         // 11 file main.c line 22 function main
         ASSIGN main::1::counter := main::1::counter - 1
         // 12 file main.c line 22 function main

@@ -22,7 +22,7 @@ Node_0_8 [shape=Mrecord,fontsize=22,label="counter = 10;"];
 Node_0_8 -> Node_0_9 ;
 Node_0_9 [shape=Mrecord,fontsize=22,label="b = b + 2;"];
 Node_0_9 -> Node_0_10 ;
-Node_0_10 [shape=diamond,fontsize=22,label="!(counter \< 10)?"];
+Node_0_10 [shape=diamond,fontsize=22,label="!(counter \<= 10)?"];
 Node_0_10 -> Node_0_13 [fontsize=20,label="true"];
 Node_0_10 -> Node_0_11 [fontsize=20,label="false"];
 Node_0_13 [shape=Mrecord,fontsize=22,label="Goto"];
