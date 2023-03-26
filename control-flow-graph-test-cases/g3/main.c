@@ -17,7 +17,7 @@ l2:
     b += 2;
 
 l3:
-    if (counter < 10)
+    if (counter <= 10)
     {
         --counter;
     }
@@ -32,6 +32,6 @@ l4:
     {
         goto l3;
     }
-    
+
     return 0;
 }
