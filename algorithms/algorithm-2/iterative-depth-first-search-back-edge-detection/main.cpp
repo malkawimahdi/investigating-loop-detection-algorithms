@@ -1,7 +1,46 @@
+#include <string>
+#include <sstream>
+
 #include "Graph.h"
 
-int main(void)
+int main(int argc, const char * argv[])
 {
+    // Take an input graph as a command-line argument
+    std::stringstream graph_string_stream(argv[1]);
+
+    std::vector<unsigned int> graphEdges;
+
+    unsigned int largest_node = 0;
+
+    // Remove commas.
+    // Pair each node with the next node.
+    // No additional information is required.
+    for (int counter; graph_string_stream >> counter;)
+    {
+        if (graph_string_stream.peek() == ',')
+        {
+            graph_string_stream.ignore();
+        }
+        graphEdges.push_back(counter);
+
+        if (largest_node < counter)
+        {
+            largest_node = counter;
+        }
+    }
+
+    // Largest node + 1 to account for 0-index
+    Graph graph(largest_node + 1);
+
+    // Use Duffs device to generate graph.
+    for (int counter = 0; counter < graphEdges.size(); counter += 2)
+    {
+//        std::cout << "Current:" << graphEdges[counter] << " Adj:" << graphEdges[counter+1] << std::endl;
+        graph.addEdge(graphEdges[counter], graphEdges[counter+1]);
+    }
+
+
+
 //    std::cout << "Back Edge Present with Unreachable Nodes" << std::endl;
 //    Graph graph(5);
 //    graph.addEdge(0, 1);
@@ -12,24 +51,24 @@ int main(void)
 
 // CBMC Micheal Wolfe Paper G1
 // std::cout << "CBMC Micheal Wolfe Paper G1" << std::endl;
-Graph graph(16);
-graph.addEdge(0, 1);
-graph.addEdge(1, 2);
-graph.addEdge(2, 3);
-graph.addEdge(3, 4);
-graph.addEdge(3, 11);
-graph.addEdge(4, 5);
-graph.addEdge(5, 6);
-graph.addEdge(6, 7);
-graph.addEdge(7, 8);
-graph.addEdge(8, 8);
-graph.addEdge(8, 9);
-graph.addEdge(9, 10);
-graph.addEdge(10, 11);
-graph.addEdge(11, 12);
-graph.addEdge(12, 13);
-graph.addEdge(13, 14);
-graph.addEdge(14, 15);
+//Graph graph(16);
+//graph.addEdge(0, 1);
+//graph.addEdge(1, 2);
+//graph.addEdge(2, 3);
+//graph.addEdge(3, 4);
+//graph.addEdge(3, 11);
+//graph.addEdge(4, 5);
+//graph.addEdge(5, 6);
+//graph.addEdge(6, 7);
+//graph.addEdge(7, 8);
+//graph.addEdge(8, 8);
+//graph.addEdge(8, 9);
+//graph.addEdge(9, 10);
+//graph.addEdge(10, 11);
+//graph.addEdge(11, 12);
+//graph.addEdge(12, 13);
+//graph.addEdge(13, 14);
+//graph.addEdge(14, 15);
 
 // CBMC Micheal Wolfe Paper G2
 // std::cout << "CBMC Micheal Wolfe Paper G2" << std::endl;
