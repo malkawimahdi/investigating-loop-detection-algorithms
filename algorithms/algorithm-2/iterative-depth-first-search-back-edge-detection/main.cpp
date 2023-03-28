@@ -29,14 +29,24 @@ int main(int argc, const char * argv[])
         }
     }
 
-    // Largest node + 1 to account for 0-index
-    Graph graph(largest_node + 1);
-
-    // Use Duffs device to generate graph.
-    for (int counter = 0; counter < graphEdges.size(); counter += 2)
+    // Ensure that all the input is valid; every node belongs to a pair.
+    if (graphEdges.size() % 2 == 0)
     {
+        // Largest node + 1 to account for 0-index
+        Graph graph(largest_node + 1);
+
+        // Use Duffs device to generate graph.
+        for (int counter = 0; counter < graphEdges.size(); counter += 2)
+        {
 //        std::cout << "Current:" << graphEdges[counter] << " Adj:" << graphEdges[counter+1] << std::endl;
-        graph.addEdge(graphEdges[counter], graphEdges[counter+1]);
+            graph.addEdge(graphEdges[counter], graphEdges[counter+1]);
+        }
+
+        graph.iterativeDepthFirstSearch();
+    }
+    else
+    {
+        throw std::runtime_error("Pair(s) are missing values!");
     }
 
 
@@ -303,7 +313,7 @@ int main(int argc, const char * argv[])
 // graph.addEdge(11, 12);
 // graph.addEdge(12, 13);        
 
-    graph.iterativeDepthFirstSearch();
+
 //    std::cout << (graph.depthFirstSearch() ? "True" : "False") << std::endl;
 
     return 0;
