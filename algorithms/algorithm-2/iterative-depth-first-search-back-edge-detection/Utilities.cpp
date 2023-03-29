@@ -58,11 +58,11 @@ void cbmcCycleOutput(int next_node, std::stack<std::pair<int, int> > stack)
 
 // Detects unreachable nodes from the entry node.
 // Formatted to look good :)
-void unreachableNodes(unsigned int first_node, unsigned int nodes, std::vector<bool> &visited)
+void unreachableNodes(unsigned int first_node, std::vector<bool> &visited)
 {
     unsigned int unreachable_node_count = 0;
 
-    for (unsigned int counter = first_node; counter < nodes; ++counter)
+    for (unsigned int counter = first_node; counter < visited.size(); ++counter)
     {
         if (visited[counter] == false)
         {

@@ -12,7 +12,7 @@
 Graph::Graph(int nodes)
 {
     this->nodes = nodes;
-    this->visited.reserve(this->nodes);
+    this->visited.resize(this->nodes);
     this->adjacent_nodes = new std::list<int>[nodes];
 }
 
