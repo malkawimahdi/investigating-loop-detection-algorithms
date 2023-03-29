@@ -5,51 +5,60 @@
 
 int main(int argc, const char * argv[])
 {
-    // Take an input graph as a command-line argument
-    std::stringstream graph_string_stream(argv[1]);
-
-    std::vector<unsigned int> graphEdges;
-
-    unsigned int largest_node = 0;
-
-    // Remove commas.
-    // Pair each node with the next node.
-    // No additional information is required.
-    for (int counter; graph_string_stream >> counter;)
+    // Stop user error :)
+    if (argc != 2)
     {
-        if (graph_string_stream.peek() == ',')
-        {
-            graph_string_stream.ignore();
-        }
-        graphEdges.push_back(counter);
-
-        if (largest_node < counter)
-        {
-            largest_node = counter;
-        }
-    }
-
-    // Ensure that all the input is valid; every node belongs to a pair.
-    if (graphEdges.size() % 2 == 0)
-    {
-        // Largest node + 1 to account for 0-index
-        Graph graph(largest_node + 1);
-
-        // Use Duffs device to generate graph.
-        for (int counter = 0; counter < graphEdges.size(); counter += 2)
-        {
-//        std::cout << "Current:" << graphEdges[counter] << " Adj:" << graphEdges[counter+1] << std::endl;
-            graph.addEdge(graphEdges[counter], graphEdges[counter+1]);
-        }
-
-        graph.iterativeDepthFirstSearch();
+        //Edges are assigned to as pairs from 1st->2nd, 3rd->4th ...
+        throw std::runtime_error("Not Enough Arguments! \n"
+                                 "USAGE: ./a.out [Comma (,) seperated Integers]");
     }
     else
     {
-        throw std::runtime_error("Pair(s) are missing values!");
+        // Take an input graph as a command-line argument
+        std::stringstream graph_string_stream(argv[1]);
+
+        std::vector<unsigned int> graphEdges;
+
+        unsigned int largest_node = 0;
+
+        // Remove commas.
+        // Pair each node with the next node.
+        // No additional information is required.
+        for (int counter; graph_string_stream >> counter;)
+        {
+            if (graph_string_stream.peek() == ',')
+            {
+                graph_string_stream.ignore();
+            }
+
+            graphEdges.push_back(counter);
+
+            if (largest_node < counter)
+            {
+                largest_node = counter;
+            }
+        }
+
+        // Ensure that all the input is valid; every node belongs to a pair.
+        if (graphEdges.size() % 2 == 0)
+        {
+            // Largest node + 1 to account for 0-index
+            Graph graph(largest_node + 1);
+
+            // Use Duffs device to generate graph.
+            for (int counter = 0; counter < graphEdges.size(); counter += 2)
+            {
+                // std::cout << "Current:" << graphEdges[counter] << " Adj:" << graphEdges[counter+1] << std::endl;
+                graph.addEdge(graphEdges[counter], graphEdges[counter+1]);
+            }
+
+            graph.iterativeDepthFirstSearch();
+        }
+        else
+        {
+            throw std::runtime_error("Pair(s) are missing values!");
+        }
     }
-
-
 
 //    std::cout << "Back Edge Present with Unreachable Nodes" << std::endl;
 //    Graph graph(5);
