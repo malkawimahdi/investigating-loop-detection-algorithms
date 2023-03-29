@@ -123,7 +123,7 @@ bool Graph::iterativeDepthFirstSearch(void)
             continue;
         }
     }
-    unreachableNodes(this->first_node, this->nodes, this->visited);
+    unreachableNodes(this->first_node, this->visited);
 
     if (cycle_count > 0)
     {
