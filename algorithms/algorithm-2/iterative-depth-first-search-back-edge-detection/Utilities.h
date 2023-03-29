@@ -5,11 +5,12 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-#include <stack>
-#include <vector>
-#include <iostream>
-#include <iterator>
-#include <algorithm>
+#include "Graph.h"
+
+#include <sstream>
+
+// Graph Parser, parsing edges as pairs from 1st->2nd, 3rd->4th ...
+Graph graphParser(std::string string);
 
 // Takes an integer and checks if the integer is contained within the stack.
 // If it is found in the stack return true, else return false.
