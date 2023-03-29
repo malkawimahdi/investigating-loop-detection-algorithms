@@ -24,19 +24,18 @@ int main(int argc, const char * argv[])
         // Remove commas.
         // Pair each node with the next node.
         // No additional information is required.
-        // TODO: Change counter to something reasonable!!!
-        for (int counter; graph_string_stream >> counter;)
+        for (int current_node; graph_string_stream >> current_node;)
         {
             if (graph_string_stream.peek() == ',')
             {
                 graph_string_stream.ignore();
             }
 
-            graphEdges.push_back(counter);
+            graphEdges.push_back(current_node);
 
-            if (largest_node < counter)
+            if (largest_node < current_node)
             {
-                largest_node = counter;
+                largest_node = current_node;
             }
         }
 
@@ -68,6 +67,7 @@ int main(int argc, const char * argv[])
 //    graph.addEdge(2, 3);
 //    graph.addEdge(3, 0);
 //    graph.addEdge(4, 4);
+//    graph.iterativeDepthFirstSearch();
 
 // CBMC Micheal Wolfe Paper G1
 // std::cout << "CBMC Micheal Wolfe Paper G1" << std::endl;

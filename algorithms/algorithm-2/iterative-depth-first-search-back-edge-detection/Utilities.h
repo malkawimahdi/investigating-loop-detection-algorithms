@@ -19,6 +19,6 @@ bool stackChecker(int target, std::stack<std::pair<int, int> > stack);
 void cbmcCycleOutput(int next_node, std::stack<std::pair<int, int> > stack);
 
 // Detects unreachable nodes from the entry node.
-void unreachableNodes(unsigned int first_node, unsigned int nodes, std::vector<bool> visited);
+void unreachableNodes(unsigned int first_node, unsigned int nodes, std::vector<bool> &visited);
 
 #endif // UTILITIES_H
