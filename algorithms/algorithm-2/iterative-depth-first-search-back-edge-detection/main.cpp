@@ -24,6 +24,7 @@ int main(int argc, const char * argv[])
         // Remove commas.
         // Pair each node with the next node.
         // No additional information is required.
+        // TODO: Change counter to something reasonable!!!
         for (int counter; graph_string_stream >> counter;)
         {
             if (graph_string_stream.peek() == ',')
