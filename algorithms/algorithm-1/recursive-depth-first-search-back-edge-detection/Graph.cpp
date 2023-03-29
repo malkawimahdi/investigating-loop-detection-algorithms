@@ -1,11 +1,12 @@
-//
-// NOTICE: Graph.cpp utilises a significant proportion of code snippets and general structure
-    // with no specified license located at:
+// NOTICE: Graph.cpp utilises a significant proportion of code snippets for general structure
+// with no specified license located at:
+
 // Title: Detect Cycle in a Directed Graph
 // Author: GeeksForGeeks
 // Year: 2023
 // URL: https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
 // URL Date: 22nd March 2023
+
 //
 // Created by Mahdi Malkawi on 08/02/2023.
 // Graph.cpp

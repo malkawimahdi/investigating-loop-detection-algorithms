@@ -14,7 +14,7 @@ Graph graphParser(std::string string)
 
     unsigned int largest_node = 0;
 
-    // Remove commas.
+    // Remove commas and whitespace.
     // Pair each node with the next node.
     // No additional information is required.
     // Remember that to parse that command-line arguments on zsh with whitespace,
