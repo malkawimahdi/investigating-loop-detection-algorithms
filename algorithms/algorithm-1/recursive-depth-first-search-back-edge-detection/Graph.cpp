@@ -62,7 +62,7 @@ bool Graph::recursiveDepthFirstSearchSingleNode(int &node)
             // is currently pointing at.
             if (current_visit[*it])
             {
-                std::cout << "Back Edge From: " << node << " to Head: " << *it << std::endl;
+                std::cout << "Head: " << *it << " BackEdge: " << node << std::endl;
             }
 
             // If an adjacent_node has not been traversed, and it's traversal returns true then return true;
