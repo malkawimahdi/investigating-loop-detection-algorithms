@@ -11,12 +11,15 @@ fi
 # -n natural_loops (Optional)
 
 # Get required flag f and check for optional flags l and n.
-while getopts f:ln flag
+while getopts f:lnh flag
 do
     case "${flag}" in
         f) file=${OPTARG};;
         l) lexical_flag=1;;
         n) natural_flag=1;;
+        h) echo -e "USAGE:\n  -f input (*.c) file\n
+  -l specifies the option to generate results from CBMC using lexical loops\n
+  -n specifies the option to generate results from CBMC using natural loops\n" && exit 0;;
     esac
 done 
 echo $file
@@ -41,9 +44,9 @@ esac
 # Generate outputs for lexical and natural loops if applicable.
 if [ $lexical_flag ]; then
   echo 'Lexical'
-  $time -v goto-instrument --show-lexical-loops $file2.goto 2>&1 | tee lexical-loops-results.txt     
+  $time -v goto-instrument --show-lexical-loops $file2.goto 2>&1 | tee $file-lexical-loops-results.txt     
 fi
 
 if [ $natural_flag ]; then
-  $time -v goto-instrument --show-natural-loops $file2.goto 2>&1 | tee natural-loops-results.txt     
+  $time -v goto-instrument --show-natural-loops $file2.goto 2>&1 | tee $file-natural-loops-results.txt     
 fi
