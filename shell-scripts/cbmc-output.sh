@@ -9,22 +9,22 @@ fi
 # -f is the file (REQUIRED)
 # -l lexical_loops (Optional)
 # -n natural_loops (Optional)
+# -s generate svg (Optional)
+# -h show all options (Optional)
 
 # Get required flag f and check for optional flags l and n.
-while getopts f:lnh flag
+while getopts f:lnsh flag
 do
     case "${flag}" in
         f) file=${OPTARG};;
         l) lexical_flag=1;;
         n) natural_flag=1;;
+        s) svg_flag=1;; 
         h) echo -e "USAGE:\n  -f input (*.c) file\n
   -l specifies the option to generate results from CBMC using lexical loops\n
   -n specifies the option to generate results from CBMC using natural loops\n" && exit 0;;
     esac
 done 
-echo $file
-echo $lexical_flag
-echo $natural_flag
 
 # Remove .c from filename.
 file2=${file/.c/}
@@ -56,4 +56,14 @@ fi
 
 if [ $natural_flag ]; then
   $time -v goto-instrument --show-natural-loops $file2.goto 2>&1 | tee $file-natural-loops-results.txt     
+fi
+
+# Generate (*.svg) using Graphviz if installed.
+if [ $svg_flag ]; then
+  if ! [ -x "$(command -v dot)" ]; then
+  echo "Error: graphviz is not locatable/installed." >&2
+  exit 1
+  fi
+
+  dot -Tsvg $file2.dot -o $file2.svg    
 fi
