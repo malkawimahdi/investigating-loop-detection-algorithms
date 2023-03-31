@@ -22,7 +22,8 @@ do
         s) svg_flag=1;; 
         h) echo -e "USAGE:\n  -f input (*.c) file\n
   -l specifies the option to generate results from CBMC using lexical loops\n
-  -n specifies the option to generate results from CBMC using natural loops\n" && exit 0;;
+  -n specifies the option to generate results from CBMC using natural loops\n
+  -s specifies the option to generate an svg from graphviz using the output (*.dot) file\n" && exit 0;;
     esac
 done 
 
