@@ -12,7 +12,7 @@ fi
 # -s generate svg (Optional)
 # -h show all options (Optional)
 
-# Get required flag f and check for optional flags l and n.
+# Get required flag f and check for optional flags l, n, s, and h.
 while getopts f:lnsh flag
 do
     case "${flag}" in
