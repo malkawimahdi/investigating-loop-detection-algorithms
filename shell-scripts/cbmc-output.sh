@@ -51,7 +51,6 @@ esac
 
 # Generate outputs for lexical and natural loops if applicable.
 if [ $lexical_flag ]; then
-  echo 'Lexical'
   $time -v goto-instrument --show-lexical-loops $file2.goto 2>&1 | tee $file-lexical-loops-results.txt     
 fi
 
