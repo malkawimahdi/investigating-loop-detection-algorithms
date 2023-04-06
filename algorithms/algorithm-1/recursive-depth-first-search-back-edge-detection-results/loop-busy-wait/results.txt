@@ -1,5 +1,5 @@
 Dr Martin Nyx Brain loop-busy-wait
-Back Edge From: 16 to Head: 14
+Head: 14, BackEdge: 16
 Cycle(s): 1
 	Command being timed: "./a.out"
 	User time (seconds): 0.00

@@ -1,5 +1,5 @@
 Mahdi Malkawi while-loop
-Back Edge From: 7 to Head: 4
+Head: 4, BackEdge: 7
 Cycle(s): 1
 	Command being timed: "./a.out"
 	User time (seconds): 0.00

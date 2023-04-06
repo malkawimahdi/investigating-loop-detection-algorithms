@@ -1,5 +1,5 @@
 Dr Martin Nyx Brain loop-sequence-of-instructions
-Back Edge From: 43 to Head: 26
+Head: 26, BackEdge: 43
 Cycle(s): 1
 	Command being timed: "./a.out"
 	User time (seconds): 0.00

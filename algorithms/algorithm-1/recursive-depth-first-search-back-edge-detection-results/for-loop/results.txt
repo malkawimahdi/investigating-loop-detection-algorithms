@@ -1,5 +1,5 @@
 Mahdi Malkawi for-loop
-Back Edge From: 9 to Head: 6
+Head: 6, BackEdge: 9
 Cycle(s): 1
 	Command being timed: "./a.out"
 	User time (seconds): 0.00

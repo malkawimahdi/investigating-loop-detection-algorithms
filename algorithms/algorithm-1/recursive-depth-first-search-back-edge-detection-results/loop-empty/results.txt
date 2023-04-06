@@ -1,5 +1,5 @@
 Dr Martin Nyx Brain loop-empty
-Back Edge From: 20 to Head: 20
+Head: 20, BackEdge: 20
 Cycle(s): 1
 	Command being timed: "./a.out"
 	User time (seconds): 0.00

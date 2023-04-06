@@ -1,5 +1,5 @@
 CBMC Micheal Wolfe Paper G5b
-Back Edge From: 12 to Head: 8
+Head: 8, BackEdge: 12
 Cycle(s): 1
 	Command being timed: "./a.out"
 	User time (seconds): 0.00
