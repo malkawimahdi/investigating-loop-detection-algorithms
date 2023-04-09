@@ -39,7 +39,7 @@ tail -n +2 "$file2.dot" > ${file2}-temp.dot
 
 cat ${file2}-temp.dot > $file2.dot
 
-rm ${file2}-temp.dot
+rm -f ${file2}-temp.dot
 
 # Check OS and run different time commands.
 # MacOS requires homebrew to use GNU time which is "gtime", whilst linux mostly uses whats below.
