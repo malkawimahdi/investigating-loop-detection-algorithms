@@ -1,0 +1,126 @@
+digraph G {
+color=black;orientation=portrait;fontsize=20;compound=true;size="30,40";ratio=compress;
+subgraph "cluster_main" {
+label="main";
+Node_0_0 [shape=Mrecord,fontsize=22,label="duffs_device(27);"];
+Node_0_0 -> Node_0_1 ;
+Node_0_1 [shape=Mrecord,fontsize=22,label="return 0;"];
+Node_0_1 -> Node_0_2 ;
+Node_0_2 [shape=Mrecord,fontsize=22,label="Goto"];
+Node_0_2 -> Node_0_3 ;
+Node_0_3 [shape=Mrecord,fontsize=22,label="End of Function"];
+}
+subgraph "cluster_duffs_device" {
+label="duffs_device";
+Node_1_4 [shape=Mrecord,fontsize=22,label="signed int cycles;"];
+Node_1_4 -> Node_1_5 ;
+Node_1_5 [shape=Mrecord,fontsize=22,label="cycles = (count + 7) / 8;"];
+Node_1_5 -> Node_1_6 ;
+Node_1_6 [shape=Mrecord,fontsize=22,label="Location"];
+Node_1_6 -> Node_1_7 ;
+Node_1_7 [shape=diamond,fontsize=22,label="count % 8 == 7?"];
+Node_1_7 -> Node_1_17 [fontsize=20,label="true"];
+Node_1_7 -> Node_1_8 [fontsize=20,label="false"];
+Node_1_17 [shape=Mrecord,fontsize=22,label="printf((const void *)\"Case 7\\n\");"];
+Node_1_17 -> Node_1_18 ;
+Node_1_8 [shape=diamond,fontsize=22,label="count % 8 == 6?"];
+Node_1_8 -> Node_1_18 [fontsize=20,label="true"];
+Node_1_8 -> Node_1_9 [fontsize=20,label="false"];
+Node_1_18 [shape=Mrecord,fontsize=22,label="printf((const void *)\"Case 6\\n\");"];
+Node_1_18 -> Node_1_19 ;
+Node_1_9 [shape=diamond,fontsize=22,label="count % 8 == 5?"];
+Node_1_9 -> Node_1_19 [fontsize=20,label="true"];
+Node_1_9 -> Node_1_10 [fontsize=20,label="false"];
+Node_1_19 [shape=Mrecord,fontsize=22,label="printf((const void *)\"Case 5\\n\");"];
+Node_1_19 -> Node_1_20 ;
+Node_1_10 [shape=diamond,fontsize=22,label="count % 8 == 4?"];
+Node_1_10 -> Node_1_20 [fontsize=20,label="true"];
+Node_1_10 -> Node_1_11 [fontsize=20,label="false"];
+Node_1_20 [shape=Mrecord,fontsize=22,label="printf((const void *)\"Case 4\\n\");"];
+Node_1_20 -> Node_1_21 ;
+Node_1_11 [shape=diamond,fontsize=22,label="count % 8 == 3?"];
+Node_1_11 -> Node_1_21 [fontsize=20,label="true"];
+Node_1_11 -> Node_1_12 [fontsize=20,label="false"];
+Node_1_21 [shape=Mrecord,fontsize=22,label="printf((const void *)\"Case 3\\n\");"];
+Node_1_21 -> Node_1_22 ;
+Node_1_12 [shape=diamond,fontsize=22,label="count % 8 == 2?"];
+Node_1_12 -> Node_1_22 [fontsize=20,label="true"];
+Node_1_12 -> Node_1_13 [fontsize=20,label="false"];
+Node_1_22 [shape=Mrecord,fontsize=22,label="printf((const void *)\"Case 2\\n\");"];
+Node_1_22 -> Node_1_23 ;
+Node_1_13 [shape=diamond,fontsize=22,label="count % 8 == 1?"];
+Node_1_13 -> Node_1_23 [fontsize=20,label="true"];
+Node_1_13 -> Node_1_14 [fontsize=20,label="false"];
+Node_1_23 [shape=Mrecord,fontsize=22,label="printf((const void *)\"Case 1\\n\");"];
+Node_1_23 -> Node_1_24 ;
+Node_1_14 [shape=diamond,fontsize=22,label="!(count % 8 == 0)?"];
+Node_1_14 -> Node_1_27 [fontsize=20,label="true"];
+Node_1_14 -> Node_1_15 [fontsize=20,label="false"];
+Node_1_24 [shape=Mrecord,fontsize=22,label="cycles = cycles - 1;"];
+Node_1_24 -> Node_1_25 ;
+Node_1_27 [shape=Mrecord,fontsize=22,label="Skip"];
+Node_1_27 -> Node_1_28 ;
+Node_1_15 [shape=Mrecord,fontsize=22,label="Skip"];
+Node_1_15 -> Node_1_16 ;
+Node_1_25 [shape=diamond,fontsize=22,label="cycles \> 0?"];
+Node_1_25 -> Node_1_16 [fontsize=20,label="true",color=red];
+Node_1_25 -> Node_1_26 [fontsize=20,label="false"];
+Node_1_28 [shape=Mrecord,fontsize=22,label="Dead"];
+Node_1_28 -> Node_1_29 ;
+Node_1_16 [shape=Mrecord,fontsize=22,label="printf((const void *)\"Standard Case\\n\");"];
+Node_1_16 -> Node_1_17 ;
+Node_1_26 [shape=Mrecord,fontsize=22,label="Skip"];
+Node_1_26 -> Node_1_27 ;
+Node_1_29 [shape=Mrecord,fontsize=22,label="End of Function"];
+}
+subgraph "cluster___CPROVER_initialize" {
+label="__CPROVER_initialize";
+Node_2_30 [shape=Mrecord,fontsize=22,label="Skip"];
+Node_2_30 -> Node_2_31 ;
+Node_2_31 [shape=Mrecord,fontsize=22,label="__CPROVER_dead_object = NULL;"];
+Node_2_31 -> Node_2_32 ;
+Node_2_32 [shape=Mrecord,fontsize=22,label="__CPROVER_deallocated = NULL;"];
+Node_2_32 -> Node_2_33 ;
+Node_2_33 [shape=Mrecord,fontsize=22,label="__CPROVER_max_malloc_size = (__CPROVER_size_t)36028797018963968l;"];
+Node_2_33 -> Node_2_34 ;
+Node_2_34 [shape=Mrecord,fontsize=22,label="__CPROVER_memory_leak = NULL;"];
+Node_2_34 -> Node_2_35 ;
+Node_2_35 [shape=Mrecord,fontsize=22,label="__CPROVER_rounding_mode = 0;"];
+Node_2_35 -> Node_2_36 ;
+Node_2_36 [shape=Mrecord,fontsize=22,label="End of Function"];
+}
+subgraph "cluster___CPROVER__start" {
+label="__CPROVER__start";
+Node_3_37 [shape=Mrecord,fontsize=22,label="Skip"];
+Node_3_37 -> Node_3_38 ;
+Node_3_38 [shape=Mrecord,fontsize=22,label="__CPROVER_initialize();"];
+Node_3_38 -> Node_3_39 ;
+Node_3_39 [shape=Mrecord,fontsize=22,label="Assume\n(argc' \>= 0)"];
+Node_3_39 -> Node_3_40 ;
+Node_3_40 [shape=Mrecord,fontsize=22,label="INPUT(\"argc\", argc');"];
+Node_3_40 -> Node_3_41 ;
+Node_3_41 [shape=Mrecord,fontsize=22,label="/* disable:bounds-check */\nargv'[(signed long int)argc'] = ((char *)NULL);"];
+Node_3_41 -> Node_3_42 ;
+Node_3_42 [shape=Mrecord,fontsize=22,label="return'=main(argc', argv');"];
+Node_3_42 -> Node_3_43 ;
+Node_3_43 [shape=Mrecord,fontsize=22,label="OUTPUT(\"return'\", return');"];
+Node_3_43 -> Node_3_44 ;
+Node_3_44 [shape=Mrecord,fontsize=22,label="End of Function"];
+}
+Node_0_0 -> Node_1_0 [lhead="cluster_duffs_device",color=blue];
+subgraph "cluster_printf" {
+rank=sink;
+label="printf";
+Node_4_0 [shape=Mrecord,fontsize=22,label="?"];
+}
+Node_1_17 -> Node_4_0 [lhead="cluster_printf",color=blue];
+Node_1_18 -> Node_4_0 [lhead="cluster_printf",color=blue];
+Node_1_19 -> Node_4_0 [lhead="cluster_printf",color=blue];
+Node_1_20 -> Node_4_0 [lhead="cluster_printf",color=blue];
+Node_1_21 -> Node_4_0 [lhead="cluster_printf",color=blue];
+Node_1_22 -> Node_4_0 [lhead="cluster_printf",color=blue];
+Node_1_23 -> Node_4_0 [lhead="cluster_printf",color=blue];
+Node_1_16 -> Node_4_0 [lhead="cluster_printf",color=blue];
+Node_3_38 -> Node_2_0 [lhead="cluster___CPROVER_initialize",color=blue];
+Node_3_42 -> Node_0_0 [lhead="cluster_main",color=blue];
+}
