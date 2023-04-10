@@ -1,9 +1,11 @@
+Unreachable Node(s): 29
+Unreachable Node(s) Count: 1
 No Cycle(s) Detected!
-	Command being timed: "./a.out 19,20,20,21,21,22,22,23,23,24,24,25,25,26,26,27,27,28,28,29,29,30"
+	Command being timed: "./a.out 19,20,20,21,21,22,22,27,27,28,28,23,23,24,24,25,25,26,26,30"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
-	Percent of CPU this job got: 1%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.31
+	Percent of CPU this job got: 33%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -13,7 +15,7 @@ No Cycle(s) Detected!
 	Major (requiring I/O) page faults: 1
 	Minor (reclaiming a frame) page faults: 181
 	Voluntary context switches: 0
-	Involuntary context switches: 7
+	Involuntary context switches: 3
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
