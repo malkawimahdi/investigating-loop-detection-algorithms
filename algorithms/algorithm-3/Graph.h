@@ -23,13 +23,14 @@ private:
     std::vector<bool> visited;              // Vector bitset checking if a node has been visited.
     std::stack<std::pair<int, int> > stack; // Stack for iterative Depth First Search.
     unsigned int first_node = UINT_MAX;     // Keep track of first node for use in unreachableNodes.
-    std::map <int, std::set<int> > dominators;
-    std::vector<bool> dominatorVisited;
+    std::map <int, std::set<int> > dominators; // For each node, contains the set of the dominators for a given node.
+    std::set<int> computeDominators(int node); // Computes the dominators from a given node and returns a std::set.
 
 public:
     explicit Graph(int nodes);                         // Constructor, which takes the number of nodes for a graph.
-    void addEdge(int current_node, int adjacent_node); // Add an edge to current graph currentNode -> adjacentNode
-    std::set<int> computeDominators(int node); // Computes the dominators from a given node and returns a std::set.
+    void addEdge(int current_node, int adjacent_node, bool for_dominator_tree); // Add an edge to current graph currentNode -> adjacentNode
+    Graph dominatorTree(); // Generates a dominator tree based on (Aho et al. 2006).
+
 };
 
 #endif // GRAPH_H

@@ -10,13 +10,18 @@ int main(int argc, const char * argv[])
     }
     else
     {
-        Graph graph = graphParser(argv[1]);
-        std::set<int> test = graph.computeDominators(6);
+        Graph graph = graphParser(argv[1], false);
+        
+//        std::set<int> test = graph.computeDominators(6);
+//
+//        for(auto it = test.begin(); it != test.end(); it++)
+//        {
+//            std::cout << *it << std::endl;
+//        }
 
-        for(auto it = test.begin(); it != test.end(); it++)
-        {
-            std::cout << *it << std::endl;
-        }
+        Graph dt = graph.dominatorTree();
+
+
     }
     return 0;
 }
