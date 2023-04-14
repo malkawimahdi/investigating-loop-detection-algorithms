@@ -112,12 +112,13 @@ std::set<int> Graph::computeDominators(int node)
             for (std::list<int>::iterator it = this->backwards_predecessors[node].begin();
                  it != this->backwards_predecessors[node].end(); ++it)
             {
-                std::set<int> intersection_dual_parent_nodes;
+                std::set<int> intersection_more_than_a_single_parent;
 
-                // If a node has two parents, then both sets are required to be intersected otherwise the first set
+                // If a node has two or more parents, then both sets are required to be intersected otherwise the first set
                 // i.e. the left side of a control flow graph will be used. Will occur in diamond shapes
                     // analogous to if-else statements.
-                if (this->backwards_predecessors[node].size() == 2)
+                // By checking the last parent, which is the immediate predecessor, this will always work.
+                if (this->backwards_predecessors[node].size() > 1)
                 {
                     int first_parent_node = this->backwards_predecessors[node].front();
                     int second_parent_node = this->backwards_predecessors[node].back();
@@ -129,14 +130,14 @@ std::set<int> Graph::computeDominators(int node)
                                           first_parent_node_set.end(),
                                           second_parent_node_set.begin(),
                                           second_parent_node_set.end(),
-                                          std::inserter(intersection_dual_parent_nodes,
-                                                        intersection_dual_parent_nodes.begin()));
+                                          std::inserter(intersection_more_than_a_single_parent,
+                                                        intersection_more_than_a_single_parent.begin()));
 
                     // Insert the current node to fulfill the dominator relationship that each node dominates itself.
-                    intersection_dual_parent_nodes.insert(node);
+                    intersection_more_than_a_single_parent.insert(node);
 
-                    for(auto it = intersection_dual_parent_nodes.begin();
-                            it != intersection_dual_parent_nodes.end(); it++)
+                    for(auto it = intersection_more_than_a_single_parent.begin();
+                            it != intersection_more_than_a_single_parent.end(); it++)
                     {
                         this->dominators[node].insert(*it);
                     }
