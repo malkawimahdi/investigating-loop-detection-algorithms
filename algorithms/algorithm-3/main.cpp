@@ -12,14 +12,14 @@ int main(int argc, const char * argv[])
     {
         Graph graph = graphParser(argv[1], false);
         
-//        std::set<int> test = graph.computeDominators(6);
-//
-//        for(auto it = test.begin(); it != test.end(); it++)
-//        {
-//            std::cout << *it << std::endl;
-//        }
+        std::set<int> test = graph.computeDominators(4);
 
-        Graph dt = graph.dominatorTree();
+        for(auto it = test.begin(); it != test.end(); it++)
+        {
+            std::cout << *it << std::endl;
+        }
+
+//        Graph dt = graph.dominatorTree();
 
 
     }

@@ -74,6 +74,22 @@ void Graph::addEdge(int current_node, int adjacent_node, bool for_dominator_tree
 // Compute the dominators set of a control flow graph, using memoization.
 std::set<int> Graph::computeDominators(int node)
 {
+    // Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
+    // node as the start by convention.
+    for (int counter = 0; counter < this->nodes; ++counter)
+    {
+        if (this->adjacent_nodes[counter].size() > 0)
+        {
+            this->first_node = counter;
+            break;
+        }
+    }
+
+    if (this->first_node == UINT_MAX)
+    {
+        throw std::runtime_error("No node(s) detected.");
+    }
+
     // Check if dominators are already filled for this node.
     // If so just return the set.
     if (!this->dominators[node].empty())
@@ -94,64 +110,75 @@ std::set<int> Graph::computeDominators(int node)
         // The set of dominators is empty, and it is not the first node.
         else
         {
-            // Working set to recursively fill the previous dominators of the next node after entry.
-            std::set<int> working = computeDominators(*this->backwards_predecessors[node].begin());
-
-            // Traverse through the backwards control flow graph, looking forwards.
-            std::set<int> intersection_single_parent_node;
-
-            for (std::list<int>::iterator it = this->backwards_predecessors[node].begin();
-                 it != this->backwards_predecessors[node].end(); ++it)
+            // If there is one previous node, just receive results of previous node and add current node to dominators
+                // to receive dominators for the current set.
+            if (this->backwards_predecessors[node].size() == 1)
             {
-                std::set<int> intersection_dual_parent_nodes;
+                std::set<int> result = computeDominators(this->backwards_predecessors[node].front());
 
-                // If a node has two parents, then both sets are required to be intersected otherwise the first set
-                // i.e. the left side of a control flow graph will be used. Will occur in diamond shapes
-                    // analogous to if-else statements.
-                if (this->backwards_predecessors[node].size() == 2)
+                // Insert the current node to fulfill the dominator relationship that each node dominates itself.
+                result.insert(node);
+
+                for(std::set<int>::iterator it = result.begin();
+                    it != result.end(); ++it)
                 {
+                    this->dominators[node].insert(*it);
+                }
+            }
+
+            // Two predecessors...
+            else if (this->backwards_predecessors[node].size() == 2)
+                {
+                    std::set<int> results2;
+
                     int first_parent_node = this->backwards_predecessors[node].front();
                     int second_parent_node = this->backwards_predecessors[node].back();
 
                     std::set<int> first_parent_node_set = computeDominators(first_parent_node);
                     std::set<int> second_parent_node_set = computeDominators(second_parent_node);
 
+                    // If a node has two parents, then both sets are required to be intersected otherwise the first set
+                    // i.e. the left side of a control flow graph will be used. Will occur in diamond shapes
+                    // analogous to if-else statements.
                     std::set_intersection(first_parent_node_set.begin(),
                                           first_parent_node_set.end(),
                                           second_parent_node_set.begin(),
                                           second_parent_node_set.end(),
-                                          std::inserter(intersection_dual_parent_nodes,
-                                                        intersection_dual_parent_nodes.begin()));
+                                          std::inserter(results2,results2.begin()));
 
                     // Insert the current node to fulfill the dominator relationship that each node dominates itself.
-                    intersection_dual_parent_nodes.insert(node);
+                    results2.insert(node);
 
-                    for(std::set<int>::iterator it = intersection_dual_parent_nodes.begin();
-                            it != intersection_dual_parent_nodes.end(); ++it)
+                    for(std::set<int>::iterator it = results2.begin();
+                        it != results2.end(); ++it)
                     {
                         this->dominators[node].insert(*it);
                     }
                 }
-                else
+
+                // Three + predecessors...
+            else if (this->backwards_predecessors[node].size() > 2)
+            {
+                std::set<int> working2 = computeDominators(this->backwards_predecessors[node].front());
+
+                std::set<int> results3;
+
+                // For each predecessor compute dominators and intersect the results returned by the first call
+                    // to computeDominators stored in working2.
+                for (std::list<int>::iterator it = this->backwards_predecessors[node].begin();
+                     it != this->backwards_predecessors[node].end(); ++it)
                 {
-                    std::set<int> result = computeDominators(*it);
 
-                    // Sets are required to be intersected, to ensure that the parent of the current AND the current
-                    // only contain the same nodes to verify that only nodes that dominate the current node are
-                    // included.
-                    // Only works for a single parent.
-                    std::set_intersection(result.begin(),
-                                          result.end(),
-                                          working.begin(),
-                                          working.end(),
-                                          std::inserter(intersection_single_parent_node,
-                                                        intersection_single_parent_node.begin()));
+                    std::set<int> compute_it = computeDominators(*it);
 
-                    // Insert the current node to fulfill the dominator relationship that each node dominates itself.
-                    intersection_single_parent_node.insert(node);
+                    std::set_intersection(working2.begin(),
+                                          working2.end(),
+                                          compute_it.begin(),
+                                          compute_it.end(),
+                                          std::inserter(results3, results3.begin()));
 
-                    for(std::set<int>::iterator it = intersection_single_parent_node.begin();
-                        it != intersection_single_parent_node.end(); ++it)
+                    for(std::set<int>::iterator it = results3.begin();
+                        it != results3.end(); ++it)
                     {
                         this->dominators[node].insert(*it);
                     }
@@ -166,22 +193,6 @@ std::set<int> Graph::computeDominators(int node)
 // Based on (Aho et al. 2006) Compilers: Principles, Techniques, and Tools (2nd Edition)
 Graph Graph::dominatorTree()
 {
-    // Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
-    // node as the start by convention.
-    for (int counter = 0; counter < this->nodes; ++counter)
-    {
-        if (this->adjacent_nodes[counter].size() > 0)
-        {
-            this->first_node = counter;
-            break;
-        }
-    }
-
-    if (this->first_node == UINT_MAX)
-    {
-        throw std::runtime_error("No node(s) detected.");
-    }
-
     std::string dominator_tree_output;
 
     // Compute the dominators for every node.

@@ -24,11 +24,12 @@ private:
     std::stack<std::pair<int, int> > stack; // Stack for iterative Depth First Search.
     unsigned int first_node = UINT_MAX;     // Keep track of first node for use in unreachableNodes.
     std::map <int, std::set<int> > dominators; // For each node, contains the set of the dominators for a given node.
-    std::set<int> computeDominators(int node); // Computes the dominators from a given node and returns a std::set.
+
 
 public:
     explicit Graph(int nodes);                         // Constructor, which takes the number of nodes for a graph.
     void addEdge(int current_node, int adjacent_node, bool for_dominator_tree); // Add an edge to current graph currentNode -> adjacentNode
+    std::set<int> computeDominators(int node); // Computes the dominators from a given node and returns a std::set.
     Graph dominatorTree(); // Generates a dominator tree based on (Aho et al. 2006).
 
 };
