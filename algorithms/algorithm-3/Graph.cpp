@@ -29,26 +29,12 @@ Graph::Graph(int nodes)
 // This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes.
 // Add an edge to current graph in the directed form: currentNode -> adjacentNode.
 // Follows the property of a Control Flow Graph (CFG), whereby each node can have AT MOST two other adjacent nodes.
-void Graph::addEdge(int current_node, int adjacent_node, bool for_dominator_tree)
+void Graph::addEdge(int current_node, int adjacent_node)
 {
-    if (for_dominator_tree)
-    {
-        this->adjacent_nodes[current_node].push_back(adjacent_node);
-    }
-    else
-    {
-        if ((this->adjacent_nodes[current_node].size() > 1))
-        {
-            throw std::runtime_error("Graph can contain AT MOST two children.");
-        }
-        else
-        {
             // Add adjacent nodes reachable from current node.
             this->adjacent_nodes[current_node].push_back(adjacent_node);
             // Add current_node for adjacent node to allow backwards traversal of graph.
             this->backwards_predecessors[adjacent_node].push_back(current_node);
-        }
-    }
 }
 
 // Received assistance from Dr Martin Nyx Brain, firstly by using pseudocode representation of the algorithm required:
@@ -165,6 +151,7 @@ std::set<int> Graph::computeDominators(int node)
 
                 // For each predecessor compute dominators and intersect the results returned by the first call
                     // to computeDominators stored in working2.
+                // Do this for EVERY immediate predecessor.
                 for (std::list<int>::iterator it = this->backwards_predecessors[node].begin();
                      it != this->backwards_predecessors[node].end(); ++it)
                 {
@@ -220,11 +207,11 @@ Graph Graph::dominatorTree()
         }
     }
 
-    dominator_tree_output.pop_back();
+//    dominator_tree_output.pop_back();
 
     // Debug tool.
     std::cout << dominator_tree_output << std::endl;
 
-    Graph dominator_tree = graphParser(dominator_tree_output, true);
+    Graph dominator_tree = graphParser(dominator_tree_output);
     return dominator_tree;
 }

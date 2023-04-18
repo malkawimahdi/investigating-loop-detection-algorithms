@@ -28,7 +28,7 @@ private:
 
 public:
     explicit Graph(int nodes);                         // Constructor, which takes the number of nodes for a graph.
-    void addEdge(int current_node, int adjacent_node, bool for_dominator_tree); // Add an edge to current graph currentNode -> adjacentNode
+    void addEdge(int current_node, int adjacent_node); // Add an edge to current graph currentNode -> adjacentNode
     std::set<int> computeDominators(int node); // Computes the dominators from a given node and returns a std::set.
     Graph dominatorTree(); // Generates a dominator tree based on (Aho et al. 2006).
 

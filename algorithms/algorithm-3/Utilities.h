@@ -10,6 +10,6 @@
 #include <sstream>
 
 // Graph Parser, parsing edges as pairs from 1st->2nd, 3rd->4th ...
-Graph graphParser(std::string string, bool for_dominator_tree);
+Graph graphParser(std::string string);
 
 #endif // UTILITIES_H

@@ -5,7 +5,7 @@
 #include "Utilities.h"
 
 // Graph Parser, parsing edges as pairs from 1st->2nd, 3rd->4th ...
-Graph graphParser(std::string string, bool for_dominator_tree)
+Graph graphParser(std::string string)
 {
     // Take an input graph as a command-line argument
     std::stringstream graph_string_stream(string);
@@ -45,7 +45,7 @@ Graph graphParser(std::string string, bool for_dominator_tree)
         for (int counter = 0; counter < graphEdges.size(); counter += 2)
         {
             // std::cout << "Current:" << graphEdges[counter] << " Adj:" << graphEdges[counter+1] << std::endl;
-            graph.addEdge(graphEdges[counter], graphEdges[counter+1], for_dominator_tree);
+            graph.addEdge(graphEdges[counter], graphEdges[counter+1]);
         }
 
         return graph;
