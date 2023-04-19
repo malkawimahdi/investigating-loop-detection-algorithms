@@ -11,17 +11,16 @@ int main(int argc, const char * argv[])
     else
     {
         Graph graph = graphParser(argv[1]);
-        
-//        std::set<int> test = graph.computeDominators(4);
-//
-//        for(auto it = test.begin(); it != test.end(); it++)
-//        {
-//            std::cout << *it << std::endl;
-//        }
+        graph.initalise();
 
-//        Graph dt = graph.dominatorTree();
+        std::set<int> test = graph.computeDominators(8);
 
+        for (auto it = test.begin(); it != test.end(); it++)
+        {
+            std::cout << *it << std::endl;
+        }
 
+//        Graph graph2 = graph.dominatorTree();
     }
     return 0;
 }
