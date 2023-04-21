@@ -11,7 +11,7 @@ int main(int argc, const char * argv[])
     else
     {
         Graph graph = graphParser(argv[1]);
-        graph.iterativeDepthFirstSearch();
+        graph.iterativeDepthTraversalSearch();
     }
     return 0;
 }

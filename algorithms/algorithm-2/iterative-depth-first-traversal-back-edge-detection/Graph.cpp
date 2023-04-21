@@ -47,7 +47,7 @@ void Graph::addEdge(int current_node, int adjacent_node)
     // and output nodes contained within cycles.
 // Ensures that inaccessible nodes (inaccessible code) is not reached.
 // Outputs detected cycles in the same way as CBMC.
-bool Graph::iterativeDepthFirstSearch(void)
+bool Graph::iterativeDepthTraversalSearch(void)
 {
     // Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
     // node as the start by convention.

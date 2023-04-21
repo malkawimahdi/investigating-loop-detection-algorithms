@@ -27,7 +27,7 @@ private:
 public:
     explicit Graph(int nodes);                         // Constructor, which takes the number of nodes for a graph.
     void addEdge(int current_node, int adjacent_node); // Add an edge to current graph currentNode -> adjacentNode
-    bool iterativeDepthFirstSearch(void);                       // Implementation of cycle detection using iterative Depth First Search.
+    bool iterativeDepthTraversalSearch(void); // Implementation of cycle detection using iterative depth first traversal search.
 };
 
 #endif // GRAPH_H
