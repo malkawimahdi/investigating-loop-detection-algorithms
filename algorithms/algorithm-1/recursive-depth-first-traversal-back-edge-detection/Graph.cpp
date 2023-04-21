@@ -48,7 +48,7 @@ void Graph::addEdge(int current_node, int adjacent_node)
     // current_visit, analogous to tying a string from the start of a maze. If the string is seen again,
         // a back edge is located.
 // Implementation of Depth First Search (DFS) from a given node.
-bool Graph::recursiveDepthFirstSearchSingleNode(int &node)
+bool Graph::recursiveDepthFirstTraversalSingleNode(int &node)
 {
     if (!this->visited[node])
     {
@@ -68,7 +68,7 @@ bool Graph::recursiveDepthFirstSearchSingleNode(int &node)
             // If an adjacent_node has not been traversed, and it's traversal returns true then return true;
             //  If a node is located in current visit (think of tying a string to the start of a  maze, and you see the string again)
             //  then return true.
-            if ((!visited[*it] && recursiveDepthFirstSearchSingleNode(*it)) || current_visit[*it])
+            if ((!visited[*it] && recursiveDepthFirstTraversalSingleNode(*it)) || current_visit[*it])
             {
                 return true;
             }
@@ -81,7 +81,7 @@ bool Graph::recursiveDepthFirstSearchSingleNode(int &node)
 
 // This function is derived from (GeeksForGeeks, 2023), with the difference in what occurs if a cycle is detected,
     // specifically counting the number of cycles and the efficiency improvements of a bitset.
-bool Graph::recursiveDepthFirstSearch(void)
+bool Graph::recursiveDepthTravesalSearch(void)
 {
     unsigned int cycle_count = 0;
 
@@ -91,7 +91,7 @@ bool Graph::recursiveDepthFirstSearch(void)
         // If a node has not been traversed, and it's traversal returns true then return true;
         // Utilises that the compiler, will determine if the first condition is true or false, before proceeding
         // to check the second condition.
-        if (!this->visited[counter] && recursiveDepthFirstSearchSingleNode(counter))
+        if (!this->visited[counter] && recursiveDepthFirstTraversalSingleNode(counter))
         {
             ++cycle_count;
         }
