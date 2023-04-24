@@ -17,7 +17,7 @@ case "$OSTYPE" in
 esac
 
 mkdir do-while-loop
-mkdir duffs-devie
+mkdir duffs-device
 mkdir for-loop
 mkdir g1
 mkdir g2
