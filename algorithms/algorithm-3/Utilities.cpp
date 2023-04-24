@@ -22,7 +22,7 @@ Graph graphParser(std::string string)
     // Arguments can be escaped with "ARGUMENT_GOES_HERE".
     for (int current_node; graph_string_stream >> current_node;)
     {
-        if (graph_string_stream.peek() == (',' | ' '))
+        if (graph_string_stream.peek() == ',' | ' ')
         {
             graph_string_stream.ignore();
         }
@@ -54,4 +54,80 @@ Graph graphParser(std::string string)
     {
         throw std::runtime_error("Pair(s) are missing values!");
     }
+}
+
+// Takes an integer and checks if the integer is contained within the stack.
+// If it is found in the stack return true, else return false.
+bool stackChecker(int target, std::stack<std::pair<int, int> > stack)
+{
+    while (!stack.empty())
+    {
+        int current = stack.top().first;
+
+        if (target == current)
+        {
+            return true;
+        }
+        stack.pop();
+    }
+    return false;
+}
+
+// Generates output which contains nodes in the cycle specifically in the same format as CBMC.
+//void cbmcCycleOutput(std::map<int, std::set<int> > cycle_nodes)
+//{
+//    for (auto const& [key, set] : cycle_nodes)
+//    {
+//        std::cout << key << " is head of { ";
+//        for(auto node : set)
+//        {
+//            if (node == *--set.end())
+//            {
+//                std::cout << node << " (backedge) " << "}";
+//            }
+//            else
+//            {
+//                std::cout << node << ", ";
+//            }
+//        }
+//    }
+//    std::cout << std::endl;
+//}
+
+// Detects unreachable nodes from the entry node.
+// Formatted to look good :)
+void unreachableNodes(unsigned int& first_node, std::vector<bool>& visited)
+{
+    unsigned int unreachable_node_count = 0;
+
+    for (unsigned int counter = first_node; counter < visited.size(); ++counter)
+    {
+        if (visited[counter] == false)
+        {
+            if (unreachable_node_count == 0)
+            {
+                std::cout << "Unreachable Node(s): ";
+                std::cout << counter;
+                ++unreachable_node_count;
+            }
+            else
+            {
+                std::cout << ", " << counter;
+                ++unreachable_node_count;
+            }
+
+        }
+    }
+
+    if (unreachable_node_count > 0)
+    {
+        std::cout << std::endl;
+        std::cout << "Unreachable Node(s) Count: " << unreachable_node_count << std::endl;
+    }
+}
+
+// Checks if an element is contained within a set.
+bool isElementContained(const int &parameter, const std::set<int>& set)
+{
+    return set.find(parameter) != set.end();
 }

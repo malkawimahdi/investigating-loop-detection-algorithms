@@ -19,20 +19,26 @@ class Graph
 private:
     int nodes;                              // Number of nodes within graph.
     std::list<int> *adjacent_nodes;         // Pointer to list containing adjacent nodes for all nodes. (Doubly Linked List)
-//    std::list<int> *backwards_predecessors;  // Pointer to list for backwards adjacent nodes to compute dominators. (Doubly Linked List)
-    std::stack<int> stack; // Stack for iterative Depth First Search.
-    unsigned int first_node = UINT_MAX;     // Keep track of first node for use in unreachableNodes.
-    std::map <int, std::set<int> > dominators; // For each node, contains the set of the dominators for a given node.
+    std::list<int> *backwards_predecessors; // Pointer to list containing adjacent nodes in reverse for all nodes. (Children point to parent instead)
+    std::vector<bool> visited;              // Vector bitset checking if a node has been visited.
 
+    unsigned int first_node = UINT_MAX;     // Keep track of first node for use in unreachableNodes.
+    bool cycle = false;                     // Cycle check.
+    bool is_there_a_cycle = false;          // Required as cycle is reset after each iteration, this is used for the function output.
+    unsigned int cycle_count = 0;           // Cycle counter.
+    std::map <int, std::set<int> > dominators; // For each node, contains the set of the dominators for a given node.
+    std::map <int, std::set<int> > natural_loops; // For each node, contains the set of the dominators for a given node.
+    std::map<int, std::set<int> > cycle_nodes; // Key contains the loop header and the set of nodes for each loop head.
+
+private:
+    void computeNaturalLoop(int head, int tail);
 
 public:
     explicit Graph(int nodes);                         // Constructor, which takes the number of nodes for a graph.
     void addEdge(int current_node, int adjacent_node); // Add an edge to current graph currentNode -> adjacentNode
-    void initalise(); // Initialises the graph to begin from the first node.
-    void computeDominators(void); // Computes the dominators from a given node and returns a std::set.
-    void computeDominatorsOutput(void);
-    Graph dominatorTree(); // Generates a dominator tree based on (Aho et al. 2006).
-
+    void computeDominators(void); // Generate the set of dominators for each node within the control flow graph.
+    void computeDominatorsOutput(void); // Output the set of dominators for each node within the control flow graph.
+    bool naturalLoops(void); // Computes natural loops within a graph
 
 };
 

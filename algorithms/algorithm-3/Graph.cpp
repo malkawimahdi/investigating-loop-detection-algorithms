@@ -21,8 +21,9 @@
 Graph::Graph(int nodes)
 {
     this->nodes = nodes;
+    this->visited.resize(this->nodes);
     this->adjacent_nodes = new std::list<int>[nodes];
-//    this->backwards_predecessors = new std::list<int>[nodes];
+    this->backwards_predecessors = new std::list<int>[nodes];
 }
 
 // This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes.
@@ -32,75 +33,60 @@ void Graph::addEdge(int current_node, int adjacent_node)
 {
     // Add adjacent nodes reachable from current node.
     this->adjacent_nodes[current_node].push_back(adjacent_node);
-    // Add current_node for adjacent node to allow backwards traversal of graph.
-//    this->backwards_predecessors[adjacent_node].push_back(current_node);
+
+    // Current node points to the parent.
+    this->backwards_predecessors[adjacent_node].push_back(current_node);
 }
 
-// Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
-    // node as the start by convention.
-void Graph::initalise()
-{
-    for (int counter = 0; counter < this->nodes; ++counter)
-    {
-        if (this->adjacent_nodes[counter].size() > 0)
-        {
-            this->first_node = counter;
-            break;
+/* After significant debugging and meetings with Dr Martin Nyx Brain, the previous dominators' algorithm, located
+     at the bottom had a fatal flaws which meant that the algorithm could continuously cycle over itself AND
+         that the algorithm could not detect all dominators of a given node if the node contained more than two children.
+ Received assistance from Dr Martin Nyx Brain, firstly by using pseudocode representation of the algorithm required
+ and debugging to fix intersection of nodes that have more than a single child:
+ The forwards way of doing things
+void forward(void) {
+
+    map<node, set<node> > dominators;
+    // initialise everything as the empty set
+
+    dominators[first_node] = set( first_node );
+
+    stack<node> worklist;
+    worklist.push(first_node);
+
+    while (!worklist.empty()) {
+        node current = worklist.top();
+        worklist.pop();
+
+        // Update the successors of the node
+        for (node s : successors(current)) {
+
+            // Does it have a dominator set at the moment?
+            if (dominators[s].empty()) {  // No; haven't been there before
+                dominators[s] = set(s) union dominators[current];
+                worklist.push(s);
+
+            } else {   // Yes, have reached it at least once
+                oldDominators = dominators[s];   // Save the old set
+
+                // Any dominator of s must either be s, or be a dominators of current
+                dominators[s] = oldDominators intersection (set(s) union dominators[current]);
+
+                // If you have changed the dominator set for s then need to look at its successors ...
+                // so put it on the work list
+                if (dominators[s].size() < oldDominators.size()) {
+                    worklist.push(s);
+                }
+            }
         }
     }
 
-    if (this->first_node == UINT_MAX)
-    {
-        throw std::runtime_error("No node(s) detected.");
-    }
-}
-
-// After significant debugging and meetings with Dr Martin Nyx Brain, the previous dominators' algorithm, located
-    //  at the bottom had a fatal flaws which meant that the algorithm could continuously cycle over itself AND
-        // that the algorithm could not detect all dominators of a given node if the node contained more than two children.
-// Received assistance from Dr Martin Nyx Brain, firstly by using pseudocode representation of the algorithm required
-// and debugging to fix intersection of nodes that have more than a single child:
-    // The forwards way of doing things
-    //void forward(void) {
-    //
-    //    map<node, set<node> > dominators;
-    //    // initialise everything as the empty set
-    //
-    //    dominators[first_node] = set( first_node );
-    //
-    //    stack<node> worklist;
-    //    worklist.push(first_node);
-    //
-    //    while (!worklist.empty()) {
-    //        node current = worklist.top();
-    //        worklist.pop();
-    //
-    //        // Update the successors of the node
-    //        for (node s : successors(current)) {
-    //
-    //            // Does it have a dominator set at the moment?
-    //            if (dominators[s].empty()) {  // No; haven't been there before
-    //                dominators[s] = set(s) union dominators[current];
-    //                worklist.push(s);
-    //
-    //            } else {   // Yes, have reached it at least once
-    //                oldDominators = dominators[s];   // Save the old set
-    //
-    //                // Any dominator of s must either be s, or be a dominators of current
-    //                dominators[s] = oldDominators intersection (set(s) union dominators[current]);
-    //
-    //                // If you have changed the dominator set for s then need to look at its successors ...
-    //                // so put it on the work list
-    //                if (dominators[s].size() < oldDominators.size()) {
-    //                    worklist.push(s);
-    //                }
-    //            }
-    //        }
-    //    }
-    //
-    //}
+} */
 void Graph::computeDominators(void)
 {
+    // Stack for iterative Depth First Search.
+    std::stack<int> stack;
+
     // dom(n0) = {n0}
     this->dominators[this->first_node].insert(this->first_node);
 
@@ -113,7 +99,7 @@ void Graph::computeDominators(void)
         stack.pop();
 
         // Look at each child for the set of dominators...
-        for (auto it = this->adjacent_nodes[current].begin();
+        for (std::list<int>::iterator it = this->adjacent_nodes[current].begin();
              it != this->adjacent_nodes[current].end(); ++it)
         {
             if (this->dominators[*it].empty())
@@ -127,7 +113,7 @@ void Graph::computeDominators(void)
                 // Push it onto the stack to be seen next...
                 stack.push(*it);
             }
-            // This node has been previously seen before...
+                // This node has been previously seen before...
             else
             {
                 // Store the old dominators of the child temporarily...
@@ -136,15 +122,14 @@ void Graph::computeDominators(void)
                 // Receive the dominators of the parent.
                 std::set<int> new_child_result = this->dominators[current];
 
-                // Add the current node itself...
+                // Add the current node to itself...
                 new_child_result.insert(*it);
-
-
-                std::set<int> intersection_result;
 
                 // Intersecting the parent and child each time to yield a set of dominators that is updated to represent
                     // the dominator set for each child. Each child will have to have the set of dominators of the parent
-                        // and itself...
+                        // and itself after intersected to ensure dominator relationship.
+                std::set<int> intersection_result;
+
                 std::set_intersection(old_child_result.begin(),
                                       old_child_result.end(),
                                       new_child_result.begin(),
@@ -165,7 +150,8 @@ void Graph::computeDominators(void)
     }
 }
 
-void Graph::computeDominatorsOutput()
+// Generate the set of dominators for each node within the control flow graph.
+void Graph::computeDominatorsOutput(void)
 {
     std::cout << "First Node: " << this->first_node << std::endl;
 
@@ -184,159 +170,195 @@ void Graph::computeDominatorsOutput()
     std::cout << std::endl;
 }
 
-// Generates a dominator tree based on the dominator relationship.
-// Based on (Aho et al. 2006) Compilers: Principles, Techniques, and Tools (2nd Edition)
-Graph Graph::dominatorTree()
+
+/* Computes natural loops within a graph:
+Based on (Aho et al. 2006) Compilers: Principles, Techniques, and Tools (2nd Edition)
+
+" A natural loop is defined by two essential properties.
+
+1. It must have a single-entry node, called the header. This entry node dominates all nodes within the loop
+   or, it would not be the sole entry within the loop.
+
+2. There must be a back edge that enters the loop header. Otherwise, it is not possible fot the flow control,
+   to return to the header directly from the "loop"; i.ie., there really was no loop." (Aho et al. 2006) */
+
+// Received assistance from Dr Martin Nyx Brain, with accessing the adjacency_list for each node iteratively
+    // from an adjacency list, randomly accessing a std::list and going through the stack once more.
+// Implementation of cycle detection using iterative Depth First traversal using ONLY the start node to check for cycles
+    // and output nodes contained within cycles.
+// Ensures that inaccessible nodes within a control flow graph (inaccessible code) is not reached.
+// Outputs detected cycles in the same way as CBMC.
+bool Graph::naturalLoops(void)
 {
+    // Stack for iterative Depth First Search.
+    // (Current node, Index at adjacency_list for current node).
+    std::stack<std::pair<int, int> > stack;
 
-    std::string dominator_tree_output = "";
-
-    computeDominators();
-
-    // Compute the dominators for every node.
-    for (int counter = this->first_node; counter < this->nodes; ++counter)
+    // Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
+    // node as the start by convention.
+    for (int counter = 0; counter < this->nodes; ++counter)
     {
-        std::set<int> dominators_for_current_node = this->dominators[counter];
-
-        // Reverse from the tree, looking for the first index that is not the current node,
-            // ensuring that it is the immediate dominator, which is required to build the dominator tree.
-        for (std::set<int>::reverse_iterator it = dominators_for_current_node.rbegin();
-        it != dominators_for_current_node.rend(); ++it)
+        if (this->adjacent_nodes[counter].size() > 0)
         {
-            if (*it == counter)
+            this->first_node = counter;
+
+            // Each node is viewed as a pair in the form of std::pair<node, index>
+            stack.push(std::make_pair(counter, 0));
+            break;
+        }
+    }
+
+    // Are there any nodes for the graph?
+    if (this->first_node == UINT_MAX)
+    {
+        throw std::runtime_error("No Node(s) Are Locatable.");
+    }
+
+    this->computeDominators();
+
+    // Iterative Depth First Traversal.
+    while (!stack.empty())
+    {
+        // Get the top most node and visit it.
+        std::pair<int, int> current_node = stack.top();
+
+        this->visited[(current_node.first)] = true;
+
+        // If the index of the second node is less than the size of the elements in the adjacency list...
+        if (current_node.second < this->adjacent_nodes[current_node.first].size())
+        {
+            // Get initial index for start of adjacency_list and get the node required by the counter.
+            // Received assistance from Dr Martin Nyx Brain, randomly accessing a std::list.
+            std::list<int>::iterator it = this->adjacent_nodes[current_node.first].begin();
+
+            for (unsigned int i = 0; i < current_node.second; ++i)
             {
-                continue;
+                ++it;
             }
-            else if (*it != counter)
+
+            int next_node = *it;
+
+
+            // If the next_node has been seen within the control flow graph, and it is currently in the stack,
+                // this resolves the problem of viewing a half of the diamond commonly located within an if else
+                    // statement ensuring that the whole diamond is traversed, suggested by Dr Martin Nyx Brain.
+
+            // An additional condition required is that for a natural loop to be present, is for the set of
+                // dominators for the back edge to contain the head to ensure that the loop head dominates the
+                    //  tail (back edge). The secondary condition required, is that the back edge enters the loop header
+                        // which this algorithm fulfills.
+
+            // next_node is head i.e. duplicate node.
+            // current_node.first points to the duplicate node meaning it is the back edge.
+            // Separately checking guards was suggested by Dr Martin Nyx Brain to not incorrectly detect enter the cycle
+                // condition, as it is possible to enter a loop that is not a natural loop.
+            if ((this->visited[next_node]) && (stackChecker(next_node, stack)))
             {
-                dominator_tree_output.append(std::to_string(*it));
-                dominator_tree_output.append(",");
-                dominator_tree_output.append(std::to_string(counter));
-                dominator_tree_output.append(",");
-                break;
+                    this->cycle = true;
+
+                    if (isElementContained(next_node, this->dominators[current_node.first]))
+                    {
+                        // Required as cycle is reset after each iteration, this is used for the function output.
+                        this->is_there_a_cycle = true;
+
+                        ++cycle_count;
+
+                        // Generates output which contains nodes in the cycle specifically in the same format as CBMC.
+                        //cbmcCycleOutput(next_node, this->stack);
+                        computeNaturalLoop(next_node, current_node.first);
+                    }
+            }
+
+            // Iterate the index for the current node.
+            stack.top().second++;
+
+            // If it is a cycle, then next_node is NOT placed on the stack as it will be an infinite loop.
+            if (!cycle)
+            {
+                stack.push(std::make_pair(next_node, 0));
+            }
+
+            // Reset cycle
+            this->cycle = false;
+        }
+        else
+        {
+            // Remove node after it has been accessed and all elements in adjacency_list[node]
+            // have been placed on the stack.
+            stack.pop();
+            continue;
+        }
+    }
+    unreachableNodes(this->first_node, this->visited);
+
+    if (cycle_count > 0)
+    {
+        std::cout << "Cycle(s): " << this->cycle_count << std::endl;
+    }
+    else
+    {
+        std::cout << "No Cycle(s) Detected!" << std::endl;
+    }
+
+    return this->is_there_a_cycle;
+}
+
+// Computes the natural loop from a natural loop boundary such that all nodes from the back edge UP TO the
+    // head are traversed and such that the nodes traversed stay within the natural region to not accidentally
+        // traverse outside the natural loop region.
+// (Aho et al. 2006) notes that if multiple loops have the same header, then they are treated as a single cycle.
+void Graph::computeNaturalLoop(int head, int tail)
+{
+    std::stack<int> stack;
+
+    this->cycle_nodes[head].insert(head);
+    this->cycle_nodes[head].insert(tail);
+
+    if (head != tail)
+    {
+        stack.push(tail);
+    }
+
+    while (!stack.empty())
+    {
+        int current = stack.top();
+        stack.pop();
+
+        for (   std::list<int>::iterator it = this->backwards_predecessors[current].begin();
+             it != this->backwards_predecessors[current].end(); ++it)
+        {
+            // If the node being looked at is not in the set of current nodes and the node lies bounded between the
+                // head and tail and for the set of dominators in the current node, the head is contained, then
+                    // add it to the set of instructions for the current loop head and add it to the stack so it can
+                        // be traversed iteratively next.
+            if (!isElementContained(*it, this->cycle_nodes[head])
+            && (head < *it < tail)
+            && isElementContained(head, this->dominators[*it]))
+            {
+                this->cycle_nodes[head].insert(*it);
+                stack.push(*it);
             }
         }
     }
 
-    dominator_tree_output.pop_back();
+// Somewhere here call cbmcCycleOutput or just do it here...???
+//    cbmcCycleOutput(this->cycle_nodes[head]);
 
-    // Debug output...
-    std::cout << "Dominator Tree Output: "<< dominator_tree_output << std::endl;
-
-    Graph dominator_tree = graphParser(dominator_tree_output);
-    return dominator_tree;
+// TODO: Find out why I cant parse a map as a function parameter?
+    for (auto const& [key, set] : cycle_nodes)
+    {
+        std::cout << key << " is head of { ";
+        for(auto node : set)
+        {
+            if (node == *--set.end())
+            {
+                std::cout << node << " (backedge) " << "}";
+            }
+            else
+            {
+                std::cout << node << ", ";
+            }
+        }
+    }
+    std::cout << std::endl;
 }
-
-// Received assistance from Dr Martin Nyx Brain, firstly by using pseudocode representation of the algorithm required:
-/*
- *  std::map <int, set>
- *
- * function(int node)
- * {
- * make sure node is not < 0
- * if it is in the map for the node return else:
- *
- * if it is the first node in the graph, and it is the first node, the set = itself and return and set in the map.
- *
- * else:
- * for loop recursively calling function from all nodes previously from current node and intersect results you get back.
- *
- * then add yourself to the set, store in the map and return.
- * }
- */
-
-// Received significant assistance from Dr. Martin Nyx Brain
-// constructing the algorithm particularly with line 107 and lines 146 to 160 and implementing fix on lines 241
-    // through to 249.
-// Compute the dominators set of a control flow graph, using memoization.
-// Works partially as it over approximates the dominators for the current node if the control flow graph contains a cycle.
-// Code required to make this function work is commented out in Graph.(h/cpp)
-//std::set<int> Graph::computeDominators(int node)
-//{
-//    if (! visited[node])
-//    {
-//        visited[node] = true;
-//    }
-//    else
-//    {
-//        std::set<int> all_nodes;
-//
-//        for (int counter = this->first_node; counter < this->nodes; ++counter)
-//        {
-//            all_nodes.insert(counter);
-//        }
-//        return all_nodes;
-//    }
-//
-//    // Check if dominators are already filled for this node.
-//    // If so just return the set.
-//    if (!this->dominators[node].empty())
-//    {
-//        return this->dominators[node];
-//    }
-//
-//    // Means the set of dominators for the node is empty...
-//    else
-//    {
-//        // Check if the empty node is the first node...
-//        if (node == this->first_node)
-//        {
-//            // Current node dominates itself, so place it in the set of dominators for itself.
-//            this->dominators[node].insert(node);
-//            return this->dominators[node];
-//        }
-//        // The set of dominators is empty, and it is not the first node.
-//        else
-//        {
-//            // If there is one previous node, just receive results of previous node and add current node to dominators
-//                // to receive dominators for the current set.
-//            if (this->backwards_predecessors[node].size() == 1)
-//            {
-//                std::set<int> result = computeDominators(this->backwards_predecessors[node].front());
-//
-//                // Insert the current node to fulfill the dominator relationship that each node dominates itself.
-//                result.insert(node);
-//
-//                for(std::set<int>::iterator it = result.begin();
-//                    it != result.end(); ++it)
-//                {
-//                    this->dominators[node].insert(*it);
-//                }
-//
-//                return this->dominators[node];
-//            }
-//            // Two or more predecessors...
-//            else if (this->backwards_predecessors[node].size() > 1)
-//            {
-//                std::set<int> working = computeDominators(this->backwards_predecessors[node].front());
-//
-//                std::set<int> results2;
-//
-//                // For each predecessor compute dominators and intersect the results returned by the first call
-//                    // to computeDominators stored in working2.
-//                // Do this for EVERY immediate predecessor.
-//                for (std::list<int>::iterator it = this->backwards_predecessors[node].begin();
-//                     it != this->backwards_predecessors[node].end(); ++it)
-//                {
-//
-//                    std::set<int> compute = computeDominators(*it);
-//
-//                    std::set_intersection(working.begin(),
-//                                          working.end(),
-//                                          compute.begin(),
-//                                          compute.end(),
-//                                          std::inserter(results2, results2.begin()));
-//                }
-//
-//                    results2.insert(node);
-//
-//                    for(std::set<int>::iterator it = results2.begin();
-//                        it != results2.end(); ++it)
-//                    {
-//                        this->dominators[node].insert(*it);
-//                    }
-//                    return this->dominators[node];
-//            }
-//        }
-//    }
-//}
