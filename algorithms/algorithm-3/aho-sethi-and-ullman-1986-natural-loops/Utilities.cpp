@@ -84,6 +84,7 @@ void cbmcCycleOutput(std::map<int, std::set<int> > cycle_nodes)
             if (node == *--set.end())
             {
                 std::cout << node << " (backedge) " << "}";
+                std::cout << std::endl;
             }
             else
             {
@@ -91,7 +92,6 @@ void cbmcCycleOutput(std::map<int, std::set<int> > cycle_nodes)
             }
         }
     }
-    std::cout << std::endl;
 }
 
 // Detects unreachable nodes from the entry node.
