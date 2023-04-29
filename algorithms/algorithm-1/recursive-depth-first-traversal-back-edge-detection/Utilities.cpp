@@ -22,7 +22,7 @@ Graph graphParser(std::string string)
     // Arguments can be escaped with "ARGUMENT_GOES_HERE".
     for (int current_node; graph_string_stream >> current_node;)
     {
-        if (graph_string_stream.peek() == ',' | ' ')
+        if (graph_string_stream.peek() == (',' | ' '))
         {
             graph_string_stream.ignore();
         }

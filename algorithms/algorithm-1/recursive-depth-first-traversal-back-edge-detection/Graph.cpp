@@ -14,7 +14,7 @@
 
 #include "Graph.h"
 
-// This constructor is derived from (GeeksForGeeks, 2023), specifically the generation of how the diagraph is
+// This constructor is derived from (GeeksForGeeks, 2023), specifically the generation of how the digraph is
     // represented as an adjacency list.
 // Constructor takes number of nodes and generates a DLL for each node containing an entry the size of nodes.
 // Reserves the maximum space that the bitset MAY require.
@@ -32,14 +32,8 @@ Graph::Graph(int nodes)
 // Follows the property of a Control Flow Graph (CFG), whereby each node can have AT MOST two other adjacent nodes.
 void Graph::addEdge(int current_node, int adjacent_node)
 {
-    if ((this->adjacent_nodes[current_node].size() > 1))
-    {
-        throw std::runtime_error("Graph Can Contain AT MOST Two Children.");
-    }
-    else
-    {
-        this->adjacent_nodes[current_node].push_back(adjacent_node); // Add adjacent nodes reachable from current node.
-    }
+    // Add adjacent nodes reachable from current node.
+    this->adjacent_nodes[current_node].push_back(adjacent_node);
 }
 
 // This function is derived from (GeeksForGeeks, 2023), with the difference of outputting the Head and
@@ -81,17 +75,17 @@ bool Graph::recursiveDepthFirstTraversalSingleNode(int &node)
 
 // This function is derived from (GeeksForGeeks, 2023), with the difference in what occurs if a cycle is detected,
     // specifically counting the number of cycles and the efficiency improvements of a bitset.
-bool Graph::recursiveDepthTravesalSearch(void)
+bool Graph::recursiveDepthTraversalSearch(void)
 {
     unsigned int cycle_count = 0;
 
     // For each node, check if visited.
-    for (int counter = 0; counter < this->nodes; ++counter)
+    for (std::size_t counter = 0; counter < this->nodes; ++counter)
     {
         // If a node has not been traversed, and it's traversal returns true then return true;
         // Utilises that the compiler, will determine if the first condition is true or false, before proceeding
         // to check the second condition.
-        if (!this->visited[counter] && recursiveDepthFirstTraversalSingleNode(counter))
+        if (!this->visited[counter] && recursiveDepthFirstTraversalSingleNode(reinterpret_cast<int &>(counter)))
         {
             ++cycle_count;
         }

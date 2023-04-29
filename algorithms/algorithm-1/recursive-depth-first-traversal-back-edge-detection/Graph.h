@@ -19,12 +19,13 @@ private:
     std::vector<bool> visited;          // Vector bitset checking for visited nodes.
     std::vector<bool> current_visit;    // Vector bitset checking for back edges.
 
+private:
     bool recursiveDepthFirstTraversalSingleNode(int &node); // Implementation of Depth First Search (DFS) from a given node.
 
 public:
     explicit Graph(int nodes);                         // Constructor, which takes the number of nodes for a graph.
     void addEdge(int current_node, int adjacent_node); // Add an edge to current graph currentNode -> adjacentNode
-    bool recursiveDepthTravesalSearch(void);                          // Initialising function to detect back edge loops.
+    bool recursiveDepthTraversalSearch(void);          // Initialisation function to detect back edge loops.
 };
 
 #endif // GRAPH_H
