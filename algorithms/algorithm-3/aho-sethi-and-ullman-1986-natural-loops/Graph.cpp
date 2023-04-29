@@ -253,6 +253,9 @@ bool Graph::naturalLoops(void)
             continue;
         }
     }
+
+    cbmcCycleOutput(this->natural_loops);
+    
     unreachableNodes(this->first_node, this->visited);
 
     if (cycle_count > 0)
@@ -304,6 +307,4 @@ void Graph::computeNaturalLoop(int head, int tail)
             }
         }
     }
-
-    cbmcCycleOutput(this->natural_loops);
 }
