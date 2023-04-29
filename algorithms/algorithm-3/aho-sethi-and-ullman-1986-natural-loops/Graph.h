@@ -27,6 +27,7 @@ private:
     unsigned int cycle_count = 0;           // Cycle counter.
     std::map <int, std::set<int> > dominators; // For each node, contains the set of the dominators for a given node.
     std::map <int, std::set<int> > natural_loops; // Key is the loop head and set contains elements within the loop.
+
 private:
     void computeNaturalLoop(int head, int tail);
 
@@ -36,7 +37,6 @@ public:
     void computeDominators(void); // Generate the set of dominators for each node within the control flow graph.
     void computeDominatorsOutput(void); // Output the set of dominators for each node within the control flow graph.
     bool naturalLoops(void); // Computes natural loops within a graph
-
 };
 
 #endif // GRAPH_H

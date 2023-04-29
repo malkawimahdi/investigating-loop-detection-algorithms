@@ -14,10 +14,9 @@
 #include "Graph.h"
 #include "Utilities.h"
 
-// This constructor is derived from (GeeksForGeeks, 2023), specifically the generation of how the diagraph is
+// This constructor is derived from (GeeksForGeeks, 2023), specifically the generation of how the digraph is
     // represented as an adjacency list.
 // Constructor takes number of nodes and generates a list containing an entry the size of nodes.
-// (Doubly Linked List)
 Graph::Graph(int nodes)
 {
     this->nodes = nodes;
@@ -26,9 +25,9 @@ Graph::Graph(int nodes)
     this->backwards_predecessors = new std::list<int>[nodes];
 }
 
-// This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes.
+// This function is derived from (GeeksForGeeks, 2023) with the difference of creating another representation of
+    // the graph which looks backwards.
 // Add an edge to current graph in the directed form: currentNode -> adjacentNode.
-// Follows the property of a Control Flow Graph (CFG), whereby each node can have AT MOST two other adjacent nodes.
 void Graph::addEdge(int current_node, int adjacent_node)
 {
     // Add adjacent nodes reachable from current node.
@@ -38,50 +37,11 @@ void Graph::addEdge(int current_node, int adjacent_node)
     this->backwards_predecessors[adjacent_node].push_back(current_node);
 }
 
-/* After significant debugging and meetings with Dr Martin Nyx Brain, the previous dominators' algorithm, located
-     at the bottom had a fatal flaws which meant that the algorithm could continuously cycle over itself AND
-         that the algorithm could not detect all dominators of a given node if the node contained more than two children.
- Received assistance from Dr Martin Nyx Brain with a meeting to ,discuss pseudocode representation of the algorithm required
- and debugging to fix intersection of nodes that have more than a single child:
-
- The forwards way of doing things
-void forward(void) {
-
-    map<node, set<node> > dominators;
-    // initialise everything as the empty set
-
-    dominators[first_node] = set( first_node );
-
-    stack<node> worklist;
-    worklist.push(first_node);
-
-    while (!worklist.empty()) {
-        node current = worklist.top();
-        worklist.pop();
-
-        // Update the successors of the node
-        for (node s : successors(current)) {
-
-            // Does it have a dominator set at the moment?
-            if (dominators[s].empty()) {  // No; haven't been there before
-                dominators[s] = set(s) union dominators[current];
-                worklist.push(s);
-
-            } else {   // Yes, have reached it at least once
-                oldDominators = dominators[s];   // Save the old set
-
-                // Any dominator of s must either be s, or be a dominators of current
-                dominators[s] = oldDominators intersection (set(s) union dominators[current]);
-
-                // If you have changed the dominator set for s then need to look at its successors ...
-                // so put it on the work list
-                if (dominators[s].size() < oldDominators.size()) {
-                    worklist.push(s);
-                }
-            }
-        }
-    }
-} */
+//After significant debugging and meetings with Dr Martin Nyx Brain, the previous dominators' algorithm, located
+    // at the bottom had a fatal flaws which meant that the algorithm could continuously cycle over itself AND
+        // that the algorithm could not detect all dominators of a given node if the node contained more than two children.
+// Received assistance from Dr Martin Nyx Brain within a meeting to ,discuss pseudocode representation of the algorithm required
+    // and debugging to fix intersection of nodes that have more than a single child.
 void Graph::computeDominators(void)
 {
     // Stack for iterative Depth First Search.
@@ -128,7 +88,8 @@ void Graph::computeDominators(void)
 
                 // Intersecting the parent and child each time to yield a set of dominators that is updated to represent
                     // the dominator set for each child. Each child will have to have the set of dominators of the parent
-                        // and itself after intersected to ensure dominator relationship.
+                        // and itself after intersected to ensure dominator relationship that would not be correct
+                            // if nodes with multiple parents were not accounted for.
                 std::set<int> intersection_result;
 
                 std::set_intersection(old_child_result.begin(),
@@ -138,6 +99,8 @@ void Graph::computeDominators(void)
                                       std::inserter(intersection_result, intersection_result.begin()));
 
                 // Clear previous dominators and insert new dominators for child.
+
+                // dom(n) = dom(pred) intersect dom(n)
                 this->dominators[*it].clear();
                 this->dominators[*it] = intersection_result;
 
@@ -172,7 +135,6 @@ void Graph::computeDominatorsOutput(void)
     std::cout << std::endl;
 }
 
-
 /* Computes natural loops within a graph:
 Based on (Aho et al. 2006) Compilers: Principles, Techniques, and Tools (2nd Edition)
 
@@ -186,9 +148,9 @@ Based on (Aho et al. 2006) Compilers: Principles, Techniques, and Tools (2nd Edi
 
 // Received assistance from Dr Martin Nyx Brain, with accessing the adjacency_list for each node iteratively
     // from an adjacency list, randomly accessing a std::list and going through the stack once more.
-// Implementation of cycle detection using iterative Depth First traversal using ONLY the start node to check for cycles
+// Implementation of cycle detection using iterative Depth First Search using ONLY the start node to check for cycles
     // and output nodes contained within cycles.
-// Ensures that inaccessible nodes within a control flow graph (inaccessible code) is not reached.
+// Ensures that inaccessible nodes (inaccessible code) is not reached.
 // Outputs detected cycles in the same way as CBMC.
 bool Graph::naturalLoops(void)
 {
