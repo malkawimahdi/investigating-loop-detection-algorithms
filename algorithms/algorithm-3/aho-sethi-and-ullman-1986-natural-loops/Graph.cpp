@@ -41,8 +41,9 @@ void Graph::addEdge(int current_node, int adjacent_node)
 /* After significant debugging and meetings with Dr Martin Nyx Brain, the previous dominators' algorithm, located
      at the bottom had a fatal flaws which meant that the algorithm could continuously cycle over itself AND
          that the algorithm could not detect all dominators of a given node if the node contained more than two children.
- Received assistance from Dr Martin Nyx Brain, firstly by using pseudocode representation of the algorithm required
+ Received assistance from Dr Martin Nyx Brain with a meeting to ,discuss pseudocode representation of the algorithm required
  and debugging to fix intersection of nodes that have more than a single child:
+
  The forwards way of doing things
 void forward(void) {
 
@@ -80,7 +81,6 @@ void forward(void) {
             }
         }
     }
-
 } */
 void Graph::computeDominators(void)
 {
@@ -122,7 +122,8 @@ void Graph::computeDominators(void)
                 // Receive the dominators of the parent.
                 std::set<int> new_child_result = this->dominators[current];
 
-                // Add the current node to itself...
+                // Add the current node to itself as it can be removed from the set of dominators from itself
+                    // in an intersection from the previous and current results.
                 new_child_result.insert(*it);
 
                 // Intersecting the parent and child each time to yield a set of dominators that is updated to represent
@@ -136,11 +137,12 @@ void Graph::computeDominators(void)
                                       new_child_result.end(),
                                       std::inserter(intersection_result, intersection_result.begin()));
 
-                // Clear previous dominators and insert new dominators.
+                // Clear previous dominators and insert new dominators for child.
                 this->dominators[*it].clear();
                 this->dominators[*it] = intersection_result;
 
-                // If the dominators have changed then fot *it then propagate this change to the children.
+                // If the dominators have changed then for the current child then propagate these changes
+                    // to its descendants.
                 if (this->dominators[*it].size() < old_child_result.size())
                 {
                     stack.push(*it);
@@ -161,7 +163,7 @@ void Graph::computeDominatorsOutput(void)
     {
         std::cout << "Dominators for node: " << counter << std::endl;
 
-        for(auto it = this->dominators[counter].begin(); it != this->dominators[counter].end(); ++it)
+        for(std::set<int>::iterator it = this->dominators[counter].begin(); it != this->dominators[counter].end(); ++it)
         {
             std::cout << *it << ",";
         }
@@ -196,7 +198,7 @@ bool Graph::naturalLoops(void)
 
     // Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
     // node as the start by convention.
-    for (int counter = 0; counter < this->nodes; ++counter)
+    for (std::size_t counter = 0; counter < this->nodes; ++counter)
     {
         if (this->adjacent_nodes[counter].size() > 0)
         {
@@ -311,8 +313,8 @@ void Graph::computeNaturalLoop(int head, int tail)
 {
     std::stack<int> stack;
 
-    this->cycle_nodes[head].insert(head);
-    this->cycle_nodes[head].insert(tail);
+    this->natural_loops[head].insert(head);
+    this->natural_loops[head].insert(tail);
 
     if (head != tail)
     {
@@ -331,34 +333,15 @@ void Graph::computeNaturalLoop(int head, int tail)
                 // head and tail and for the set of dominators in the current node, the head is contained, then
                     // add it to the set of instructions for the current loop head and add it to the stack so it can
                         // be traversed iteratively next.
-            if (!isElementContained(*it, this->cycle_nodes[head])
+            if (!isElementContained(*it, this->natural_loops[head])
             && (head < *it < tail)
             && isElementContained(head, this->dominators[*it]))
             {
-                this->cycle_nodes[head].insert(*it);
+                this->natural_loops[head].insert(*it);
                 stack.push(*it);
             }
         }
     }
 
-// Somewhere here call cbmcCycleOutput or just do it here...???
-//    cbmcCycleOutput(this->cycle_nodes[head]);
-
-// TODO: Find out why I cant parse a map as a function parameter?
-    for (auto const& [key, set] : cycle_nodes)
-    {
-        std::cout << key << " is head of { ";
-        for(auto node : set)
-        {
-            if (node == *--set.end())
-            {
-                std::cout << node << " (backedge) " << "}";
-            }
-            else
-            {
-                std::cout << node << ", ";
-            }
-        }
-    }
-    std::cout << std::endl;
+    cbmcCycleOutput(this->natural_loops);
 }

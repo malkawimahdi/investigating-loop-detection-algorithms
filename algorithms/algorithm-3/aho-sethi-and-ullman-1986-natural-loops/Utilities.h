@@ -16,7 +16,6 @@ Graph graphParser(std::string string);
 // If it is found in the stack return true, else return false.
 bool stackChecker(int target, std::stack<std::pair<int, int> > stack);
 
-// TODO: Cleanup to generate output from a set or map maybe...
 // Generates output which contains nodes in the cycle specifically in the same format as CBMC.
 void cbmcCycleOutput(std::map<int, std::set<int> > cycle_nodes);
 

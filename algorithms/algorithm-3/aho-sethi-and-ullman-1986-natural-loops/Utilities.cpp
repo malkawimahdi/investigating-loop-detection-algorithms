@@ -74,25 +74,25 @@ bool stackChecker(int target, std::stack<std::pair<int, int> > stack)
 }
 
 // Generates output which contains nodes in the cycle specifically in the same format as CBMC.
-//void cbmcCycleOutput(std::map<int, std::set<int> > cycle_nodes)
-//{
-//    for (auto const& [key, set] : cycle_nodes)
-//    {
-//        std::cout << key << " is head of { ";
-//        for(auto node : set)
-//        {
-//            if (node == *--set.end())
-//            {
-//                std::cout << node << " (backedge) " << "}";
-//            }
-//            else
-//            {
-//                std::cout << node << ", ";
-//            }
-//        }
-//    }
-//    std::cout << std::endl;
-//}
+void cbmcCycleOutput(std::map<int, std::set<int> > cycle_nodes)
+{
+    for (auto const& [key, set] : cycle_nodes)
+    {
+        std::cout << key << " is head of { ";
+        for(auto node : set)
+        {
+            if (node == *--set.end())
+            {
+                std::cout << node << " (backedge) " << "}";
+            }
+            else
+            {
+                std::cout << node << ", ";
+            }
+        }
+    }
+    std::cout << std::endl;
+}
 
 // Detects unreachable nodes from the entry node.
 // Formatted to look good :)
@@ -100,7 +100,7 @@ void unreachableNodes(unsigned int& first_node, std::vector<bool>& visited)
 {
     unsigned int unreachable_node_count = 0;
 
-    for (unsigned int counter = first_node; counter < visited.size(); ++counter)
+    for (std::size_t counter = first_node; counter < visited.size(); ++counter)
     {
         if (visited[counter] == false)
         {
@@ -115,7 +115,6 @@ void unreachableNodes(unsigned int& first_node, std::vector<bool>& visited)
                 std::cout << ", " << counter;
                 ++unreachable_node_count;
             }
-
         }
     }
 
