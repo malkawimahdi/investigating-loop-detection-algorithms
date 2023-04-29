@@ -22,7 +22,7 @@ Graph graphParser(std::string string)
     // Arguments can be escaped with "ARGUMENT_GOES_HERE".
     for (int current_node; graph_string_stream >> current_node;)
     {
-        if (graph_string_stream.peek() == ',' | ' ')
+        if (graph_string_stream.peek() == (',' | ' '))
         {
             graph_string_stream.ignore();
         }
@@ -95,7 +95,7 @@ void cbmcCycleOutput(int next_node, std::stack<std::pair<int, int> > stack)
 
     std::reverse(vector.begin(), vector.end());
 
-    for (unsigned int counter = 0; counter < vector.size(); ++counter)
+    for (std::size_t counter = 0; counter < vector.size(); ++counter)
     {
         if (counter == vector.size() - 1)
         {
@@ -114,7 +114,7 @@ void unreachableNodes(unsigned int first_node, std::vector<bool> &visited)
 {
     unsigned int unreachable_node_count = 0;
 
-    for (unsigned int counter = first_node; counter < visited.size(); ++counter)
+    for (std::size_t counter = first_node; counter < visited.size(); ++counter)
     {
         if (visited[counter] == false)
         {
@@ -129,7 +129,6 @@ void unreachableNodes(unsigned int first_node, std::vector<bool> &visited)
                 std::cout << ", " << counter;
                 ++unreachable_node_count;
             }
-
         }
     }
 
