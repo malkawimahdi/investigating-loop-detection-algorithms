@@ -1,5 +1,5 @@
+9 is head of { 9, 10, 11, 12, 13, 15, 16 (backedge) }
 10 is head of { 10, 11, 12, 15, 16 (backedge) }
-9 is head of { 9, 10, 11, 12, 13, 15, 16 (backedge) }10 is head of { 10, 11, 12, 15, 16 (backedge) }
 Unreachable Node(s): 14
 Unreachable Node(s) Count: 1
 Cycle(s): 2
@@ -12,10 +12,10 @@ Cycle(s): 2
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 1264
+	Maximum resident set size (kbytes): 1280
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 192
+	Minor (reclaiming a frame) page faults: 193
 	Voluntary context switches: 0
 	Involuntary context switches: 2
 	Swaps: 0

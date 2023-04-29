@@ -1,5 +1,5 @@
+4 is head of { 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 (backedge) }
 7 is head of { 7, 8, 9, 10 (backedge) }
-4 is head of { 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 (backedge) }7 is head of { 7, 8, 9, 10 (backedge) }
 Cycle(s): 2
 	Command being timed: "./a.out 0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,7,7,11,11,12,12,13,13,14,14,4,4,15,15,16,16,17,17,18,18,19,19,20"
 	User time (seconds): 0.00
@@ -10,10 +10,10 @@ Cycle(s): 2
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 1232
+	Maximum resident set size (kbytes): 1280
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 190
+	Minor (reclaiming a frame) page faults: 193
 	Voluntary context switches: 0
 	Involuntary context switches: 2
 	Swaps: 0
