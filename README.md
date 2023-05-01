@@ -187,8 +187,8 @@ control-flow-graph-test-cases contains a c program and it's equivalent represena
  ┃ ┣ 📂objects
  ┃ ┃ ┣ 📂info
  ┃ ┃ ┗ 📂pack
- ┃ ┃ ┃ ┣ 📜pack-e5023fb3ea42689404c37f6de3a1b7a49f02ca6b.idx
- ┃ ┃ ┃ ┗ 📜pack-e5023fb3ea42689404c37f6de3a1b7a49f02ca6b.pack
+ ┃ ┃ ┃ ┣ 📜pack-67d9db9c124467100dbc26271e7a4740c413f657.idx
+ ┃ ┃ ┃ ┗ 📜pack-67d9db9c124467100dbc26271e7a4740c413f657.pack
  ┃ ┣ 📂refs
  ┃ ┃ ┣ 📂heads
  ┃ ┃ ┃ ┗ 📜main
@@ -500,11 +500,6 @@ control-flow-graph-test-cases contains a c program and it's equivalent represena
  ┃ ┃ ┗ 📜while-loop.svg
  ┃ ┗ 📜note.txt
  ┣ 📂deprecated
- ┃ ┣ 📂c
- ┃ ┃ ┗ 📂binary-tree
- ┃ ┃ ┃ ┣ 📜BinaryTree.c
- ┃ ┃ ┃ ┣ 📜BinaryTree.h
- ┃ ┃ ┃ ┗ 📜main.c
  ┃ ┣ 📂cbmc-lexical-loops-results
  ┃ ┃ ┣ 📂cbmc-michael-wolfe-g1
  ┃ ┃ ┃ ┗ 📜results.txt
