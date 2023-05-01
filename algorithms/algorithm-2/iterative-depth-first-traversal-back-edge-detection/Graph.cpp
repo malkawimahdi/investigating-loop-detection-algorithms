@@ -61,6 +61,8 @@ bool Graph::iterativeDepthTraversalSearch(void)
         throw std::runtime_error("No Node(s) Are Locatable.");
     }
 
+    bool cycle = false;
+
     // Iterative Depth First Search.
     while (!this->stack.empty())
     {
@@ -92,7 +94,7 @@ bool Graph::iterativeDepthTraversalSearch(void)
                 // Dr Martin Nyx Brain suggested this improvement based on the problem above.
                 if (stackChecker(next_node, this->stack))
                 {
-                    this->cycle = true;
+                    cycle = true;
 
                     // Required as cycle is reset after each iteration, this is used for the function output.
                     this->is_there_a_cycle = true;
@@ -114,7 +116,7 @@ bool Graph::iterativeDepthTraversalSearch(void)
             }
 
             // Reset cycle
-            this->cycle = false;
+            cycle = false;
         }
         else
         {

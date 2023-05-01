@@ -20,7 +20,6 @@ private:
     std::vector<bool> visited;              // Vector bitset checking if a node has been visited.
     std::stack<std::pair<int, int> > stack; // Stack for iterative Depth First Search.
     unsigned int first_node = UINT_MAX;     // Keep track of first node for use in unreachableNodes.
-    bool cycle = false;                     // Cycle check.
     bool is_there_a_cycle = false;          // Required as cycle is reset after each iteration, this is used for the function output.
     unsigned int cycle_count = 0;           // Cycle counter.
 
