@@ -16,12 +16,187 @@ To compile each algorithm and to genarate the similar results a **UNIX** derivat
 Each algorithm is stored within it's own folder. Under the headings:
 
 ```
-📂algorithms
- ┣ 📂algorithm-1
- ┣ 📂algorithm-2
- ┣ 📂algorithm-3
- ┣ 📂cbmc-lexical-loops-results
- ┗ 📂cbmc-natural-loops-results
+
+ ┣ 📂algorithms
+ ┃ ┣ 📂algorithm-1
+ ┃ ┃ ┣ 📂recursive-depth-first-traversal-back-edge-detection
+ ┃ ┃ ┃ ┣ 📜CMakeLists.txt
+ ┃ ┃ ┃ ┣ 📜Graph.cpp
+ ┃ ┃ ┃ ┣ 📜Graph.h
+ ┃ ┃ ┃ ┣ 📜Utilities.cpp
+ ┃ ┃ ┃ ┣ 📜Utilities.h
+ ┃ ┃ ┃ ┗ 📜main.cpp
+ ┃ ┃ ┗ 📂recursive-depth-first-traversal-back-edge-detection-results
+ ┃ ┃ ┃ ┣ 📂do-while-loop
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂duffs-device
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂for-loop
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g1
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g2
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g3
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g4
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g5a
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g5b
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂loop-busy-wait
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂loop-empty
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂loop-sequence-of-instructions
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂nested-do-while-loops
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂no-loop
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┗ 📂while-loop
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┣ 📂algorithm-2
+ ┃ ┃ ┣ 📂iterative-depth-first-traversal-back-edge-detection
+ ┃ ┃ ┃ ┣ 📜CMakeLists.txt
+ ┃ ┃ ┃ ┣ 📜Graph.cpp
+ ┃ ┃ ┃ ┣ 📜Graph.h
+ ┃ ┃ ┃ ┣ 📜Utilities.cpp
+ ┃ ┃ ┃ ┣ 📜Utilities.h
+ ┃ ┃ ┃ ┗ 📜main.cpp
+ ┃ ┃ ┗ 📂iterative-depth-first-traversal-back-edge-detection-results
+ ┃ ┃ ┃ ┣ 📂do-while-loop
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂duffs-device
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂for-loop
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g1
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g2
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g3
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g4
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g5a
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g5b
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂loop-busy-wait
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂loop-empty
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂loop-sequence-of-instructions
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂nested-do-while-loops
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂no-loop
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┗ 📂while-loop
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┣ 📂algorithm-3
+ ┃ ┃ ┣ 📂aho-sethi-and-ullman-1986-natural-loops
+ ┃ ┃ ┃ ┣ 📜CMakeLists.txt
+ ┃ ┃ ┃ ┣ 📜Graph.cpp
+ ┃ ┃ ┃ ┣ 📜Graph.h
+ ┃ ┃ ┃ ┣ 📜Utilities.cpp
+ ┃ ┃ ┃ ┣ 📜Utilities.h
+ ┃ ┃ ┃ ┗ 📜main.cpp
+ ┃ ┃ ┗ 📂aho-sethi-and-ullman-1986-natural-loops-results
+ ┃ ┃ ┃ ┣ 📂do-while-loop
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂duffs-device
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂for-loop
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g1
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g2
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g3
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g4
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g5a
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂g5b
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂loop-busy-wait
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂loop-empty
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂loop-sequence-of-instructions
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂nested-do-while-loops
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┣ 📂no-loop
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┃ ┗ 📂while-loop
+ ┃ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┣ 📂cbmc-lexical-loops-results
+ ┃ ┃ ┣ 📂do-while-loop
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂duffs-device
+ ┃ ┃ ┃ ┗ 📜duffs-device.c-lexical-loops-results.txt
+ ┃ ┃ ┣ 📂for-loop
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂g1
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂g2
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂g3
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂g4
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂g5a
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂g5b
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂loop-busy-wait
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂loop-empty
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂loop-sequence-of-instructions
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂nested-do-while-loops
+ ┃ ┃ ┃ ┗ 📜nested-do-while-loops.c-lexical-loops-results.txt
+ ┃ ┃ ┣ 📂no-loop
+ ┃ ┃ ┃ ┗ 📜no-loops.c-lexical-loops-results.txt
+ ┃ ┃ ┗ 📂while-loop
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┗ 📂cbmc-natural-loops-results
+ ┃ ┃ ┣ 📂do-while-loop
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂duffs-device
+ ┃ ┃ ┃ ┗ 📜duffs-device.c-natural-loops-results.txt
+ ┃ ┃ ┣ 📂for-loop
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂g1
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂g2
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂g3
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂g4
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂g5a
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂g5b
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂loop-busy-wait
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂loop-empty
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂loop-sequence-of-instructions
+ ┃ ┃ ┃ ┗ 📜results.txt
+ ┃ ┃ ┣ 📂nested-do-while-loops
+ ┃ ┃ ┃ ┗ 📜nested-do-while-loops.c-natural-loops-results.txt
+ ┃ ┃ ┣ 📂no-loop
+ ┃ ┃ ┃ ┗ 📜no-loops.c-natural-loops-results.txt
+ ┃ ┃ ┗ 📂while-loop
+ ┃ ┃ ┃ ┗ 📜results.txt
  ```
 Within each algorithm there is a sub folder, that contains the algorithms code and results, which contain sub folder denoting the results for each test case.
 
