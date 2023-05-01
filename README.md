@@ -2,6 +2,7 @@
 Placeholder.
 
 # File Structure
+```
 📦investigating-loop-detection-algorithms
  ┣ 📂.git
  ┃ ┣ 📂branches
@@ -615,3 +616,4 @@ Placeholder.
  ┃ ┗ 📜generated-algorithms-test.sh
  ┣ 📜.gitignore
  ┗ 📜README.md
+ ```
