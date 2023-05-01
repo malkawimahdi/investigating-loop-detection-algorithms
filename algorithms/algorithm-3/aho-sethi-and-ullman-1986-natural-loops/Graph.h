@@ -22,7 +22,6 @@ private:
     std::list<int> *backwards_predecessors; // Pointer to list containing adjacent nodes in reverse for all nodes. (Children point to parent instead)
     std::vector<bool> visited;              // Vector bitset checking if a node has been visited.
     unsigned int first_node = UINT_MAX;     // Keep track of first node for use in unreachableNodes.
-    bool cycle = false;                     // Cycle check.
     bool is_there_a_cycle = false;          // Required as cycle is reset after each iteration, this is used for the function output.
     unsigned int cycle_count = 0;           // Cycle counter.
     std::map <int, std::set<int> > dominators; // For each node, contains the set of the dominators for a given node.

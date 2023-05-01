@@ -154,6 +154,9 @@ Based on (Aho et al. 2006) Compilers: Principles, Techniques, and Tools (2nd Edi
 // Outputs detected cycles in the same way as CBMC.
 bool Graph::naturalLoops(void)
 {
+    bool cycle = false;
+    bool no_cycle = true;
+
     // Stack for iterative Depth First Search.
     // (Current node, Index at adjacency_list for current node).
     std::stack<std::pair<int, int> > stack;
@@ -177,8 +180,6 @@ bool Graph::naturalLoops(void)
     {
         throw std::runtime_error("No Node(s) Are Locatable.");
     }
-
-    this->computeDominators();
 
     // Iterative Depth First Traversal.
     while (!stack.empty())
@@ -218,14 +219,21 @@ bool Graph::naturalLoops(void)
                 // condition, as it is possible to enter a loop that is not a natural loop.
             if ((this->visited[next_node]) && (stackChecker(next_node, stack)))
             {
-                    this->cycle = true;
+                    cycle = true;
+
+                    // Only compute dominators if there is a possibility of detecting a natural loop.
+                    if (no_cycle)
+                    {
+                        this->computeDominators();
+                        no_cycle = false;
+                    }
 
                     if (isElementContained(next_node, this->dominators[current_node.first]))
                     {
                         // Required as cycle is reset after each iteration, this is used for the function output.
                         this->is_there_a_cycle = true;
 
-                        ++cycle_count;
+                        this->cycle_count++;
 
                         // Generates output which contains nodes in the cycle specifically in the same format as CBMC.
                         //cbmcCycleOutput(next_node, this->stack);
@@ -243,7 +251,7 @@ bool Graph::naturalLoops(void)
             }
 
             // Reset cycle
-            this->cycle = false;
+            cycle = false;
         }
         else
         {
