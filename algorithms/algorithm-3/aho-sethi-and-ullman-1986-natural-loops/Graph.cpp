@@ -40,7 +40,7 @@ void Graph::addEdge(int current_node, int adjacent_node)
 //After significant debugging and meetings with Dr Martin Nyx Brain, the previous dominators' algorithm, located
     // at the bottom had a fatal flaws which meant that the algorithm could continuously cycle over itself AND
         // that the algorithm could not detect all dominators of a given node if the node contained more than two children.
-// Received assistance from Dr Martin Nyx Brain within a meeting to ,discuss pseudocode representation of the algorithm required
+// Received assistance from Dr Martin Nyx Brain within a meeting to, discuss pseudocode representation of the algorithm required
     // and debugging to fix intersection of nodes that have more than a single child.
 void Graph::computeDominators(void)
 {
