@@ -1,6 +1,38 @@
 # investigating-loop-detection-algorithms
 Placeholder.
 
+# Algorithms
+Each algorithm is stored within it's own folder. Under the headings:
+
+```
+📦algorithms
+ ┣ 📂algorithm-1
+ ┣ 📂algorithm-2
+ ┗ 📂algorithm-3
+ ```
+Within each algorithm there is a sub folder, that contains the algorithms code and results, which contain sub folder denoting the results for each test case.
+
+CBMC's Algorithms are the only algorithms that only contain results located under the headings:
+```
+📦algorithms
+ ┣ 📂cbmc-lexical-loops-results
+ ┗ 📂cbmc-natural-loops-results
+```
+
+## Software Pre-requisites
+To compile each algorithm and to genarate the similar results a **UNIX** derivative preferablly a supported distribution of Linux or MacOS:
+
+[Bash](https://www.gnu.org/software/bash/) **OR** [Zsh](https://www.zsh.org/)
+
+[G++](https://gcc.gnu.org/install/binaries.html) Used as a C++ Compiler.
+
+[Cbmc](https://github.com/diffblue/cbmc/releases/tag/cbmc-5.82.0) To generate Lexical and Natural Loops results.
+
+[Graphviz](https://graphviz.org/download/) Generate a control flow graph visualizing c program.
+
+
+
+
 # File Structure
 ```
 📦investigating-loop-detection-algorithms
