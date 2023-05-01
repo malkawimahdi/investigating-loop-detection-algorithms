@@ -91,7 +91,7 @@ void Graph::computeDominators(void)
                         // and itself after intersected to ensure dominator relationship that would not be correct
                             // if nodes with multiple parents were not accounted for.
                 std::set<int> intersection_result;
-
+                
                 std::set_intersection(old_child_result.begin(),
                                       old_child_result.end(),
                                       new_child_result.begin(),
@@ -99,8 +99,6 @@ void Graph::computeDominators(void)
                                       std::inserter(intersection_result, intersection_result.begin()));
 
                 // Clear previous dominators and insert new dominators for child.
-
-                // dom(n) = dom(pred) intersect dom(n)
                 this->dominators[*it].clear();
                 this->dominators[*it] = intersection_result;
 
