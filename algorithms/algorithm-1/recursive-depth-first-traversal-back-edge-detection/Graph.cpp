@@ -27,9 +27,7 @@ Graph::Graph(int nodes)
 }
 
 // This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes.
-    // Size of 1 is used as it references up to two nodes. (Don't know why but 2 nodes = up to 3???) (1 == up to 2)
 // Add an edge to current graph in the directed form: currentNode -> adjacentNode.
-// Follows the property of a Control Flow Graph (CFG), whereby each node can have AT MOST two other adjacent nodes.
 void Graph::addEdge(int current_node, int adjacent_node)
 {
     // Add adjacent nodes reachable from current node.
