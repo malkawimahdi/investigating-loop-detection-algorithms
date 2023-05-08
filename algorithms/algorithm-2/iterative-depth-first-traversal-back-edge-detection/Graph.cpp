@@ -55,7 +55,6 @@ bool Graph::iterativeDepthTraversalSearch(void)
         }
     }
 
-
     bool cycle = false;
 
     // Iterative Depth First Search.
