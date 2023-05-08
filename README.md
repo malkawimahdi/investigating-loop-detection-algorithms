@@ -2,7 +2,7 @@
 
 
 ## Prerequisites
-To compile each algorithm and to genarate the similar results a **UNIX** derivative preferablly a supported distribution of Linux or MacOS:
+To compile each algorithm and to genarate the similar results a **UNIX** derivative preferablly a supported distribution of Debian/Ubuntu or MacOS:
 
 [Bash](https://www.gnu.org/software/bash/) **OR** [Zsh](https://www.zsh.org/) run 📂shell-scripts
 
