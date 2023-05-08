@@ -4,7 +4,7 @@
 ## Prerequisites
 To compile each algorithm and to genarate the similar results a **UNIX** derivative preferablly a supported distribution of Debian/Ubuntu or MacOS:
 
-[Bash](https://www.gnu.org/software/bash/) **OR** [Zsh](https://www.zsh.org/) run 📂shell-scripts
+[Bash](https://www.gnu.org/software/bash/) **OR** [Zsh](https://www.zsh.org/) to run 📂shell-scripts
 
 [G++](https://gcc.gnu.org/install/binaries.html) used as a C++ Compiler to compile 📂algorithms 1 - 3.
 
