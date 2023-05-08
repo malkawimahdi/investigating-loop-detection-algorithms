@@ -55,11 +55,6 @@ bool Graph::iterativeDepthTraversalSearch(void)
         }
     }
 
-    // Are there any nodes for the graph?
-    if (this->first_node == UINT_MAX)
-    {
-        throw std::runtime_error("No Node(s) Are Locatable.");
-    }
 
     bool cycle = false;
 
