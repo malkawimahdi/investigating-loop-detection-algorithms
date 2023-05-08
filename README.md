@@ -602,8 +602,8 @@ contains shell scripts to generate test results for all algorithms. Generated al
 
 ```
  ┣ 📂shell-scripts
- ┃ ┣ 📜cbmc-output.sh
- ┃ ┗ 📜generated-algorithms-test.sh
+ ┃ ┣ 📜cbmc-algorithms-test-generation.sh
+ ┃ ┗ 📜developed-algorithms-test-generation.sh
 ```
 
 ## Directory Structure
@@ -638,8 +638,8 @@ contains shell scripts to generate test results for all algorithms. Generated al
  ┃ ┣ 📂objects
  ┃ ┃ ┣ 📂info
  ┃ ┃ ┗ 📂pack
- ┃ ┃ ┃ ┣ 📜pack-67d9db9c124467100dbc26271e7a4740c413f657.idx
- ┃ ┃ ┃ ┗ 📜pack-67d9db9c124467100dbc26271e7a4740c413f657.pack
+ ┃ ┃ ┃ ┣ 📜pack-ba583baf842c313d3a02db0d8837c27b73cdb0e2.idx
+ ┃ ┃ ┃ ┗ 📜pack-ba583baf842c313d3a02db0d8837c27b73cdb0e2.pack
  ┃ ┣ 📂refs
  ┃ ┃ ┣ 📂heads
  ┃ ┃ ┃ ┗ 📜main
@@ -1200,20 +1200,9 @@ contains shell scripts to generate test results for all algorithms. Generated al
  ┣ 📂nix-os-configurations
  ┃ ┣ 📜configuration.nix
  ┃ ┗ 📜hardware-configuration.nix
- ┣ 📂research-resources
- ┃ ┣ 📂cbmc-algorithms-results-workflow
- ┃ ┃ ┣ 📜cbmc-algorithms-results-workflow.pdf
- ┃ ┃ ┗ 📜cbmc-algorithms-results-workflow.svg
- ┃ ┣ 📂generated-algorithms-results-workflow
- ┃ ┃ ┣ 📜generated-algorithms-results-workflow.pdf
- ┃ ┃ ┗ 📜generated-algorithms-results-workflow.svg
- ┃ ┣ 📂neofetch-system-screenshot
- ┃ ┃ ┗ 📜neofetch-system.png
- ┃ ┗ 📂previous-route-of-generating-input-graphs
- ┃ ┃ ┗ 📜previous-way-of-generating-input-graphs
  ┣ 📂shell-scripts
- ┃ ┣ 📜cbmc-output.sh
- ┃ ┗ 📜generated-algorithms-test.sh
+ ┃ ┣ 📜cbmc-algorithms-test-generation.sh
+ ┃ ┗ 📜developed-algorithms-test-generation.sh
  ┣ 📜.gitignore
  ┗ 📜README.md
  ```
