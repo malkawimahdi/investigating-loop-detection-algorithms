@@ -211,7 +211,7 @@ bool Graph::naturalLoops(void)
             // next_node is head i.e. duplicate node.
             // current_node.first points to the duplicate node meaning it is the back edge.
             // Separately checking guards was suggested by Dr Martin Nyx Brain to not incorrectly detect enter the cycle
-                // condition, as it is possible to enter a loop that is not a natural loop.
+                // condition, as it is possible to enter a loop that is not a natural loop. i.e. Duff's Device.
             if ((this->visited[next_node]) && (stackChecker(next_node, stack)))
             {
                     cycle = true;
