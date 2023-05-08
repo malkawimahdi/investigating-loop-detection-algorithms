@@ -283,7 +283,9 @@ void Graph::computeNaturalLoop(int head, int tail)
 
     this->natural_loops[head].insert(head);
     this->natural_loops[head].insert(tail);
-
+    
+    // If the head and tail are different then, we need to traverse from the back edge upwards.
+    // Otherwise if they are the same we have finished.
     if (head != tail)
     {
         stack.push(tail);
@@ -294,7 +296,7 @@ void Graph::computeNaturalLoop(int head, int tail)
         int current = stack.top();
         stack.pop();
 
-        for (   std::list<int>::iterator it = this->backwards_predecessors[current].begin();
+        for (std::list<int>::iterator it = this->backwards_predecessors[current].begin();
              it != this->backwards_predecessors[current].end(); ++it)
         {
             // If the node being looked at is not in the set of current nodes and the node lies bounded between the
