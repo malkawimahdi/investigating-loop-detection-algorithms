@@ -28,7 +28,7 @@ private:
     std::map <int, std::set<int> > natural_loops; // Key is the loop head and set contains elements within the loop.
 
 private:
-    void computeNaturalLoop(int head, int tail);
+    void computeNaturalLoop(int head, int tail); // Compute the natural loop within the bound defined by the head and tail.
 
 public:
     explicit Graph(int nodes);                         // Constructor, which takes the number of nodes for a graph.
