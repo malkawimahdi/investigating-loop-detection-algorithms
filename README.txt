@@ -2,6 +2,12 @@
 
 
 ## Prerequisites
+Please verify the checksum after downloading this zip:
+
+SHA256: d6d24f660169aae0846ec00917b2c4dcba12ef017a7ab798ad30832927444853
+
+SHA512: f1bc69a3b95156fa983daabd2fbe415c4db15a319e499471de78bf7f71e16406a0f8a42ddc709e29920b30f0792be23a924a9c752d1b1c789b7642123debe84e
+
 To compile each algorithm and to generate similar results, a **UNIX** derivative, preferably a supported distribution of Debian/Ubuntu or MacOS, is required:
 
 [Bash](https://www.gnu.org/software/bash/) **OR** [Zsh](https://www.zsh.org/) to run 📂shell-scripts
