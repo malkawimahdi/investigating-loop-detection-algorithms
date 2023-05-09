@@ -8,7 +8,7 @@ To compile each algorithm and to generate similar results, a **UNIX** derivative
 
 [G++](https://gcc.gnu.org/install/binaries.html) used as a C++ Compiler to compile 📂algorithms 1 - 3.
 
-[CBMC](https://github.com/diffblue/cbmc/releases/tag/cbmc-5.82.0) to generate Lexical and Natural Loops results.
+[CBMC](https://github.com/diffblue/cbmc/releases) to generate Lexical and Natural Loops results.
 
 [Graphviz](https://graphviz.org/download/) to generate a control flow graph visualizing c program.
 
