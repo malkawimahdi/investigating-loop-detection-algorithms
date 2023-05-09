@@ -14,7 +14,7 @@ To compile each algorithm and to generate similar results, a **UNIX** derivative
 
 
 ## Algorithms
-Within the algorithms folder, there are two folders for each of the generated algorithms. A folder contains the source code for the edge detection algorithm, whilst the other folder contains the results generated using the algorithm for each test case under a folder given by the same name containing the results.
+Within the algorithms folder, there are two folders for each of the generated algorithms. A folder contains the source code for the edge detection algorithm, whilst the other folder contains the results generated using the algorithm for each test case under a folder given by the same name containing the results. Please note, algorithm 1, may contain results previously generated from manually generating the graphs for the test cases, hence variation in the command being timed. No difference is generated from the results, hence they have not be re-run.
 
 Only CBMC algorithms deviate from this as the source code for their implementations are locatable on the hyperlinks below:
 
@@ -602,6 +602,15 @@ Contains the exact Nix files to generate the exact system that is used to genera
 
 ## Shell Scripts
 Contains shell scripts to generate results for all algorithms compared.
+
+To enable execution and run these scripts:
+
+```
+chmod +x ./{SCRIPTNAME}.sh
+
+./{SCRIPTNAME}.sh
+```
+
 
 "cbmc-algorithms-test-generation.sh" generates the results for both CBMC algorithms. This script contains 5 arguements, in which 1 is mandatory.
 
