@@ -8,7 +8,7 @@ To compile each algorithm and to generate similar results, a **UNIX** derivative
 
 [G++](https://gcc.gnu.org/install/binaries.html) used as a C++ Compiler to compile 📂algorithms 1 - 3.
 
-[CBMC](https://github.com/diffblue/cbmc/releases/tag/cbmc-5.82.0) to generate Lexical and Natural Loops results.
+[CBMC](https://github.com/diffblue/cbmc/releases) to generate Lexical and Natural Loops results.
 
 [Graphviz](https://graphviz.org/download/) to generate a control flow graph visualizing c program.
 
@@ -603,9 +603,17 @@ Contains the exact Nix files to generate the exact system that is used to genera
 ## Shell Scripts
 Contains shell scripts to generate results for all algorithms compared.
 
-"cbmc-algorithms-test-generation.sh" generates the results for both CBMC algorithms.
+"cbmc-algorithms-test-generation.sh" generates the results for both CBMC algorithms. This script contains 5 arguements, in which 1 is mandatory.
 
-"developed-algorithms-test-generation.sh" generates results for each generated algorithm. This algorithm requires that it be imported into the source code's location to operate. It is located in a separate directory to avoid duplicating the script unnecessarily.   
+```
+-f is the input (*.c) program file given as input to the script (REQUIRED)
+-l generates results for lexical_loops.h (Optional)
+-n generates results for natural_loops.h (Optional)
+-s generates a control flow graph from the input program returning an svg (Optional)
+-h show all options (Optional)
+```
+
+"developed-algorithms-test-generation.sh" generates results for each generated algorithm. This algorithm requires that it be imported into the source code's location to operate. It is located in a separate directory to avoid duplicating the script unnecessarily. This script does not take any arguements.  
 
 ```
  ┣ 📂shell-scripts
