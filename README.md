@@ -603,6 +603,12 @@ Contains the exact Nix files to generate the exact system that is used to genera
 ## Shell Scripts
 Contains shell scripts to generate results for all algorithms compared.
 
+To enable execution of these scripts:
+
+```
+chmod +x ./{FILENAME}
+```
+
 "cbmc-algorithms-test-generation.sh" generates the results for both CBMC algorithms. This script contains 5 arguements, in which 1 is mandatory.
 
 ```
