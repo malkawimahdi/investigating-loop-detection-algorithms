@@ -1,4 +1,4 @@
-2 is head of { 2, 3, 4, 5, 6, 7, 8, 9, 12 (backedge) }
+2 is head of { 2, 3, 4, 5, 6, 7, 8, 9 (backedge), 12 (backedge) }
 Unreachable Node(s): 10, 11
 Unreachable Node(s) Count: 2
 Cycle(s): 2
