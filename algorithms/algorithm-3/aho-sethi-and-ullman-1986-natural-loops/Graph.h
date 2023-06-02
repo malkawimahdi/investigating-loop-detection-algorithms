@@ -26,6 +26,7 @@ private:
     unsigned int cycle_count = 0;           // Cycle counter.
     std::map <int, std::set<int> > dominators; // For each node, contains the set of the dominators for a given node.
     std::map <int, std::set<int> > natural_loops; // Key is the loop head and set contains elements within the loop.
+    std::map <int, std::set<int> > back_edges; // Key is the loop head and set contains back edges for each loop head.
 
 private:
     void computeNaturalLoop(int head, int tail); // Compute the natural loop within the bound defined by the head and tail.

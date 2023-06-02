@@ -257,7 +257,7 @@ bool Graph::naturalLoops(void)
         }
     }
 
-    cbmcCycleOutput(this->natural_loops);
+    cbmcCycleOutput(this->natural_loops, this->back_edges);
     
     unreachableNodes(this->first_node, this->visited);
 
@@ -283,6 +283,8 @@ void Graph::computeNaturalLoop(int head, int tail)
 
     this->natural_loops[head].insert(head);
     this->natural_loops[head].insert(tail);
+
+    this->back_edges[head].insert(tail);
     
     // If the head and tail are different then, we need to traverse from the back edge upwards.
     // Otherwise if they are the same we have finished.
@@ -304,7 +306,7 @@ void Graph::computeNaturalLoop(int head, int tail)
                     // add it to the set of instructions for the current loop head and add it to the stack so it can
                         // be traversed iteratively next.
             if (!isElementContained(*it, this->natural_loops[head])
-            && (head < *it < tail)
+            && (head < *it) && (*it < tail)
             && isElementContained(head, this->dominators[*it]))
             {
                 this->natural_loops[head].insert(*it);

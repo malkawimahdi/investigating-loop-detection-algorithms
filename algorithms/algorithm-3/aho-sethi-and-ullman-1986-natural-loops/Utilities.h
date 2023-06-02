@@ -17,7 +17,7 @@ Graph graphParser(std::string string);
 bool stackChecker(int target, std::stack<std::pair<int, int> > stack);
 
 // Generates output which contains nodes in the cycle specifically in the same format as CBMC.
-void cbmcCycleOutput(std::map<int, std::set<int> > cycle_nodes);
+void cbmcCycleOutput(std::map<int, std::set<int> > cycle_nodes, std::map <int, std::set<int> > back_edges);
 
 // Detects unreachable nodes from the entry node.
 void unreachableNodes(unsigned int& first_node, std::vector<bool> &visited);
