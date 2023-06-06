@@ -6,7 +6,7 @@ if ! [ -x "$(command -v g++)" ]; then
   exit 1
 fi
 
-g++ main.cpp Utilities.h Graph.h Utilities.cpp Graph.cpp -w
+g++ main.cpp Utilities.h Graph.h Utilities.cpp Graph.cpp -O2 -w
 
 # Check OS and run different time commands.
 # MacOS requires homebrew to use GNU time which is "gtime", whilst linux mostly uses whats below.
