@@ -14,18 +14,28 @@
 class Graph
 {
 private:
-    unsigned int nodes;                  // Number of nodes within graph.
+    unsigned int nodes;                 // Number of nodes within graph.
     std::list<int> *adjacent_nodes;     // Pointer to list containing adjacent nodes for all nodes. (Doubly Linked List)
     std::vector<bool> visited;          // Vector bitset checking for visited nodes.
-    std::vector<bool> current_visit;    // Vector bitset checking for back edges.
+    unsigned int first_node;
+    unsigned int cycle_count;
+    unsigned int unreachable_node_count;
 
 private:
-    bool recursiveDepthFirstTraversalSingleNode(int &node); // Implementation of Depth First Search (DFS) from a given node.
+    // Detect unreached nodes within Graph after performing cycle detection.
+    void unreachableNodes();
+
+    // Implementation of Depth First Search (DFS) to recursively detect cycles from a given node.
+    void recursiveDepthFirstTraversalCycleDetection(unsigned const int node);
 
 public:
-    explicit Graph(int nodes);                         // Constructor, which takes the number of nodes for a graph.
-    void addEdge(int current_node, int adjacent_node); // Add an edge to current graph currentNode -> adjacentNode
-    bool recursiveDepthTraversalSearch(void);          // Initialisation function to detect back edge loops.
+    // Constructor, which takes the number of nodes for a graph.
+    explicit Graph(unsigned const int nodes);
+
+    // Add an edge to current graph currentNode -> adjacentNode
+    void addEdge(unsigned const current_node, unsigned const int adjacent_node);
+
+    void recursiveDepthFirstTraversalCycleDetectionInitialisation();
 };
 
 #endif // GRAPH_H

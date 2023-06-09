@@ -11,7 +11,7 @@ int main(int argc, const char * argv[])
     else
     {
         Graph graph = graphParser(argv[1]);
-        graph.recursiveDepthTraversalSearch();
+        graph.recursiveDepthFirstTraversalCycleDetectionInitialisation();
     }
     return 0;
 }

@@ -1,11 +1,10 @@
-// NOTICE: Graph.cpp utilises a significant proportion of code snippets for general structure
+// NOTICE: Graph.cpp utilises a proportion of code snippets for general structure
 // with no specified license located at:
-
-// Title: Detect Cycle in a Directed Graph
-// Author: GeeksForGeeks
-// Year: 2023
-// URL: https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
-// URL Date: 22nd March 2023
+    // Title: Detect Cycle in a Directed Graph
+    // Author: GeeksForGeeks
+    // Year: 2023
+    // URL: https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
+    // URL Access Date: 22nd March 2023
 
 //
 // Created by Mahdi Malkawi on 08/02/2023.
@@ -14,91 +13,106 @@
 
 #include "Graph.h"
 
-// This constructor is derived from (GeeksForGeeks, 2023), specifically the generation of how the digraph is
+// This constructor is similar to (GeeksForGeeks, 2023) example, specifically the generation of how the digraph is
     // represented as an adjacency list.
-// Constructor takes number of nodes and generates a DLL for each node containing an entry the size of nodes.
-// Reserves the maximum space that the bitset MAY require.
-Graph::Graph(int nodes)
+// Constructor takes number of nodes and generates a DLL for each node.
+// Reserves the maximum space that the bitset requires.
+Graph::Graph(unsigned const int nodes)
 {
     this->nodes = nodes;
-    this->visited.resize(this->nodes);
-    this->current_visit.resize(this->nodes);
     this->adjacent_nodes = new std::list<int>[nodes];
+    this->visited.resize(this->nodes);
+    this->cycle_count = 0;
+    this->unreachable_node_count = 0;
 }
 
-// This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes.
+// This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes
+    // to conform to the requirements that a control flow graph requires.
 // Add an edge to current graph in the directed form: currentNode -> adjacentNode.
-void Graph::addEdge(int current_node, int adjacent_node)
+void Graph::addEdge(unsigned const int current_node, unsigned const int adjacent_node)
 {
-    // Add adjacent nodes reachable from current node.
-    this->adjacent_nodes[current_node].push_back(adjacent_node);
+    // If an attempt is made to give the current node more than two children...
+    if (this->adjacent_nodes[current_node].size() > 1)
+    {
+        std::runtime_error("Each node is permitted to have TWO children!");
+    }
+    else
+    {
+        this->adjacent_nodes[current_node].push_back(adjacent_node);
+    }
 }
 
-// This function is derived from (GeeksForGeeks, 2023), with the difference of outputting the Head and
-    // back edge for detected cycles and implementing more efficient data structures of bitsets.
-// Dr Martin Nyx Brain also helped with the suggestion that if a node is not a back edge, it is removed from
-    // current_visit, analogous to tying a string from the start of a maze. If the string is seen again,
-        // a back edge is located.
-// Implementation of Depth First Search (DFS) from a given node.
-bool Graph::recursiveDepthFirstTraversalSingleNode(int &node)
+// The idea to recursively access each node was derived from (GeeksForGeeks, 2023) example. This function is different
+    // as this function recursively iterates through all nodes accessible from the entry, reviewing each outgoing arc
+        // associated with the current node and checking if the outgoing arc points to a previously visited node.
+void Graph::recursiveDepthFirstTraversalCycleDetection(unsigned const int node)
 {
-    if (!this->visited[node])
+    this->visited[node] = true;
+
+    for (std::list<int>::iterator it = this->adjacent_nodes[node].begin(); it != this->adjacent_nodes[node].end(); ++it)
     {
-        this->visited[node] = true;
-
-        this->current_visit[node] = true;
-
-        for (std::list<int>::iterator it = this->adjacent_nodes[node].begin(); it != this->adjacent_nodes[node].end(); ++it)
+        // A cycle is detected if the same node is visited more than once.
+        if (visited[*it])
         {
-            // If cycle detected, then it would be in current visit from node to what the iterator
-            // is currently pointing at.
-            if (current_visit[*it])
-            {
-                std::cout << "Head: " << *it << ", BackEdge: " << node << std::endl;
-            }
+            this->cycle_count++;
+            std::cout << "Head: " << *it << ", BackEdge: " << node << std::endl;
+        }
 
-            // If an adjacent_node has not been traversed, and it's traversal returns true then return true;
-            //  If a node is located in current visit (think of tying a string to the start of a  maze, and you see the string again)
-            //  then return true.
-            if ((!visited[*it] && recursiveDepthFirstTraversalSingleNode(*it)) || current_visit[*it])
+        if (!visited[*it])
+        {
+            recursiveDepthFirstTraversalCycleDetection(*it);
+        }
+    }
+}
+
+void Graph::unreachableNodes()
+{
+    for (std::size_t counter = this->first_node; counter < this->visited.size(); ++counter)
+    {
+        if (!this->visited[counter])
+        {
+            if (this->unreachable_node_count == 0)
             {
-                return true;
+                std::cout << "Unreachable Node(s): ";
+                std::cout << counter;
+                ++unreachable_node_count;
+            }
+            else
+            {
+                std::cout << ", " << counter;
+                ++unreachable_node_count;
             }
         }
     }
-    // Clear node from currently visited if it is not a back-edge, otherwise it is always true.
-    this->current_visit[node] = false;
-    return false;
+
+    if (this->unreachable_node_count > 0)
+    {
+        std::cout << std::endl;
+        std::cout << "Unreachable Node(s) Count: " << this->unreachable_node_count << std::endl;
+    }
 }
 
-// This function is derived from (GeeksForGeeks, 2023), with the difference in what occurs if a cycle is detected,
-    // specifically counting the number of cycles and the efficiency improvements of a bitset.
-bool Graph::recursiveDepthTraversalSearch(void)
+void Graph::recursiveDepthFirstTraversalCycleDetectionInitialisation()
 {
-    unsigned int cycle_count = 0;
-
-    // For each node, check if visited.
     for (std::size_t counter = 0; counter < this->nodes; ++counter)
     {
-        // If a node has not been traversed, and it's traversal returns true then return true;
-        // Utilises that the compiler, will determine if the first condition is true or false, before proceeding
-        // to check the second condition.
-        if (!this->visited[counter] && recursiveDepthFirstTraversalSingleNode(reinterpret_cast<int &>(counter)))
+        if (this->adjacent_nodes[counter].size() > 0)
         {
-            ++cycle_count;
+            this->first_node = counter;
+            break;
         }
-
     }
 
-    if (cycle_count)
-    {
-        std::cout << "Cycle(s): " << cycle_count << std::endl;
+    this->recursiveDepthFirstTraversalCycleDetection(first_node);
 
-        return true;
+    this->unreachableNodes();
+
+    if (this->cycle_count)
+    {
+        std::cout << "Cycle(s): " << this->cycle_count << std::endl;
     }
     else
     {
         std::cout << "No Cycle(s) Detected!" << std::endl;
-        return false;
     }
 }
