@@ -67,7 +67,7 @@ void Graph::recursiveDepthFirstTraversalCycleDetection(unsigned const int node)
 
 void Graph::unreachableNodes()
 {
-    for (std::size_t counter = this->first_node; counter < this->visited.size(); ++counter)
+    for (std::size_t counter = this->entry_node; counter < this->visited.size(); ++counter)
     {
         if (!this->visited[counter])
         {
@@ -98,12 +98,12 @@ void Graph::recursiveDepthFirstTraversalCycleDetectionInitialisation()
     {
         if (this->adjacent_nodes[counter].size() > 0)
         {
-            this->first_node = counter;
+            this->entry_node = counter;
             break;
         }
     }
 
-    this->recursiveDepthFirstTraversalCycleDetection(first_node);
+    this->recursiveDepthFirstTraversalCycleDetection(entry_node);
 
     this->unreachableNodes();
 
