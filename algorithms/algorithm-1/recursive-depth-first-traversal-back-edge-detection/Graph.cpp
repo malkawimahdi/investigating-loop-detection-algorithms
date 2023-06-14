@@ -20,7 +20,7 @@
 Graph::Graph(unsigned const int nodes)
 {
     this->nodes = nodes;
-    this->adjacent_nodes = new std::list<int>[nodes];
+    this->adjacent_nodes = new std::list<unsigned int>[nodes];
     this->visited.resize(this->nodes);
     this->cycle_count = 0;
     this->unreachable_node_count = 0;
@@ -49,7 +49,7 @@ void Graph::recursiveDepthFirstTraversalCycleDetection(unsigned const int node)
 {
     this->visited[node] = true;
 
-    for (std::list<int>::iterator it = this->adjacent_nodes[node].begin();
+    for (std::list<unsigned int>::iterator it = this->adjacent_nodes[node].begin();
     it != this->adjacent_nodes[node].end(); ++it)
     {
         // A cycle is detected if the same node is visited more than once.

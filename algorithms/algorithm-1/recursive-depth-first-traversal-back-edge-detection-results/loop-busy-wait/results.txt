@@ -14,7 +14,7 @@ Cycle(s): 1
 	Major (requiring I/O) page faults: 1
 	Minor (reclaiming a frame) page faults: 183
 	Voluntary context switches: 0
-	Involuntary context switches: 4
+	Involuntary context switches: 2
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0

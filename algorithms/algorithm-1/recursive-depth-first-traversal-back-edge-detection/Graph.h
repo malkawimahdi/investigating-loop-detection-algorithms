@@ -15,7 +15,7 @@ class Graph
 {
 private:
     unsigned int nodes;                 // Number of nodes within graph.
-    std::list<int> *adjacent_nodes;     // Pointer to list containing adjacent nodes for all nodes. (Doubly Linked List)
+    std::list<unsigned int> *adjacent_nodes;     // Pointer to list containing adjacent nodes for all nodes. (Doubly Linked List)
     std::vector<bool> visited;          // Vector bitset checking for visited nodes.
     unsigned int entry_node;
     unsigned int cycle_count;
