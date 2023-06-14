@@ -53,12 +53,12 @@ void Graph::unreachableNodes()
             {
                 std::cout << "Unreachable Node(s): ";
                 std::cout << counter;
-                this->unreachable_node_count++;
+                ++this->unreachable_node_count;
             }
             else
             {
                 std::cout << ", " << counter;
-                this->unreachable_node_count++;
+                ++this->unreachable_node_count;
             }
         }
     }
@@ -125,7 +125,7 @@ void Graph::iterativeDepthTraversalSearch(void)
                 {
                     cycle = true;
 
-                    this->cycle_count++;
+                    ++this->cycle_count;
 
                     // Generates output which contains nodes in the cycle specifically in the same format as CBMC.
                     cbmcCycleOutput(next_node, this->stack);
@@ -133,7 +133,7 @@ void Graph::iterativeDepthTraversalSearch(void)
             }
 
             // Iterate the index for the current node.
-            this->stack.top().second++;
+            ++this->stack.top().second;
 
             // If it is a cycle, then next_node is NOT placed on the stack as it will be an infinite loop.
             if (!cycle)
