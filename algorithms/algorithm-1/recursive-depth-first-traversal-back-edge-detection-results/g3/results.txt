@@ -1,5 +1,5 @@
-10 is head of {10, 16 (backedge) }
-9 is head of {9, 13 (backedge) }
+10 is head of { 10, 16 (backedge) }
+9 is head of { 9, 13 (backedge) }
 Unreachable Node(s): 14
 Unreachable Node(s) Count: 1
 Cycle(s): 2

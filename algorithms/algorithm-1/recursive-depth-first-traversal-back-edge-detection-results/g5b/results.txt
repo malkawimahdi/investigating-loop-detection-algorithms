@@ -1,5 +1,5 @@
-8 is head of {8, 12 (backedge) }
-17 is head of {17, 8 (backedge) }
+8 is head of { 8, 12 (backedge) }
+17 is head of { 17, 8 (backedge) }
 Unreachable Node(s): 13, 15, 16
 Unreachable Node(s) Count: 3
 Cycle(s): 2
@@ -15,9 +15,9 @@ Cycle(s): 2
 	Maximum resident set size (kbytes): 1136
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 184
+	Minor (reclaiming a frame) page faults: 187
 	Voluntary context switches: 0
-	Involuntary context switches: 2
+	Involuntary context switches: 3
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0

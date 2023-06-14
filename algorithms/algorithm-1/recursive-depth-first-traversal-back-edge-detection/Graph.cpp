@@ -56,7 +56,7 @@ void Graph::recursiveDepthFirstTraversalCycleDetection(unsigned const int node)
         if (visited[*it])
         {
             this->cycle_count++;
-            std::cout << *it << " is head of {" << *it << ", " << node << " (backedge) }" << std::endl;
+            std::cout << *it << " is head of { " << *it << ", " << node << " (backedge) }" << std::endl;
         }
 
         if (!visited[*it])
