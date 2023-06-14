@@ -1,5 +1,5 @@
-Head: 8, BackEdge: 12
-Head: 17, BackEdge: 8
+8 is head of {8, 12 (backedge) }
+17 is head of {17, 8 (backedge) }
 Unreachable Node(s): 13, 15, 16
 Unreachable Node(s) Count: 3
 Cycle(s): 2

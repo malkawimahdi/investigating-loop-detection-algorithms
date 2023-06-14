@@ -1,6 +1,6 @@
-Head: 47, BackEdge: 45
-Head: 26, BackEdge: 43
-Head: 44, BackEdge: 28
+47 is head of {47, 45 (backedge) }
+26 is head of {26, 43 (backedge) }
+44 is head of {44, 28 (backedge) }
 Unreachable Node(s): 34
 Unreachable Node(s) Count: 1
 Cycle(s): 3
@@ -18,7 +18,7 @@ Cycle(s): 3
 	Major (requiring I/O) page faults: 1
 	Minor (reclaiming a frame) page faults: 184
 	Voluntary context switches: 0
-	Involuntary context switches: 2
+	Involuntary context switches: 3
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0

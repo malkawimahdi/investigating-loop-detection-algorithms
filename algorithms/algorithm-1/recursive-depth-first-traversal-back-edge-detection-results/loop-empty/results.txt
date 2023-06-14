@@ -1,4 +1,4 @@
-Head: 20, BackEdge: 20
+20 is head of {20, 20 (backedge) }
 Cycle(s): 1
 	Command being timed: "./a.out 20,20"
 	User time (seconds): 0.00

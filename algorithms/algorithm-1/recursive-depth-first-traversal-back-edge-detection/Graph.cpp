@@ -49,13 +49,14 @@ void Graph::recursiveDepthFirstTraversalCycleDetection(unsigned const int node)
 {
     this->visited[node] = true;
 
-    for (std::list<int>::iterator it = this->adjacent_nodes[node].begin(); it != this->adjacent_nodes[node].end(); ++it)
+    for (std::list<int>::iterator it = this->adjacent_nodes[node].begin();
+    it != this->adjacent_nodes[node].end(); ++it)
     {
         // A cycle is detected if the same node is visited more than once.
         if (visited[*it])
         {
             this->cycle_count++;
-            std::cout << "Head: " << *it << ", BackEdge: " << node << std::endl;
+            std::cout << *it << " is head of {" << *it << ", " << node << " (backedge) }" << std::endl;
         }
 
         if (!visited[*it])

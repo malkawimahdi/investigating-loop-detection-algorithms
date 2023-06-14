@@ -1,6 +1,6 @@
-Head: 8, BackEdge: 13
-Head: 11, BackEdge: 16
-Head: 18, BackEdge: 10
+8 is head of {8, 13 (backedge) }
+11 is head of {11, 16 (backedge) }
+18 is head of {18, 10 (backedge) }
 Cycle(s): 3
 	Command being timed: "./a.out 0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,10,18,11,12,12,13,13,8,13,14,14,15,15,16,16,11,16,17,17,18,18,19,19,20,20,21,21,22,22,23,23,24,24,25"
 	User time (seconds): 0.00
