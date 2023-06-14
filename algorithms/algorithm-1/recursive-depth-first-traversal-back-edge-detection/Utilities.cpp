@@ -5,7 +5,7 @@
 #include "Utilities.h"
 
 // Graph Parser, parsing edges as pairs from 1st->2nd, 3rd->4th ...
-Graph graphParser(std::string string)
+Graph graphParser(const std::string string)
 {
     // Take an input graph as a command-line argument
     std::stringstream graph_string_stream(string);
@@ -18,20 +18,27 @@ Graph graphParser(std::string string)
     // Pair each node with the next node.
     // No additional information is required.
     // Remember that to parse that command-line arguments on zsh with whitespace,
-        // need to be escaped in order to be accepted to argv as a single command.
+    // need to be escaped in order to be accepted to argv as a single command.
     // Arguments can be escaped with "ARGUMENT_GOES_HERE".
     for (int current_node; graph_string_stream >> current_node;)
     {
-        if (graph_string_stream.peek() == (',' | ' '))
+        if (current_node < 0)
         {
-            graph_string_stream.ignore();
+            throw std::runtime_error("Nodes cannot have a value less than 0!");
         }
-
-        graphEdges.push_back(current_node);
-
-        if (largest_node < current_node)
+        else
         {
-            largest_node = current_node;
+            if (graph_string_stream.peek() == (',' | ' '))
+            {
+                graph_string_stream.ignore();
+            }
+
+            graphEdges.push_back(current_node);
+
+            if (largest_node < current_node)
+            {
+                largest_node = current_node;
+            }
         }
     }
 
@@ -42,7 +49,7 @@ Graph graphParser(std::string string)
         Graph graph(largest_node + 1);
 
         // Use Duffs device to generate graph.
-        for (int counter = 0; counter < graphEdges.size(); counter += 2)
+        for (std::size_t counter = 0; counter < graphEdges.size(); counter += 2)
         {
             // std::cout << "Current:" << graphEdges[counter] << " Adj:" << graphEdges[counter+1] << std::endl;
             graph.addEdge(graphEdges[counter], graphEdges[counter+1]);

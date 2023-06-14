@@ -17,7 +17,7 @@
     // represented as an adjacency list.
 // Constructor takes number of nodes and generates a DLL for each node.
 // Reserves the maximum space that the bitset requires.
-Graph::Graph(unsigned const int nodes)
+Graph::Graph(const unsigned int nodes)
 {
     this->nodes = nodes;
     this->adjacent_nodes = new std::list<unsigned int>[nodes];
@@ -29,12 +29,12 @@ Graph::Graph(unsigned const int nodes)
 // This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes
     // to conform to the requirements that a control flow graph requires.
 // Add an edge to current graph in the directed form: currentNode -> adjacentNode.
-void Graph::addEdge(unsigned const int current_node, unsigned const int adjacent_node)
+void Graph::addEdge(const unsigned int current_node, const unsigned int adjacent_node)
 {
     // If an attempt is made to give the current node more than two children...
     if (this->adjacent_nodes[current_node].size() > 1)
     {
-        std::runtime_error("Each node is permitted to have TWO children!");
+        throw std::runtime_error("Each node is permitted to have at most TWO children!");
     }
     else
     {
@@ -45,7 +45,7 @@ void Graph::addEdge(unsigned const int current_node, unsigned const int adjacent
 // The idea to recursively access each node was derived from (GeeksForGeeks, 2023) example. This function is different
     // as this function recursively iterates through all nodes accessible from the entry, reviewing each outgoing arc
         // associated with the current node and checking if the outgoing arc points to a previously visited node.
-void Graph::recursiveDepthFirstTraversalCycleDetection(unsigned const int node)
+void Graph::recursiveDepthFirstTraversalCycleDetection(const unsigned int node)
 {
     this->visited[node] = true;
 
@@ -53,13 +53,13 @@ void Graph::recursiveDepthFirstTraversalCycleDetection(unsigned const int node)
     it != this->adjacent_nodes[node].end(); ++it)
     {
         // A cycle is detected if the same node is visited more than once.
-        if (visited[*it])
+        if (this->visited[*it])
         {
             this->cycle_count++;
             std::cout << *it << " is head of { " << *it << ", " << node << " (backedge) }" << std::endl;
         }
 
-        if (!visited[*it])
+        if (!this->visited[*it])
         {
             recursiveDepthFirstTraversalCycleDetection(*it);
         }
@@ -76,12 +76,12 @@ void Graph::unreachableNodes()
             {
                 std::cout << "Unreachable Node(s): ";
                 std::cout << counter;
-                ++unreachable_node_count;
+                ++this->unreachable_node_count;
             }
             else
             {
                 std::cout << ", " << counter;
-                ++unreachable_node_count;
+                ++this->unreachable_node_count;
             }
         }
     }
@@ -104,7 +104,7 @@ void Graph::recursiveDepthFirstTraversalCycleDetectionInitialisation()
         }
     }
 
-    this->recursiveDepthFirstTraversalCycleDetection(entry_node);
+    this->recursiveDepthFirstTraversalCycleDetection(this->entry_node);
 
     this->unreachableNodes();
 
