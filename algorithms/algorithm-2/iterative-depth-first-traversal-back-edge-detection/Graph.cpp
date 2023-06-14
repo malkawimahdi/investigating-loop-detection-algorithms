@@ -1,11 +1,10 @@
-// NOTICE: Graph.cpp utilises a minimal proportion of code snippets for general structure
-    // with no specified license located at:
-
-// Title: Detect Cycle in a Directed Graph
-// Author: GeeksForGeeks
-// Year: 2023
-// URL: https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
-// URL Date: 22nd March 2023
+// NOTICE: Graph.cpp utilises a proportion of code snippets for general structure
+// with no specified license located at:
+    // Title: Detect Cycle in a Directed Graph
+    // Author: GeeksForGeeks
+    // Year: 2023
+    // URL: https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
+    // URL Access Date: 22nd March 2023
 
 //
 // Created by Mahdi Malkawi on 05/03/2023.
@@ -14,32 +13,68 @@
 #include "Graph.h"
 #include "Utilities.h"
 
-// This constructor is derived from (GeeksForGeeks, 2023), specifically the generation of how the digraph is
-    // represented as an adjacency list.
-// Constructor takes number of nodes and generates a list containing an entry the size of nodes.
-// (Doubly Linked List)
-Graph::Graph(int nodes)
+// This constructor is similar to (GeeksForGeeks, 2023) example, specifically the generation of how the digraph is
+// represented as an adjacency list.
+// Constructor takes number of nodes and generates a DLL for each node.
+// Reserves the maximum space that the bitset requires.
+Graph::Graph(const unsigned int nodes)
 {
     this->nodes = nodes;
+    this->adjacent_nodes = new std::list<unsigned int>[nodes];
     this->visited.resize(this->nodes);
-    this->adjacent_nodes = new std::list<int>[nodes];
+    this->cycle_count = 0;
+    this->unreachable_node_count = 0;
 }
 
-// This function is derived from (GeeksForGeeks, 2023)
+// This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes
+// to conform to the requirements that a control flow graph requires.
 // Add an edge to current graph in the directed form: currentNode -> adjacentNode.
-void Graph::addEdge(int current_node, int adjacent_node)
+void Graph::addEdge(const unsigned int current_node, const unsigned int adjacent_node)
 {
+    if(adjacent_nodes[current_node].size() > 1)
+    {
+        throw std::runtime_error("Each node is permitted to have at most TWO children!");
+    }
+    else
+    {
         // Add adjacent nodes reachable from current node.
         this->adjacent_nodes[current_node].push_back(adjacent_node);
+    }
 }
 
-// Received assistance from Dr Martin Nyx Brain, with accessing the adjacency_list for each node iteratively
-    // from an adjacency list, randomly accessing a std::list and going through the stack once more.
-// Implementation of cycle detection using iterative Depth First Search using ONLY the start node to check for cycles
+// Detect unreachable nodes from the entry node.
+void Graph::unreachableNodes()
+{
+    for (std::size_t counter = entry_node; counter < this->visited.size(); ++counter)
+    {
+        if (!visited[counter])
+        {
+            if (this->unreachable_node_count == 0)
+            {
+                std::cout << "Unreachable Node(s): ";
+                std::cout << counter;
+                this->unreachable_node_count++;
+            }
+            else
+            {
+                std::cout << ", " << counter;
+                this->unreachable_node_count++;
+            }
+        }
+    }
+
+    if (this->unreachable_node_count > 0)
+    {
+        std::cout << std::endl;
+        std::cout << "Unreachable Node(s) Count: " << this->unreachable_node_count << std::endl;
+    }
+}
+
+// Implementation of cycle detection using iterative Depth First Search from the entry node to check for cycles
     // and output nodes contained within cycles.
 // Ensures that inaccessible nodes (inaccessible code) is not reached.
 // Outputs detected cycles in the same way as CBMC.
-bool Graph::iterativeDepthTraversalSearch(void)
+void Graph::iterativeDepthTraversalSearch(void)
 {
     // Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
     // node as the start by convention.
@@ -47,7 +82,7 @@ bool Graph::iterativeDepthTraversalSearch(void)
     {
         if (this->adjacent_nodes[counter].size() > 0)
         {
-            this->first_node = counter;
+            this->entry_node = counter;
 
             // Each node is viewed as a pair in the form of std::pair<node, index>
             this->stack.push(std::make_pair(counter, 0));
@@ -61,7 +96,7 @@ bool Graph::iterativeDepthTraversalSearch(void)
     while (!this->stack.empty())
     {
         // Get the top most node and visit it.
-        std::pair<int, int> current_node = this->stack.top();
+        std::pair<unsigned int, unsigned int> current_node = this->stack.top();
 
         this->visited[(current_node.first)] = true;
 
@@ -70,7 +105,7 @@ bool Graph::iterativeDepthTraversalSearch(void)
         {
             // Get initial index for start of adjacency_list and get the node required by the counter.
             // Received assistance from Dr Martin Nyx Brain, randomly accessing a std::list.
-            std::list<int>::iterator it = this->adjacent_nodes[current_node.first].begin();
+            std::list<unsigned int>::iterator it = this->adjacent_nodes[current_node.first].begin();
 
             for (std::size_t i = 0; i < current_node.second; ++i)
             {
@@ -90,10 +125,7 @@ bool Graph::iterativeDepthTraversalSearch(void)
                 {
                     cycle = true;
 
-                    // Required as cycle is reset after each iteration, this is used for the function output.
-                    this->is_there_a_cycle = true;
-
-                    ++cycle_count;
+                    this->cycle_count++;
 
                     // Generates output which contains nodes in the cycle specifically in the same format as CBMC.
                     cbmcCycleOutput(next_node, this->stack);
@@ -120,9 +152,10 @@ bool Graph::iterativeDepthTraversalSearch(void)
             continue;
         }
     }
-    unreachableNodes(this->first_node, this->visited);
 
-    if (cycle_count > 0)
+    this->unreachableNodes();
+
+    if (this->cycle_count > 0)
     {
         std::cout << "Cycle(s): " << this->cycle_count << std::endl;
     }
@@ -130,6 +163,4 @@ bool Graph::iterativeDepthTraversalSearch(void)
     {
         std::cout << "No Cycle(s) Detected!" << std::endl;
     }
-
-    return this->is_there_a_cycle;
 }
