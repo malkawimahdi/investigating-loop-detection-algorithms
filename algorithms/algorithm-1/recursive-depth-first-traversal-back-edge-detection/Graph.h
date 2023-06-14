@@ -30,7 +30,7 @@ private:
 
 public:
     // Constructor, which takes the number of nodes for a graph.
-    explicit Graph(unsigned unsigned int nodes);
+    explicit Graph(const unsigned int nodes);
 
     // Add an edge to current graph currentNode -> adjacentNode
     void addEdge(const unsigned current_node,const unsigned int adjacent_node);
