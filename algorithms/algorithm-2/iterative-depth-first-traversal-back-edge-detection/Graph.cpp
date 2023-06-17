@@ -96,18 +96,18 @@ void Graph::iterativeDepthTraversalSearch(void)
     while (!this->stack.empty())
     {
         // Get the top most node and visit it.
-        std::pair<unsigned int, unsigned int> current_node = this->stack.top();
+        std::pair<unsigned int, unsigned int> current_pair = this->stack.top();
 
-        this->visited[(current_node.first)] = true;
+        this->visited[(current_pair.first)] = true;
 
         // If the index of the second node is less than the size of the elements in the adjacency list...
-        if (current_node.second < this->adjacent_nodes[current_node.first].size())
+        if (current_pair.second < this->adjacent_nodes[current_pair.first].size())
         {
             // Get initial index for start of adjacency_list and get the node required by the counter.
             // Received assistance from Dr Martin Nyx Brain, randomly accessing a std::list.
-            std::list<unsigned int>::iterator it = this->adjacent_nodes[current_node.first].begin();
+            std::list<unsigned int>::iterator it = this->adjacent_nodes[current_pair.first].begin();
 
-            for (std::size_t i = 0; i < current_node.second; ++i)
+            for (std::size_t i = 0; i < current_pair.second; ++i)
             {
                 ++it;
             }
