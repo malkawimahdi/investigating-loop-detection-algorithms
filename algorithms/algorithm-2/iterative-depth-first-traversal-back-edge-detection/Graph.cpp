@@ -112,15 +112,40 @@ void Graph::iterativeDepthTraversalSearch(void)
                 ++it;
             }
 
-            int next_node = *it;
+            unsigned int next_node = *it;
 
             // If the next_node has been seen, then there could be a cycle.
             // If the next_node is located then a cycle will form staying within current node.
             if (this->visited[next_node])
             {
                 // Check if the next_node is in the stack. If it is then it is GUARANTEED to be in a cycle.
-                // Required as if there is a control flow graph in the form of a diamond, only a half is viewed.
-                // Dr Martin Nyx Brain suggested this improvement based on the problem above.
+                // Required to incorrectly prevent a cycle being detected as the second half of a CFG in a diamond.
+                // E.g.
+//                         +-----+
+//                         |     |
+//                +--------+  0  +--------+
+//                |        |     |        |
+//                |        +-----+        |
+//                |                       |
+//                v                       v
+//                +--+--+                 +--+--+
+//                |     |                 |     |
+//                |  1  |                 |  3  |
+//                |     |                 |     |
+//                +--+--+                 +--+--+
+//                |                       |
+//                |                       |
+//                |        +-----+        |
+//                |        |     |        |
+//                +------->+  2  +<-------+
+//                         |     |
+//                         +-----+
+
+                // Without it, other half, would generate: 2 is head of { 0, 3 (backedge) } as it is duplicated twice.
+                // even though it is clearly incorrect. Cycle is ensured as node is not removed until all adjacent
+                // nodes for a given node have been traversed, ensuring that what is contained within a
+                // traversed path generating a confirmed cycle.
+                // Dr Martin Nyx Brain explained why the edge case occurred to lead to a solution.
                 if (stackChecker(next_node, this->stack))
                 {
                     cycle = true;
