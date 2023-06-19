@@ -29,7 +29,7 @@ private:
 public:
     explicit Graph(const unsigned int nodes); // Constructor, taking the number of nodes for a graph.
     void addEdge(const unsigned int current_node, const unsigned int adjacent_node); // Add an edge to current graph currentNode -> adjacentNode
-    void iterativeDepthTraversalSearch(void); // Implementation of cycle detection using iterative depth first traversal search.
+    void iterativeDepthFirstTraversalSearch(void); // Implementation of cycle detection using iterative depth first traversal search.
 };
 
 #endif // GRAPH_H
