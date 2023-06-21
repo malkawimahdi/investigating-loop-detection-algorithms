@@ -13,8 +13,8 @@
 #include "Graph.h"
 #include "Utilities.h"
 
-// This constructor is similar to (GeeksForGeeks, 2023) example, specifically the generation of how the digraph is
-// represented as an adjacency list.
+/* This constructor is similar to (GeeksForGeeks, 2023) example, specifically the generation of how the digraph is
+ * represented as an adjacency list. */
 // Constructor takes number of nodes and generates a DLL for each node.
 // Reserves the maximum space that the bitset requires.
 Graph::Graph(const unsigned int nodes)
@@ -26,8 +26,8 @@ Graph::Graph(const unsigned int nodes)
     this->unreachable_node_count = 0;
 }
 
-// This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes
-// to conform to the requirements that a control flow graph requires.
+/* This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes
+ * to conform to the requirements that a control flow graph requires. */
 // Add an edge to current graph in the directed form: currentNode -> adjacentNode.
 void Graph::addEdge(const unsigned int current_node, const unsigned int adjacent_node)
 {
@@ -70,14 +70,14 @@ void Graph::unreachableNodes()
     }
 }
 
-// Implementation of cycle detection using iterative Depth First Search from the entry node to check for cycles
-    // and output nodes contained within cycles.
+/* Implementation of cycle detection using iterative Depth First Search from the entry node to check for cycles
+ * and output nodes contained within cycles. */
 // Ensures that inaccessible nodes (inaccessible code) is not reached.
 // Outputs detected cycles in the same way as CBMC.
 void Graph::iterativeDepthFirstTraversalSearch(void)
 {
-    // Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
-    // node as the start by convention.
+    /* Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
+     * node as the start by convention. */
     for (std::size_t counter = 0; counter < this->nodes; ++counter)
     {
         if (this->adjacent_nodes[counter].size() > 0)
