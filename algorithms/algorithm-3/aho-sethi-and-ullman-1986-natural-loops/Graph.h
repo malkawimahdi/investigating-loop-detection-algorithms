@@ -30,15 +30,27 @@ private:
     std::map <unsigned int, std::set<unsigned int> > back_edges; // Key is the loop head and set contains back edges for each loop head.
 
 private:
-    void computeNaturalLoop(const unsigned int head, const unsigned int tail); // Compute the natural loop within the bound defined by the head and tail.
-    void computeDominators(void); // Generate the set of dominators for each node within the control flow graph.
-    void unreachableNodes(); // Detects unreachable nodes from the entry node.
+    // Compute the natural loop within the bound defined by the head and tail.
+    void computeNaturalLoop(const unsigned int head, const unsigned int tail);
+
+    // Generate the set of dominators for each node within the control flow graph.
+    void computeDominators(void);
+
+    // Detects unreachable nodes from the entry node.
+    void unreachableNodes();
 
 public:
-    explicit Graph(const unsigned int nodes); // Constructor, which takes the number of nodes for a graph.
-    void addEdge(const unsigned int current_node, const unsigned int adjacent_node); // Add an edge to current graph currentNode -> adjacentNode
-    void computeDominatorsOutput(void); // Output the set of dominators for each node within the control flow graph.
-    bool naturalLoops(void); // Computes natural loops within a graph
+    // Constructor, which takes the number of nodes for a graph.
+    explicit Graph(const unsigned int nodes);
+
+    // Add an edge to current graph currentNode -> adjacentNode
+    void addEdge(const unsigned int current_node, const unsigned int adjacent_node);
+
+    // Output the set of dominators for each node within the control flow graph.
+    void computeDominatorsOutput(void);
+
+    // Computes natural loops within a graph
+    bool naturalLoops(void);
 };
 
 #endif // GRAPH_H
