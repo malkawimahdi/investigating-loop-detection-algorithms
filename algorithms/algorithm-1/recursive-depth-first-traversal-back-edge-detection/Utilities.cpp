@@ -5,7 +5,7 @@
 #include "Utilities.h"
 
 // Graph Parser, parsing edges as pairs from 1st->2nd, 3rd->4th ...
-Graph graphParser(const std::string string)
+Graph graphParser(const std::string &string)
 {
     // Take an input graph as a command-line argument
     std::stringstream graph_string_stream(string);

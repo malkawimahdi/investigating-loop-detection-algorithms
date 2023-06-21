@@ -13,8 +13,8 @@
 
 #include "Graph.h"
 
-// This constructor is similar to (GeeksForGeeks, 2023) example, specifically the generation of how the digraph is
-    // represented as an adjacency list.
+/* This constructor is similar to (GeeksForGeeks, 2023) example, specifically the generation of how the digraph is
+ * represented as an adjacency list. */
 // Constructor takes number of nodes and generates a DLL for each node.
 // Reserves the maximum space that the bitset requires.
 Graph::Graph(const unsigned int nodes)
@@ -26,8 +26,8 @@ Graph::Graph(const unsigned int nodes)
     this->unreachable_node_count = 0;
 }
 
-// This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes
-    // to conform to the requirements that a control flow graph requires.
+/* This function is derived from (GeeksForGeeks, 2023) with the difference of limiting the number of adjacent nodes
+ * to conform to the requirements that a control flow graph requires. */
 // Add an edge to current graph in the directed form: currentNode -> adjacentNode.
 void Graph::addEdge(const unsigned int current_node, const unsigned int adjacent_node)
 {
@@ -42,9 +42,9 @@ void Graph::addEdge(const unsigned int current_node, const unsigned int adjacent
     }
 }
 
-// The idea to recursively access each node was derived from (GeeksForGeeks, 2023) example. This function is different
-    // as this function recursively iterates through all nodes accessible from the entry, reviewing each outgoing arc
-        // associated with the current node and checking if the outgoing arc points to a previously visited node.
+/* The idea to recursively access each node was derived from (GeeksForGeeks, 2023) example. This function is different
+ * as this function recursively iterates through all nodes accessible from the entry, reviewing each outgoing arc
+ * associated with the current node and checking if the outgoing arc points to a previously visited node. */
 void Graph::recursiveDepthFirstTraversalCycleDetection(const unsigned int node)
 {
     this->visited[node] = true;
