@@ -18,7 +18,6 @@ private:
     unsigned int nodes; // Number of nodes within graph.
     std::list<unsigned int> *adjacent_nodes; // Pointer to list containing adjacent nodes for all nodes. (Doubly Linked List)
     std::vector<bool> visited; // Vector bitset checking if a node has been visited.
-    std::stack<std::pair<unsigned int, unsigned int> > stack; // Stack for iterative Depth First Search.
     unsigned int entry_node;
     unsigned int cycle_count;
     unsigned int unreachable_node_count;

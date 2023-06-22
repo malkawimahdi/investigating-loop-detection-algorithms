@@ -76,6 +76,9 @@ void Graph::unreachableNodes()
 // Outputs detected cycles in the same way as CBMC.
 void Graph::iterativeDepthFirstTraversalSearch(void)
 {
+    // Stack for iterative Depth First Search.
+    std::stack<std::pair<unsigned int, unsigned int> > stack;
+
     /* Locates the entry node in the graph, which should typically be the first node in the graph that has an adjacent
      * node as the start by convention. */
     for (std::size_t counter = 0; counter < this->nodes; ++counter)
@@ -85,7 +88,7 @@ void Graph::iterativeDepthFirstTraversalSearch(void)
             this->entry_node = counter;
 
             // Each node is viewed as a pair in the form of std::pair<node, index>
-            this->stack.push(std::make_pair(counter, 0));
+            stack.push(std::make_pair(counter, 0));
             break;
         }
     }
@@ -93,10 +96,10 @@ void Graph::iterativeDepthFirstTraversalSearch(void)
     bool cycle = false;
 
     // Iterative Depth First Search.
-    while (!this->stack.empty())
+    while (!stack.empty())
     {
         // Get the top most node and visit it.
-        std::pair<unsigned int, unsigned int> current_pair = this->stack.top();
+        std::pair<unsigned int, unsigned int> current_pair = stack.top();
 
         this->visited[(current_pair.first)] = true;
 
@@ -146,24 +149,24 @@ void Graph::iterativeDepthFirstTraversalSearch(void)
                 // nodes for a given node have been traversed, ensuring that what is contained within a
                 // traversed path generating a confirmed cycle.
                 // Dr Martin Nyx Brain explained why the edge case occurred to lead to a solution.
-                if (stackChecker(next_node, this->stack))
+                if (stackChecker(next_node, stack))
                 {
                     cycle = true;
 
                     ++this->cycle_count;
 
                     // Generates output which contains nodes in the cycle specifically in the same format as CBMC.
-                    cbmcCycleOutput(next_node, this->stack);
+                    cbmcCycleOutput(next_node, stack);
                 }
             }
 
             // Iterate the index for the current node.
-            ++this->stack.top().second;
+            ++stack.top().second;
 
             // If it is a cycle, then next_node is NOT placed on the stack as it will be an infinite loop.
             if (!cycle)
             {
-                this->stack.push(std::make_pair(next_node, 0));
+                stack.push(std::make_pair(next_node, 0));
             }
 
             // Reset cycle
@@ -173,7 +176,7 @@ void Graph::iterativeDepthFirstTraversalSearch(void)
         {
             // Remove node after it has been accessed and all elements in adjacency_list[node]
             // have been placed on the stack.
-            this->stack.pop();
+            stack.pop();
             continue;
         }
     }
