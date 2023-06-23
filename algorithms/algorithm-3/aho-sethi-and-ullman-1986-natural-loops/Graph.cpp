@@ -243,6 +243,7 @@ bool Graph::naturalLoops(void)
                         first_cycle = false;
                     }
 
+                    // If the head dominates the tail, the cycle detected conforms to the natural loop requirements.
                     if (isElementContained(next_node, this->dominators[current_pair.first]))
                     {
                         // Required as cycle is reset after each iteration, this is used for the function output.
