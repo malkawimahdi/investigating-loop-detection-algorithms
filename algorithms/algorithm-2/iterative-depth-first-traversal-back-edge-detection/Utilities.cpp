@@ -83,38 +83,3 @@ bool stackChecker(const unsigned int target, std::stack<std::pair<unsigned int, 
 
     return false;
 }
-
-// Generates output which contains nodes in the cycle specifically in the same format as CBMC.
-void cbmcCycleOutput(const unsigned int next_node, std::stack<std::pair<unsigned int, unsigned int> > stack)
-{
-    std::cout << next_node << " is head of { ";
-
-    std::vector<unsigned int> vector;
-
-    while (!stack.empty())
-    {
-        unsigned int node_copy = stack.top().first;
-
-        if (node_copy == next_node)
-        {
-            vector.push_back(node_copy);
-            break;
-        }
-        vector.push_back(node_copy);
-        stack.pop();
-    }
-
-    std::reverse(vector.begin(), vector.end());
-
-    for (std::size_t counter = 0; counter < vector.size(); ++counter)
-    {
-        if (counter == vector.size() - 1)
-        {
-            std::cout << vector.back() << " (backedge) }" << std::endl;
-        }
-        else
-        {
-            std::cout << vector[counter] << ", ";
-        }
-    }
-}

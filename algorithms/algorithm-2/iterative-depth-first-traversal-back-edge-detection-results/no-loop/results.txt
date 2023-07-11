@@ -1,6 +1,6 @@
+No Cycle(s) Detected!
 Unreachable Node(s): 29
 Unreachable Node(s) Count: 1
-No Cycle(s) Detected!
 	Command being timed: "./a.out 19,20,20,21,21,22,22,27,27,28,28,23,23,24,24,25,25,26,26,30"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
@@ -10,12 +10,12 @@ No Cycle(s) Detected!
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 1120
+	Maximum resident set size (kbytes): 1136
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 183
+	Minor (reclaiming a frame) page faults: 184
 	Voluntary context switches: 0
-	Involuntary context switches: 4
+	Involuntary context switches: 2
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0

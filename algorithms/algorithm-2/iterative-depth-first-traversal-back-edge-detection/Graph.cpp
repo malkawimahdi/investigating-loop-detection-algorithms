@@ -43,7 +43,7 @@ void Graph::addEdge(const unsigned int current_node, const unsigned int adjacent
 }
 
 // Detect unreachable nodes from the entry node.
-void Graph::unreachableNodes()
+void Graph::unreachableNodes(void)
 {
     for (std::size_t counter = entry_node; counter < this->visited.size(); ++counter)
     {
@@ -67,6 +67,10 @@ void Graph::unreachableNodes()
     {
         std::cout << std::endl;
         std::cout << "Unreachable Node(s) Count: " << this->unreachable_node_count << std::endl;
+    }
+    else
+    {
+        std::cout << "All Node(s) Reachable!" << std::endl;
     }
 }
 
@@ -181,8 +185,6 @@ void Graph::iterativeDepthFirstTraversalSearch(void)
         }
     }
 
-    this->unreachableNodes();
-
     if (this->cycle_count > 0)
     {
         std::cout << "Cycle(s): " << this->cycle_count << std::endl;
@@ -190,5 +192,42 @@ void Graph::iterativeDepthFirstTraversalSearch(void)
     else
     {
         std::cout << "No Cycle(s) Detected!" << std::endl;
+    }
+
+    this->unreachableNodes();
+}
+
+// Generates output which contains nodes in the cycle specifically in the same format as CBMC.
+void Graph::cbmcCycleOutput(const unsigned int next_node, std::stack<std::pair<unsigned int, unsigned int> > stack)
+{
+    std::cout << next_node << " is head of { ";
+
+    std::vector<unsigned int> vector;
+
+    while (!stack.empty())
+    {
+        unsigned int node_copy = stack.top().first;
+
+        if (node_copy == next_node)
+        {
+            vector.push_back(node_copy);
+            break;
+        }
+        vector.push_back(node_copy);
+        stack.pop();
+    }
+
+    std::reverse(vector.begin(), vector.end());
+
+    for (std::size_t counter = 0; counter < vector.size(); ++counter)
+    {
+        if (counter == vector.size() - 1)
+        {
+            std::cout << vector.back() << " (backedge) }" << std::endl;
+        }
+        else
+        {
+            std::cout << vector[counter] << ", ";
+        }
     }
 }

@@ -16,7 +16,4 @@ Graph graphParser(const std::string &string);
 // If it is found in the stack return true, else return false.
 bool stackChecker(const unsigned int target, std::stack<std::pair<unsigned int, unsigned int> > stack);
 
-// Generates output which contains nodes in the cycle specifically in the same format as CBMC.
-void cbmcCycleOutput(const unsigned int next_node, std::stack<std::pair<unsigned int, unsigned int> > stack);
-
 #endif // UTILITIES_H

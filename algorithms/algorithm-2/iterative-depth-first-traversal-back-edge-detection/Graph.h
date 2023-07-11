@@ -23,7 +23,7 @@ private:
     unsigned int unreachable_node_count;
 
 private:
-    void unreachableNodes();
+    void unreachableNodes(void);
 
 public:
     // Constructor, taking the number of nodes for a graph.
@@ -34,6 +34,9 @@ public:
 
     // Implementation of cycle detection using iterative depth first traversal search.
     void iterativeDepthFirstTraversalSearch(void);
+
+    // Generates output which contains nodes in the cycle specifically in the same format as CBMC.
+    void cbmcCycleOutput(const unsigned int next_node, std::stack<std::pair<unsigned int, unsigned int> > stack);
 };
 
 #endif // GRAPH_H
