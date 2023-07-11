@@ -22,7 +22,6 @@ private:
     std::list<unsigned int> *backwards_predecessors; // Pointer to list containing adjacent nodes in reverse for all nodes. (Children point to parent instead)
     std::vector<bool> visited; // Vector bitset checking if a node has been visited.
     unsigned int entry_node;
-    bool is_there_a_cycle;
     unsigned int cycle_count;
     unsigned int unreachable_node_count;
     std::map <unsigned int, std::set<unsigned int> > dominators; // For each node, contains the set of the dominators for a given node.
@@ -30,14 +29,17 @@ private:
     std::map <unsigned int, std::set<unsigned int> > back_edges; // Key is the loop head and set contains back edges for each loop head.
 
 private:
-    // Compute the natural loop within the bound defined by the head and tail.
-    void computeNaturalLoop(const unsigned int head, const unsigned int tail);
+    // Compute the natural loop within the bound defined by the head and back_edge.
+    void computeNaturalLoop(const unsigned int head, const unsigned int back_edge);
 
     // Generate the set of dominators for each node within the control flow graph.
     void computeDominators(void);
 
     // Detects unreachable nodes from the entry node.
-    void unreachableNodes();
+    void unreachableNodes(void);
+
+    // Generates output which contains nodes in the cycle specifically in the same format as CBMC.
+    void cbmcCycleOutput(std::map<unsigned int, std::set<unsigned int> > &cycle_nodes, std::map <unsigned int, std::set<unsigned int> > &back_edges);
 
 public:
     // Constructor, which takes the number of nodes for a graph.
@@ -46,11 +48,11 @@ public:
     // Add an edge to current graph currentNode -> adjacentNode
     void addEdge(const unsigned int current_node, const unsigned int adjacent_node);
 
+    // Computes natural loops within a graph
+    void naturalLoops(void);
+
     // Output the set of dominators for each node within the control flow graph.
     void computeDominatorsOutput(void);
-
-    // Computes natural loops within a graph
-    bool naturalLoops(void);
 };
 
 #endif // GRAPH_H

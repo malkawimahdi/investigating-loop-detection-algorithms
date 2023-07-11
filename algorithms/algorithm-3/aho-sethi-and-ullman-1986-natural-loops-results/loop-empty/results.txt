@@ -1,5 +1,6 @@
 20 is head of { 20 (backedge) }
 Cycle(s): 1
+All Node(s) Reachable!
 	Command being timed: "./a.out 20,20"
 	User time (seconds): 0.00
 	System time (seconds): 0.00

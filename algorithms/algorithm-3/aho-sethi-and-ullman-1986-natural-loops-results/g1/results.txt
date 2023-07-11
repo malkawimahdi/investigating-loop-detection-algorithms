@@ -1,10 +1,11 @@
 8 is head of { 8 (backedge) }
 Cycle(s): 1
+All Node(s) Reachable!
 	Command being timed: "./a.out 0,1,1,2,2,3,3,4,3,11,4,5,5,6,6,7,7,8,8,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
-	Percent of CPU this job got: 1%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.20
+	Percent of CPU this job got: 0%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.05
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -12,9 +13,9 @@ Cycle(s): 1
 	Maximum resident set size (kbytes): 1168
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 189
+	Minor (reclaiming a frame) page faults: 186
 	Voluntary context switches: 0
-	Involuntary context switches: 7
+	Involuntary context switches: 3
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0

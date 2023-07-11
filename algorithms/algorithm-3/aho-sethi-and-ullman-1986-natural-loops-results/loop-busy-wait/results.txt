@@ -1,5 +1,6 @@
 14 is head of { 14, 15, 16 (backedge) }
 Cycle(s): 1
+All Node(s) Reachable!
 	Command being timed: "./a.out 14,15,15,16,16,14,14,17,17,18,18,19"
 	User time (seconds): 0.00
 	System time (seconds): 0.00

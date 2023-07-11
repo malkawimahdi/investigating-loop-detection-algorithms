@@ -80,34 +80,6 @@ bool stackChecker(const unsigned int &target, std::stack<std::pair<unsigned int,
     return false;
 }
 
-// Generates output which contains nodes in the cycle specifically in the same format as CBMC.
-void cbmcCycleOutput(std::map<unsigned int, std::set<unsigned int> > &cycle_nodes, std::map <unsigned int, std::set<unsigned int> > &back_edges)
-{
-    for (std::map<unsigned int, std::set<unsigned int> >::iterator it = cycle_nodes.begin();
-    it != cycle_nodes.end(); ++it)
-    {
-        std::cout << it->first << " is head of { ";
-
-        for(std::set<unsigned int>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2)
-        {
-            if (it2 != it->second.begin())
-            {
-                std::cout << ", ";
-            }
-
-            if(isElementContained(*it2, back_edges[it->first]))
-            {
-                std::cout << *it2 << " (backedge)";
-            }
-            else
-            {
-                std::cout << *it2;
-            }
-        }
-        std::cout << " }" << std::endl;
-    }
-}
-
 // Checks if an element is contained within a set.
 bool isElementContained(const unsigned int &parameter, const std::set<unsigned int> &set)
 {

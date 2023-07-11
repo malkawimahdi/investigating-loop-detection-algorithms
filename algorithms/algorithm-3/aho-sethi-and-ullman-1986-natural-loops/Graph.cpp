@@ -24,7 +24,6 @@ Graph::Graph(const unsigned int nodes)
     this->backwards_predecessors = new std::list<unsigned int>[nodes];
     this->visited.resize(this->nodes);
     this->entry_node = 0;
-    this->is_there_a_cycle = false;
     this->cycle_count = 0;
     this->unreachable_node_count = 0;
 }
@@ -128,34 +127,6 @@ void Graph::computeDominators(void)
     }
 }
 
-// Detects unreachable nodes from the entry node.
-void Graph::unreachableNodes()
-{
-    for (std::size_t counter = this->entry_node; counter < this->visited.size(); ++counter)
-    {
-        if (!visited[counter])
-        {
-            if (this->unreachable_node_count == 0)
-            {
-                std::cout << "Unreachable Node(s): ";
-                std::cout << counter;
-                ++this->unreachable_node_count;
-            }
-            else
-            {
-                std::cout << ", " << counter;
-                ++this->unreachable_node_count;
-            }
-        }
-    }
-
-    if (this->unreachable_node_count > 0)
-    {
-        std::cout << std::endl;
-        std::cout << "Unreachable Node(s) Count: " << this->unreachable_node_count << std::endl;
-    }
-}
-
 /* Computes natural loops within a graph:
 Based on (Aho et al. 2006) Compilers: Principles, Techniques, and Tools (2nd Edition)
 
@@ -173,7 +144,7 @@ Based on (Aho et al. 2006) Compilers: Principles, Techniques, and Tools (2nd Edi
  * and output nodes contained within cycles. */
 // Ensures that inaccessible nodes (inaccessible code) is not reached.
 // Outputs detected cycles in the same way as CBMC.
-bool Graph::naturalLoops(void)
+void Graph::naturalLoops(void)
 {
     bool cycle = false;
     bool first_cycle = true;
@@ -246,11 +217,6 @@ bool Graph::naturalLoops(void)
                     // If the head dominates the tail, the cycle detected conforms to the natural loop requirements.
                     if (isElementContained(next_node, this->dominators[current_pair.first]))
                     {
-                        // Required as cycle is reset after each iteration, this is used for the function output.
-                        this->is_there_a_cycle = true;
-
-                        ++this->cycle_count;
-
                         // Generates output which contains nodes in the cycle specifically in the same format as CBMC.
                         computeNaturalLoop(next_node, current_pair.first);
                     }
@@ -277,20 +243,9 @@ bool Graph::naturalLoops(void)
         }
     }
 
-    cbmcCycleOutput(this->natural_loops, this->back_edges);
+    this->cbmcCycleOutput(this->natural_loops, this->back_edges);
     
     this->unreachableNodes();
-
-    if (this->cycle_count > 0)
-    {
-        std::cout << "Cycle(s): " << this->cycle_count << std::endl;
-    }
-    else
-    {
-        std::cout << "No Cycle(s) Detected!" << std::endl;
-    }
-
-    return this->is_there_a_cycle;
 }
 
 /* Computes the natural loop from a natural loop boundary such that all nodes from the back edge UP TO the
@@ -298,20 +253,20 @@ bool Graph::naturalLoops(void)
  * traverse outside the natural loop region. */
 // (Aho et al. 2006) notes that if multiple loops have the same header, then they are treated as a single cycle.
 // Nodes within cycle are detected from cyclic node and up to the head.
-void Graph::computeNaturalLoop(const unsigned int head, const unsigned int tail)
+void Graph::computeNaturalLoop(const unsigned int head, const unsigned int back_edge)
 {
     std::stack<unsigned int> stack;
 
     this->natural_loops[head].insert(head);
-    this->natural_loops[head].insert(tail);
+    this->natural_loops[head].insert(back_edge);
 
-    this->back_edges[head].insert(tail);
+    this->back_edges[head].insert(back_edge);
     
-    // If the head and tail are different then, we need to traverse from the back edge upwards.
+    // If the head and back edge are different then, we need to traverse from the back edge upwards.
     // Otherwise, if they are the same we have finished.
-    if (head != tail)
+    if (head != back_edge)
     {
-        stack.push(tail);
+        stack.push(back_edge);
     }
 
     while (!stack.empty())
@@ -323,11 +278,11 @@ void Graph::computeNaturalLoop(const unsigned int head, const unsigned int tail)
              it != this->backwards_predecessors[current].end(); ++it)
         {
             /* If the node being looked at is not in the set of current nodes and the node lies bounded between the
-             * head and tail and for the set of dominators in the current node, the head is contained, then
+             * head and back edge and for the set of dominators in the current node, the head is contained, then
              * add it to the set of instructions for the current loop head and add it to the stack, so it can
              * be traversed iteratively next. */
             if (!isElementContained(*it, this->natural_loops[head])
-            && (head < *it) && (*it < tail)
+            && (head < *it) && (*it < back_edge)
             && isElementContained(head, this->dominators[*it]))
             {
                 this->natural_loops[head].insert(*it);
@@ -337,9 +292,84 @@ void Graph::computeNaturalLoop(const unsigned int head, const unsigned int tail)
     }
 }
 
-// Generate the set of dominators for each node within the control flow graph.
+// Generates output which contains nodes in the cycle specifically in the same format as CBMC.
+void Graph::cbmcCycleOutput(std::map<unsigned int, std::set<unsigned int> > &cycle_nodes, std::map <unsigned int, std::set<unsigned int> > &back_edges)
+{
+    unsigned int cycle_count = 0;
+
+    for (std::map<unsigned int, std::set<unsigned int> >::iterator it = cycle_nodes.begin();
+         it != cycle_nodes.end(); ++it)
+    {
+        ++this->cycle_count;
+
+        std::cout << it->first << " is head of { ";
+
+        for(std::set<unsigned int>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2)
+        {
+            if (it2 != it->second.begin())
+            {
+                std::cout << ", ";
+            }
+
+            if(isElementContained(*it2, back_edges[it->first]))
+            {
+                std::cout << *it2 << " (backedge)";
+            }
+            else
+            {
+                std::cout << *it2;
+            }
+        }
+        std::cout << " }" << std::endl;
+    }
+
+    if (this->cycle_count > 0)
+    {
+        std::cout << "Cycle(s): " << this->cycle_count << std::endl;
+    }
+    else
+    {
+        std::cout << "No Cycle(s) Detected!" << std::endl;
+    }
+}
+
+// Detects unreachable nodes from the entry node.
+void Graph::unreachableNodes(void)
+{
+    for (std::size_t counter = this->entry_node; counter < this->visited.size(); ++counter)
+    {
+        if (!visited[counter])
+        {
+            if (this->unreachable_node_count == 0)
+            {
+                std::cout << "Unreachable Node(s): ";
+                std::cout << counter;
+                ++this->unreachable_node_count;
+            }
+            else
+            {
+                std::cout << ", " << counter;
+                ++this->unreachable_node_count;
+            }
+        }
+    }
+
+    if (this->unreachable_node_count > 0)
+    {
+        std::cout << std::endl;
+        std::cout << "Unreachable Node(s) Count: " << this->unreachable_node_count << std::endl;
+    }
+    else
+    {
+        std::cout << "All Node(s) Reachable!" << std::endl;
+    }
+}
+
+// Generate the set of dominators for each node within the control flow graph for debugging.
 void Graph::computeDominatorsOutput(void)
 {
+    this->computeDominators();
+
     std::cout << "First Node: " << this->entry_node << std::endl;
 
     std::cout << std::endl;
