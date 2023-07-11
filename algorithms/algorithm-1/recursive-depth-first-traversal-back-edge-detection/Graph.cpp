@@ -66,7 +66,7 @@ void Graph::recursiveDepthFirstTraversalCycleDetection(const unsigned int node)
     }
 }
 
-void Graph::unreachableNodes()
+void Graph::unreachableNodes(void)
 {
     for (std::size_t counter = this->entry_node; counter < this->visited.size(); ++counter)
     {
@@ -91,9 +91,13 @@ void Graph::unreachableNodes()
         std::cout << std::endl;
         std::cout << "Unreachable Node(s) Count: " << this->unreachable_node_count << std::endl;
     }
+    else
+    {
+        std::cout << "All Node(s) Reachable!" << std::endl;
+    }
 }
 
-void Graph::recursiveDepthFirstTraversalCycleDetectionInitialisation()
+void Graph::recursiveDepthFirstTraversalCycleDetectionInitialisation(void)
 {
     for (std::size_t counter = 0; counter < this->nodes; ++counter)
     {
@@ -106,8 +110,6 @@ void Graph::recursiveDepthFirstTraversalCycleDetectionInitialisation()
 
     this->recursiveDepthFirstTraversalCycleDetection(this->entry_node);
 
-    this->unreachableNodes();
-
     if (this->cycle_count)
     {
         std::cout << "Cycle(s): " << this->cycle_count << std::endl;
@@ -116,4 +118,6 @@ void Graph::recursiveDepthFirstTraversalCycleDetectionInitialisation()
     {
         std::cout << "No Cycle(s) Detected!" << std::endl;
     }
+
+    this->unreachableNodes();
 }

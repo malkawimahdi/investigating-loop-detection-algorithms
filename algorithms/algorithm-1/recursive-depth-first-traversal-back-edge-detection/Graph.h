@@ -23,7 +23,7 @@ private:
 
 private:
     // Detect unreached nodes within Graph after performing cycle detection.
-    void unreachableNodes();
+    void unreachableNodes(void);
 
     // Implementation of Depth First Search (DFS) to recursively detect cycles from a given node.
     void recursiveDepthFirstTraversalCycleDetection(const unsigned int node);
