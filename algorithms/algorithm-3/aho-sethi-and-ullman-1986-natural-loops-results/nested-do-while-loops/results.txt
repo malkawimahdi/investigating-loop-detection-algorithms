@@ -11,10 +11,10 @@ All Node(s) Reachable!
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 1264
+	Maximum resident set size (kbytes): 1184
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 195
+	Minor (reclaiming a frame) page faults: 190
 	Voluntary context switches: 0
 	Involuntary context switches: 4
 	Swaps: 0

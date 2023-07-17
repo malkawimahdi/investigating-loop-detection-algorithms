@@ -12,7 +12,7 @@ All Node(s) Reachable!
 	Maximum resident set size (kbytes): 1184
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 190
+	Minor (reclaiming a frame) page faults: 187
 	Voluntary context switches: 0
 	Involuntary context switches: 3
 	Swaps: 0

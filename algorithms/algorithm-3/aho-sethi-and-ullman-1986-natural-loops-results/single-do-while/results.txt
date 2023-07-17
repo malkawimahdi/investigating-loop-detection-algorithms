@@ -1,0 +1,3 @@
+2 is head of { 2, 3 (backedge) }
+Cycle(s): 1
+All Node(s) Reachable!
