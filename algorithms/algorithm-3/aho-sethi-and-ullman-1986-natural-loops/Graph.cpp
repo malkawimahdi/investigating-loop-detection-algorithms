@@ -258,7 +258,6 @@ void Graph::computeNaturalLoop(const unsigned int head, const unsigned int back_
     std::stack<unsigned int> stack;
 
     this->natural_loops[head].insert(head);
-    this->natural_loops[head].insert(back_edge);
 
     this->back_edges[head].insert(back_edge);
     
@@ -268,6 +267,9 @@ void Graph::computeNaturalLoop(const unsigned int head, const unsigned int back_
     {
         stack.push(back_edge);
     }
+
+    // Only insert if the cycle is not self referencing, to save on an insertion.
+    this->natural_loops[head].insert(back_edge);
 
     while (!stack.empty())
     {
