@@ -50,12 +50,6 @@ case "$OSTYPE" in
   *)        echo "unknown: $OSTYPE";;
 esac
 
-if [! command -v gtime &> /dev/null ] || [! command -v /usr/bin/time &> /dev/null];
-then
-  echo "Error: GNU Time is not locatable/installed." >&2
-  exit
-fi
-
 # Generate outputs for lexical and natural loops if applicable.
 if [ $lexical_flag ]; then
   $time -v goto-instrument --show-lexical-loops $file2.goto 2>&1 | tee $file-lexical-loops-results.txt     

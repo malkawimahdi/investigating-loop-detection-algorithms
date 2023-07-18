@@ -17,12 +17,6 @@ case "$OSTYPE" in
   *)        echo "unknown: $OSTYPE";;
 esac
 
-if [! command -v gtime &> /dev/null ] || [! command -v /usr/bin/time &> /dev/null];
-then
-  echo "Error: GNU Time is not locatable/installed." >&2
-  exit
-fi
-
 mkdir do-while-loop
 mkdir duffs-device
 mkdir for-loop
