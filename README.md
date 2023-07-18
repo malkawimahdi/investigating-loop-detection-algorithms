@@ -12,6 +12,8 @@ A **UNIX** derivative, preferably Debian/Ubuntu, MacOS, is required to compile e
 
 [Graphviz](https://graphviz.org/download/) to generate a CFG visualizing the (\*c) program used by shell scripts.
 
+[GNU Time](https://ftp.gnu.org/gnu/time/) | [GNU Time Mac](https://formulae.brew.sh/formula/gnu-time) to include measurement of program runtime, CPU and RAM resource usage.
+
 
 ## Algorithms
 Within each algorithms folder, there are two sub-folders for each generated algorithm. One folder contains the source code for the edge detection algorithm, whilst the other contains the results generated using the algorithm for each test case under a folder given by the same name and hyphen results, containing results.
