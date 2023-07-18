@@ -15,7 +15,7 @@ All Node(s) Reachable!
 	Major (requiring I/O) page faults: 1
 	Minor (reclaiming a frame) page faults: 184
 	Voluntary context switches: 0
-	Involuntary context switches: 4
+	Involuntary context switches: 3
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
