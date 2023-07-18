@@ -49,7 +49,7 @@ chmod +x ./{SCRIPTNAME}.sh
 ./{SCRIPTNAME}.sh
 ```
 
-"cbmc-algorithms-test-generation.sh" generates the results for both CBMC algorithms. This script contains five arguments, whereby one is mandatory.
+"cbmc-algorithms-test-generation.sh" generates the results for both CBMC algorithms. This script contains five arguments, whereby one is mandatory:
 
 ```
 -f is the input (*.c) program file given as input to the script (REQUIRED)
