@@ -27,6 +27,7 @@ do
     esac
 done 
 
+
 # Remove .c from filename.
 file2=${file/.c/}
 
@@ -48,6 +49,12 @@ case "$OSTYPE" in
   linux*)   time="/usr/bin/time";;
   *)        echo "unknown: $OSTYPE";;
 esac
+
+# If GNU Time is not installed exit and output to stderr.
+if ! [ "$(command -v gtime)" ] || [ "$(command -v time)"]; then
+  echo "Error: GNU Time is not locatable/installed." >&2
+  exit 1
+fi
 
 # Generate outputs for lexical and natural loops if applicable.
 if [ $lexical_flag ]; then
