@@ -34,7 +34,23 @@ Every folder contains a truncated (*.svg) file referenced by the test case name,
 Deprecated contains either incorrect or updated results and code that is ultimately non-functioning.
  
 ## Nix OS Configurations
-Contains the exact Nix files to generate the exact system used to generate test results for generated algorithms.
+Contains the exact Nix files to generate the exact system used to generate test results for generated algorithms. Configuration files on a Nix system are located at:
+
+```etc/nixos/configuration.nix```
+
+To ensure the reproducibility of the testing environment, the configuration file can be shared and executed by users to replicate this environment. To utilise the configuration file employed by this project, first clone this project.
+
+```https://github.com/malkawimahdi/investigating-loop-detection-algorithms.git```
+
+After cloning the project, use a text editor to copy the downloaded configuration and overwrite the previous configuration.
+
+After a modification to the configuration file, the command:
+
+```sudo nixos-rebuild switch``` will rebuild the system to the contents of the updated configuration file.
+
+To delete older configuration files, the command below is used, to delete all other configurations other than the current configuration:
+
+```sudo nix-env -p /nix/var/nix/profiles/system --delete-generations old```
 
 ## Shell Scripts
 It contains shell scripts to generate results for all algorithms compared.
