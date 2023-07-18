@@ -2,7 +2,7 @@
 
 
 ## Prerequisites
-A **UNIX** derivative, preferably Debian/Ubuntu, MacOS, is required to compile each algorithm and generate similar results.
+A **UNIX** derivative, preferably Debian/Ubuntu or MacOS, is required to compile each algorithm and generate similar results.
 
 [Bash v5.1.16(1)+](https://www.gnu.org/software/bash/) to run shell-scripts
 
