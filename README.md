@@ -4,15 +4,15 @@
 ## Prerequisites
 A **UNIX** derivative, preferably Debian/Ubuntu, MacOS, is required to compile each algorithm and generate similar results.
 
-[Bash](https://www.gnu.org/software/bash/) to run shell-scripts
+[Bash v5.1.16(1)+](https://www.gnu.org/software/bash/) to run shell-scripts
 
-[GCC](https://gcc.gnu.org/install/binaries.html) to use G++ as a C++ Compiler to compile algorithms 1 to 3. Please ensure the version installed is compatible with C++ 17.
+[GCC v13.1.1+](https://gcc.gnu.org/install/binaries.html) to use G++ as a C++ Compiler to compile algorithms 1 to 3. Please ensure the version installed is compatible with C++ 17.
 
-[CBMC](https://github.com/diffblue/cbmc/releases) to generate Lexical and Natural Loops results.
+[CBMC v5.77.0+](https://github.com/diffblue/cbmc/releases) to generate Lexical and Natural Loops results.
 
-[Graphviz](https://graphviz.org/download/) to generate a CFG visualizing the (\*c) program used by shell scripts.
+[Graphviz v2.40.1+](https://graphviz.org/download/) to generate a CFG visualizing the (\*c) program used by shell scripts.
 
-[GNU Time](https://ftp.gnu.org/gnu/time/) | [GNU Time Mac](https://formulae.brew.sh/formula/gnu-time) to include measurement of program runtime, CPU and RAM resource usage.
+[GNU Time v1.9](https://ftp.gnu.org/gnu/time/) | [GNU Time Mac v1.9](https://formulae.brew.sh/formula/gnu-time) to include measurement of program runtime, CPU and RAM resource usage.
 
 
 ## Algorithms
@@ -39,24 +39,24 @@ Deprecated contains:
  - NixOS configuration files after determining that runtime analysis is negligible due to the size of the input CFGs.
 
 ## Shell Scripts
-It contains shell scripts to generate results for all algorithms compared.
+Contains shell scripts to generate results for all algorithms compared.
 
-To enable execution and run these scripts:
+"developed-algorithms-test-generation.sh" generates results for algorithms 1 to 3. This algorithm requires that it be imported into the source code's location to operate. It is located in a separate directory to avoid duplicating the script unnecessarily. This script does not take any arguments.
 
+Or transfer the script to a (*.c) program and run the commands above.
+
+"cbmc-algorithms-test-generation.sh" generates the results for both CBMC algorithms requiring an input (*.c) program to operate. This script contains five arguments:
+```
+-f is the input (*.c) program file given as input to the script (REQUIRED)
+-l generates results for lexical_loops.h (Optional)
+-n generates results for natural_loops.h (Optional)
+-s generates a CFG from the input program returning an (*.svg) (Optional)
+-h show all options (Optional)
+```
+
+To enable execution and run these scripts after transferring to the appropriate location run:
 ```
 chmod +x ./{SCRIPTNAME}.sh
 
 ./{SCRIPTNAME}.sh
 ```
-
-"cbmc-algorithms-test-generation.sh" generates the results for both CBMC algorithms. This script contains five arguments, whereby one is mandatory:
-
-```
--f is the input (*.c) program file given as input to the script (REQUIRED)
--l generates results for lexical_loops.h (Optional)
--n generates results for natural_loops.h (Optional)
--s generates a CFG from the input program returning an *.svg (Optional)
--h show all options (Optional)
-```
-
-"developed-algorithms-test-generation.sh" generates results for algorithms 1 to 3. This algorithm requires that it be imported into the source code's location to operate. It is located in a separate directory to avoid duplicating the script unnecessarily. This script does not take any arguments.
