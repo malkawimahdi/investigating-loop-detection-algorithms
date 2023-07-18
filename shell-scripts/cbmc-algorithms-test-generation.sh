@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # Check if cbmc is installed and if not output to stderr.
-if ! [ -x "$(command -v cbmc)" ]; then
-  echo "Error: cbmc is not locatable/installed." >&2
-  exit 1
+if ! command -v cbmc &> /dev/null
+then
+    echo "Error: CBMC is not locatable/installed." >&2
+    exit
 fi
 
 # -f is the file (REQUIRED)
@@ -27,7 +28,6 @@ do
     esac
 done 
 
-
 # Remove .c from filename.
 file2=${file/.c/}
 
@@ -50,10 +50,14 @@ case "$OSTYPE" in
   *)        echo "unknown: $OSTYPE";;
 esac
 
-# If GNU Time is not installed exit and output to stderr.
-if ! [ "$(command -v gtime)" ] || [ "$(command -v time)"]; then
-  echo "Error: GNU Time is not locatable/installed." >&2
-  exit 1
+if ! command -v gtime &> /dev/null
+then
+    if ! command -v /usr/bin/time &> /dev/null
+    then
+      echo "Error: GNU Time is not locatable/installed." >&2
+      exit
+      fi
+    exit
 fi
 
 # Generate outputs for lexical and natural loops if applicable.

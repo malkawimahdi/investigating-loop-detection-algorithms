@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # Check if g++ is installed and if not output to stderr.
-if ! [ -x "$(command -v g++)" ]; then
-  echo "Error: g++ is not locatable/installed." >&2
-  exit 1
+if ! command -v cbmc &> /dev/null
+then
+    echo "Error: CBMC is not locatable/installed." >&2
+    exit
 fi
 
 g++ main.cpp Utilities.h Graph.h Utilities.cpp Graph.cpp -O2 -w
@@ -12,14 +13,18 @@ g++ main.cpp Utilities.h Graph.h Utilities.cpp Graph.cpp -O2 -w
 # MacOS requires homebrew to use GNU time which is "gtime", whilst linux mostly uses whats below.
 case "$OSTYPE" in
   darwin*)  time="gtime";; 
-  linux*)   time="/usr/bin/time";;
+  linux*)   time="";;
   *)        echo "unknown: $OSTYPE";;
 esac
 
-# If GNU Time is not installed exit and output to stderr.
-if ! [ "$(command -v gtime)" ] || [ "$(command -v time)"]; then
-  echo "Error: GNU Time is not locatable/installed." >&2
-  exit 1
+if ! command -v gtime &> /dev/null
+then
+    if ! command -v /usr/bin/time &> /dev/null
+    then
+      echo "Error: GNU Time is not locatable/installed." >&2
+      exit
+      fi
+    exit
 fi
 
 mkdir do-while-loop
