@@ -42,7 +42,7 @@ Deprecated contains:
  - NixOS configuration files after determining that runtime analysis is negligible due to the size of the input CFGs.
 
 ## Shell Scripts
-It contains shell scripts to generate results for all algorithms compared.
+Contains shell scripts to generate results for all algorithms compared.
 
 To enable execution and run these scripts, firstly transfer the script to algorithm 1 to 3's source code and run:
 
