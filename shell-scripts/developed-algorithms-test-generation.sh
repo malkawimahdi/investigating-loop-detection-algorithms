@@ -10,21 +10,17 @@ fi
 g++ main.cpp Utilities.h Graph.h Utilities.cpp Graph.cpp -O2 -w
 
 # Check OS and run different time commands.
-# MacOS requires homebrew to use GNU time which is "gtime", whilst linux mostly uses whats below.
+# MacOS requires homebrew to use GNU time which is "gtime", whilst linux distros mostly uses whats below.
 case "$OSTYPE" in
   darwin*)  time="gtime";; 
   linux*)   time="/usr/bin/time";;
   *)        echo "unknown: $OSTYPE";;
 esac
 
-if ! command -v gtime &> /dev/null
+if [! command -v gtime &> /dev/null ] || [! command -v /usr/bin/time &> /dev/null];
 then
-    if ! command -v /usr/bin/time &> /dev/null
-    then
-      echo "Error: GNU Time is not locatable/installed." >&2
-      exit
-      fi
-    exit
+  echo "Error: GNU Time is not locatable/installed." >&2
+  exit
 fi
 
 mkdir do-while-loop
