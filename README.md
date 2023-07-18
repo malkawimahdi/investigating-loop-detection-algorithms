@@ -31,7 +31,7 @@ Contains a c program and its equivalent representation as a control flow graph. 
 Every folder contains a truncated (*.svg) file referenced by the test case name, which removes control flow graph elements provided by CBMC, to include the original program's control flow graph structure.
 
 ## Deprecated
-Deprecated contains results that are either incorrect or have been updated in subsequent algorithm implementations.
+Deprecated contains either incorrect or updated results and code that is ultimately non-functioning.
  
 ## Nix OS Configurations
 Contains the exact Nix files to generate the exact system used to generate test results for generated algorithms.
