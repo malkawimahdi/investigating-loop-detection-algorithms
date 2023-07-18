@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Check if g++ is installed and if not output to stderr.
-if ! command -v cbmc &> /dev/null
+if ! command -v g++ &> /dev/null
 then
-    echo "Error: CBMC is not locatable/installed." >&2
+    echo "Error: G++ is not locatable/installed." >&2
     exit
 fi
 
@@ -13,7 +13,7 @@ g++ main.cpp Utilities.h Graph.h Utilities.cpp Graph.cpp -O2 -w
 # MacOS requires homebrew to use GNU time which is "gtime", whilst linux mostly uses whats below.
 case "$OSTYPE" in
   darwin*)  time="gtime";; 
-  linux*)   time="";;
+  linux*)   time="/usr/bin/time";;
   *)        echo "unknown: $OSTYPE";;
 esac
 
