@@ -43,8 +43,6 @@ Contains shell scripts to generate results for all algorithms compared.
 
 "developed-algorithms-test-generation.sh" generates results for algorithms 1 to 3. This algorithm requires that it be imported into the source code's location to operate. It is located in a separate directory to avoid duplicating the script unnecessarily. This script does not take any arguments.
 
-Or transfer the script to a (*.c) program and run the commands above.
-
 "cbmc-algorithms-test-generation.sh" generates the results for both CBMC algorithms requiring an input (*.c) program to operate. This script contains five arguments:
 ```
 -f is the input (*.c) program file given as input to the script (REQUIRED)
