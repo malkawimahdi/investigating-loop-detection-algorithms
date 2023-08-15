@@ -35,12 +35,8 @@ goto-cc $file -o $file2.goto
 
 goto-instrument --dot $file2.goto > $file2.dot
 
-# Trim output to remove " Reading GOTO program from 'main.goto' "
-tail -n +2 "$file2.dot" > ${file2}-temp.dot
-
-cat ${file2}-temp.dot > $file2.dot
-
-rm -f ${file2}-temp.dot
+# Trim output to remove "Reading GOTO program from 'main.goto' "
+goto-instrument --dot ${file2}.goto | tail -n +2 > ${file2}.dot
 
 # Check OS and run different time commands.
 # MacOS requires homebrew to use GNU time which is "gtime", whilst linux distros mostly uses whats below.
