@@ -1,0 +1,27 @@
+6 is head of { 6, 7, 8, 9, 10, 11, 12 (backedge) }
+8 is head of { 8, 9, 10 (backedge) }
+Cycle(s): 2
+All Node(s) Reachable!
+	Command being timed: "./a.out 0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,8,10,11,11,12,12,6,12,13,13,14,14,15,15,16,16,17,17,18,18,19"
+	User time (seconds): 0.00
+	System time (seconds): 0.00
+	Percent of CPU this job got: 0%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.14
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1120
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 181
+	Voluntary context switches: 0
+	Involuntary context switches: 13
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 16384
+	Exit status: 0
