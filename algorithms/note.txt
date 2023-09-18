@@ -1,0 +1,3 @@
+CBMC Lexical Loops Algorithm: https://github.com/diffblue/cbmc/blob/68af7a4b0185d7a27199d4aa37a33b58b2e08ef9/src/analyses/lexical_loops.h#L1 last visited on 2023-09-18 06:25:14 
+
+CBMC Natural Loops Algorithm: https://github.com/diffblue/cbmc/blob/68af7a4b0185d7a27199d4aa37a33b58b2e08ef9/src/analyses/natural_loops.h#L1 lasted visited on 2023-09-18 06:25:26
