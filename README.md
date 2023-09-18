@@ -41,4 +41,4 @@ chmod +x ./{SCRIPTNAME}.sh
 ./{SCRIPTNAME}.sh
 ```
 
-where ``` SCRIPTNAME ``` is either ```./run-developed.sh``` to generate results for developed algorithms or ```./run-cbmc.sh``` based on CBMC's lexical and natural loops algorithms.
+where ``` SCRIPTNAME ``` is either ```./run-developed.sh``` to generate results for developed algorithms or ```./run-cbmc.sh``` for CBMC's lexical and natural loops algorithms.
