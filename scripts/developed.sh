@@ -1,19 +1,5 @@
 #!/bin/bash
 
-# Check if GNU time is installed and if not output to stderr.
-if ! command -v ${time} &> /dev/null
-then
-    echo "Error: GNU time is not locatable/installed." >&2
-    exit
-fi
-
-# Check if g++ is installed and if not output to stderr.
-if ! command -v g++ &> /dev/null
-then
-    echo "Error: G++ is not locatable/installed." >&2
-    exit
-fi
-
 # Check OS and run different time commands.
 # MacOS requires homebrew to use GNU time which is "gtime", whilst linux distros mostly uses whats below.
 case "$OSTYPE" in

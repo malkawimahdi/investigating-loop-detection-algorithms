@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Check if cbmc is installed and if not output to stderr.
+if ! command -v cbmc &> /dev/null
+then
+    echo "Error: CBMC is not locatable/installed." >&2
+    exit
+fi
+
 ./cbmc.sh -f ../control-flow-graph-test-cases/do-while-loop/main.c -l -n -p
 ./cbmc.sh -f ../control-flow-graph-test-cases/duffs-device/main.c -l -n -p 
 ./cbmc.sh -f ../control-flow-graph-test-cases/for-loop/main.c -l -n -p 

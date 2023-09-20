@@ -1,12 +1,5 @@
 #!/bin/bash
 
-# Check if cbmc is installed and if not output to stderr.
-if ! command -v cbmc &> /dev/null
-then
-    echo "Error: CBMC is not locatable/installed." >&2
-    exit
-fi
-
 # -f is the FILE (REQUIRED)
 # -l lexical_loops (Optional)
 # -n natural_loops (Optional)
